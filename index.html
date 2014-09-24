@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Superficie minima di tipo generale</title>
+		<link rel="stylesheet"
+			href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"
+			type="text/css"
+			media="screen"
+			title="no title"
+			charset="utf-8">
+		<script type="text/javascript"
+			charset="utf-8"
+			src="http://code.jquery.com/jquery-2.1.1.min.js">
+		</script>
+		<script type="text/javascript"
+			charset="utf-8"
+			src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js">
+		</script>
+		<script type='text/x-mathjax-config'>
+			MathJax.Hub.Config({
+				extensions: ['tex2jax.js'],
+				jax: ['input/TeX','output/HTML-CSS'],
+				TeX: {
+					extensions: ['AMSmath.js','AMSsymbols.js'],
+					TagSide: 'left'
+				},
+				tex2jax: {
+					inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+					displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+					processEscapes: true
+				},
+				'HTML-CSS': { scale: 85 }
+			});
+		</script>
+		<script type="text/javascript"
+			charset="utf-8"
+			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+		</script>
+		<script type="text/javascript"
+			charset="utf-8"
+			src="numeric-1.2.6.min.js">
+		</script>
+		<script type="text/javascript"
+			charset="utf-8"
+			src="minsurf.js">
+		</script>
+		<script>
+		</script>
+		<style type="text/css" media="screen">
+* {
+	margin: 0;
+	padding: 0;
+}
+.main {
+	margin: 1em;
+}
+#input, #output {
+	padding: 1em;
+}
+#input {
+	width: 75%;
+	float: left;
+}
+#output {
+	15%;
+	float: right;
+}
+#theory {
+	width: 100%;
+	clear: both;
+	padding-left: 3em;
+}
+#hodgediamond {
+	margin-left: auto;
+	margin-right: auto;
+}
+#hodgediamond td {
+	width: 1em;
+}
+.ui-slider {
+	text-align: center;
+}
+#input .ui-slider-handle {
+	width: 0.2em;
+	margin-left: -0.1em;
+}
+.ui-slider-label-ticks {
+	height: 0px;
+	width: 0px;
+	position: relative;
+	font-size: 60%;
+	color: #999;
+}
+.slider-labels {
+	position: relative;
+	left: -1px;
+}
+		</style>
+	</head>
+	<body>
+	<div style="margin-top: 1em; margin-bottom: 1em; text-align: center;">
+		<h1>Superficie minima di tipo generale</h1>	
+		<em>Un omaggio ai geometri italiani</em>
+	</div>
+	<div id="input" class="main ui-widget-content"></div>
+	<div id="output" class="main ui-widget-content">
+		<!-- HODGE DIAMON PLUS OTHER INVARIANTS -->
+		<table id="hodgediamond">
+			<tr>
+				<td class="empty"></td>
+				<td class="empty"></td>
+				<td class="one">1</td>
+				<td class="empty"></td>
+				<td class="empty"></td>
+			</tr>
+			<tr>
+				<td class="empty"></td>
+				<td class="q">0</td>
+				<td class="empty"></td>
+				<td class="q">0</td>
+				<td class="empty"></td>
+			</tr>
+			<tr>
+				<td class="pg">0</td>
+				<td class="empty"></td>
+				<td class="h11">1</td>
+				<td class="empty"></td>
+				<td class="pg">0</td>
+			</tr>
+			<tr>
+				<td class="empty"></td>
+				<td class="q">0</td>
+				<td class="empty"></td>
+				<td class="q">0</td>
+				<td class="empty"></td>
+			</tr>
+			<tr>
+				<td class="empty"></td>
+				<td class="empty"></td>
+				<td class="one">1</td>
+				<td class="empty"></td>
+				<td class="empty"></td>
+			</tr>
+		</table>
+		<div id="values"></div>
+	</div>
+	<div id="theory" class="main ui-widget-content">
+		
+	</div>
+	</body>
+</html>
