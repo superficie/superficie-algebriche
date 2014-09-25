@@ -23,17 +23,17 @@ for pg in range(0,pgmax+1):
             e = 12*chi - K2
             h11 = e - 2*pg - 2 + 4*q
 
-            if (chi <= 0):
+            if !(chi > 0):
                 continue
-            if (e < 0):
+            if !(e >= 0):
                 continue
-            if (h11 < 0):
+            if !(h11 >= 0):
                 continue
-            if (K2 > 3*e): # Bogomolov-Miyaoka-Yau
+            if !(K2 <= 3*e): # Bogomolov-Miyaoka-Yau
                 continue
-            if (q > 0 and K2 < 2*pg): # Debarre
+            if (q > 0 and !(K2 >= 2*pg)): # Debarre
                 continue
-            if (5*K2 + 36 < e + 12*q): # Noether
+            if !(2*pg <= K2 + 4): # Noether
                 continue
             query = "INSERT INTO invariants VALUES (%d,%d,%d,%d,%d,%d);" % (pg, q, K2, chi, e, h11)
             c.execute(query)
