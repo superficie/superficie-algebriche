@@ -18,7 +18,7 @@ h11 INT
 entries = 0
 for pg in range(0,pgmax+1):
     for q in range(0,qmax+1):
-        for K2 in range(0,K2max+1):
+        for K2 in range(1,K2max+1):
             chi = pg - q + 1
             e = 12*chi - K2
             h11 = e - 2*pg - 2 + 4*q
