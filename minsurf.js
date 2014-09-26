@@ -119,7 +119,12 @@ minsurf.update_output = function() {
 		var max = s.slider("option", "max");
 		$.each(vs, function(a,b) {
 			var r = (100 * (b - min)/(max - min)).toFixed(1);
-			if (r > 1 && r < 99) {
+			if (r > -0.2 && r < 100.2) {
+				if (r < 0.3) {
+					r = 0.3;
+				} else if (r > 99.7) {
+					r = 99.7;
+				}
 				labels += "<div class='ui-slider-label-ticks' style='left: " + r + "%;'><span>|</span></div>";
 			}
 		});
