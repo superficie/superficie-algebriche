@@ -15,9 +15,12 @@ ref  TEXT
 ''')
 
 
-rationalsurfaces = [(-1, 0, 0, "NULL", "NULL", "NULL", 0, 4, '''The projective plane, birational to the Hirzebruch surface $\\Sigma_{0} = \\mathbb{P}^{1} \\times \mathbb{P}^{1}$.''')]
+rationalsurfaces = [(-1, 0, 0, 9, 3, 1, 0, 7, '''The projective plane, birational to the Hirzebruch surface $\\Sigma_{0} = \\mathbb{P}^{1} \\times \mathbb{P}^{1}$.''')]
 for n in range(2,60):
-	rationalsurfaces.append((-1, 0, 0, "NULL", "NULL", "NULL", n, 4, "The Hirzebruch surface $\\Sigma_{" + str(n) + "}$."))
+	h11 = n+1
+	e = n+3
+	K2 = 12 - e
+	rationalsurfaces.append((-1, 0, 0, K2, e, h11, n, 7, "The Hirzebruch surface $\\Sigma_{" + str(n) + "}$."))
 
 c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", rationalsurfaces)
 
