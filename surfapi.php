@@ -60,7 +60,7 @@ try {
 		if (array_key_exists($k, $ps)) {
 			$a[] = $ps[$k];
 		} else {
-			$a[] = '(' . $k . '=' . $out['invariants'][$k] . ' OR ' . $k . '=NULL)';
+			$a[] = '(' . $k . '=' . $out['invariants'][$k] . ' OR ' . $k . ' IS NULL)';
 		}
 	}
 	$qs = implode(' AND ', $a);
