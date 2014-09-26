@@ -16,11 +16,33 @@ h11  INT
 );
 ''')
 
-### Kodaira dimension = -1  --- rational surfaces
+### Kodaira dimension = -1 ###
+
+## rational surfaces
 
 rationalsurfaces = [(-1, 0, 0, 9, 1, 3, 1), (-1, 0, 0, 8, 1, 4, 2)]
 
 c.executemany("INSERT INTO invariants VALUES (?,?,?,?,?,?,?)", rationalsurfaces)
+
+## ruled surfaces over higher genus curves
+
+ruledsurfaces = []
+for g in range(1,qmax):
+	chi = 1-g
+	ruledsurfaces.append((-1, 0, g, 8*chi, chi, 4*chi, 2))
+
+c.executemany("INSERT INTO invariants VALUES (?,?,?,?,?,?,?)", ruledsurfaces)
+
+### Kodaira dimension = 0 ###
+
+kdim0 = [
+(0, 0, 0, 0, 1, 12, 10),
+(0, 1, 0, 0, 2, 24, 20),
+(0, 0, 1, 0, 0, 0,  2),
+(0, 1, 2, 0, 0, 0,  4),
+]
+
+c.executemany("INSERT INTO invariants VALUES (?,?,?,?,?,?,?)", kdim0)
 
 ### Kodaira dimension = 2   ---  a.k.a. general type
 
