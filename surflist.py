@@ -18,13 +18,7 @@ h11  INT
 
 ### Kodaira dimension = -1  --- rational surfaces
 
-rationalsurfaces = [(-1, 0, 0, 9, 1, 3, 1)]
-for n in range(2,60):
-	h11 = n+1
-	e = n+3
-	chi = 1
-	K2 = 12*chi - e
-	rationalsurfaces.append((-1, 0, 0, K2, chi, e, h11))
+rationalsurfaces = [(-1, 0, 0, 9, 1, 3, 1), (-1, 0, 0, 8, 1, 4, 2)]
 
 c.executemany("INSERT INTO invariants VALUES (?,?,?,?,?,?,?)", rationalsurfaces)
 

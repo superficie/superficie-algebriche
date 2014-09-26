@@ -14,16 +14,16 @@ ref  TEXT
 );
 ''')
 
+### Kodaira dimension = -1 ###
+
+## Rational surfaces ##
 
 rationalsurfaces = [
 (-1, 0, 0, None, 1, None, None, 4, "Rational surfaces"),
-(-1, 0, 0, 9, 1, 3, 1, 7, '''The projective plane, birational to the Hirzebruch surface $\\Sigma_{0} = \\mathbb{P}^{1} \\times \mathbb{P}^{1}$.''')]
-for n in range(2,60):
-	h11 = n+1
-	e = n+3
-	chi = 1
-	K2 = 12*chi - e
-	rationalsurfaces.append((-1, 0, 0, K2, chi, e, h11, 7, "The Hirzebruch surface $\\Sigma_{" + str(n) + "}$."))
+(-1, 0, 0, 9, 1, 3, 1, 7, '''The projective plane $\\mathbb{P}^{2}$.'''),
+(-1, 0, 0, 8, 1, 4, 2, 7, "A Hirzebruch surface $\\Sigma_{n}$, with $n = 0$, or $n \ge 2$.")]
+
+c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", rationalsurfaces)
 
 c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", rationalsurfaces)
 
