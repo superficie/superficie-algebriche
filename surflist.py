@@ -18,12 +18,13 @@ h11  INT
 
 ### Kodaira dimension = -1  --- rational surfaces
 
-rationalsurfaces = [(-1, 0, 0, 9, 1, 3, 0)]
+rationalsurfaces = [(-1, 0, 0, 9, 1, 3, 1)]
 for n in range(2,60):
 	h11 = n+1
 	e = n+3
-	K2 = 12 - e
-	rationalsurfaces.append((-1, 0, 0, K2, e, h11, n))
+	chi = 1
+	K2 = 12*chi - e
+	rationalsurfaces.append((-1, 0, 0, K2, chi, e, h11))
 
 c.executemany("INSERT INTO invariants VALUES (?,?,?,?,?,?,?)", rationalsurfaces)
 
@@ -38,17 +39,17 @@ for pg in range(0,pgmax+1):
             e = 12*chi - K2
             h11 = e - 2*pg - 2 + 4*q
 
-            if !(chi > 0):
+            if not (chi > 0):
                 continue
-            if !(e >= 0):
+            if not (e >= 0):
                 continue
-            if !(h11 >= 0):
+            if not (h11 >= 0):
                 continue
-            if !(K2 <= 3*e): # Bogomolov-Miyaoka-Yau
+            if not (K2 <= 3*e): # Bogomolov-Miyaoka-Yau
                 continue
-            if (q > 0 and !(K2 >= 2*pg)): # Debarre
+            if (q > 0 and not (K2 >= 2*pg)): # Debarre
                 continue
-            if !(2*pg <= K2 + 4): # Noether
+            if not (2*pg <= K2 + 4): # Noether
                 continue
             query = "INSERT INTO invariants VALUES (%d,%d,%d,%d,%d,%d,%d);" % (kdim, pg, q, K2, chi, e, h11)
             c.execute(query)
