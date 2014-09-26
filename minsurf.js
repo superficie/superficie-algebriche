@@ -1,47 +1,54 @@
 var minsurf = {};
 minsurf.sliders = {};
 minsurf.invariants = {
+	"kdim" : {
+		"text" : "\\kappa",
+		"v" : -1,
+		"min": -1,
+		"max": 2,
+		"immutable" : false
+	},
 	"pg" : {
 		"text" : "p_{g}",
 		"v" : 1, // value
 		"min" : 0, // minimum value
 		"max" : 15, // maximum value (in this app)
-		"immutable" : false,
+		"immutable" : false
 	},
 	"q" : {
 		"text" : "q",
 		"v" : 0, // value
 		"min" : 0, // minimum value
 		"max" : 15, // maximum value (in this app)
-		"immutable" : false,
+		"immutable" : false
 	},
 	"K2" : {
 		"text" : "K^{2}",
 		"v" : 0, // value
 		"min" : 0, // minimum value
 		"max" : 40, // maximum value (in this app)
-		"immutable" : false,
+		"immutable" : false
 	},
 	"e" : {
 		"text" : "e",
 		"v" : 24, // value
 		"min" : 0, // minimum value
 		"max" : 40, // maximum value (in this app)
-		"immutable" : false,
+		"immutable" : false
 	},
 	"chi" : {
 		"text" : "\\chi",
 		"v" : 2, // value
 		"min" : 0, // minimum value
 		"max" : 15, // maximum value (in this app)
-		"immutable" : false,
+		"immutable" : false
 	},
 	"h11" : {
 		"text" : "h^{11}",
 		"v" : 20, // value
 		"min" : 0, // minimum value
 		"max" : 40, // maximum value (in this app)
-		"immutable" : false,
+		"immutable" : false
 	}
 };
 minsurf.values = {};
@@ -71,18 +78,18 @@ minsurf.update_invariants = function(i, v) {
 		});
 		minsurf.update_output();
 	});
-	if (minsurf.invariants[i].immutable == false) {
+	if (minsurf.invariants[i].immutable === false) {
 		toggle_lock(i);
 	}
 	return (nearest == v);
-}
+};
 
 minsurf.refresh = function() {
 	var url = "surfapi.php?";
 	var params = "";
 	$.each(minsurf.invariants, function(a, b) {
 		if (b.immutable) {
-			if (params == "") {
+			if (params === "") {
 				params += a + "=" + b.v;
 			} else {
 				params += "&" + a + "=" + b.v;
@@ -98,7 +105,7 @@ minsurf.refresh = function() {
 		});
 		minsurf.update_output();
 	});
-}
+};
 
 minsurf.update_output = function() {
 	var inv = this.invariants;
@@ -111,7 +118,7 @@ minsurf.update_output = function() {
 		var min = s.slider("option", "min");
 		var max = s.slider("option", "max");
 		$.each(vs, function(a,b) {
-			var r = (100 * (b - min)/(max - min)).toFixed(1)
+			var r = (100 * (b - min)/(max - min)).toFixed(1);
 			if (r > 1 && r < 99) {
 				labels += "<div class='ui-slider-label-ticks' style='left: " + r + "%;'><span>|</span></div>";
 			}
@@ -123,13 +130,14 @@ minsurf.update_output = function() {
 		reflist.append($("<li>" + b + "</li>"));
 	});
 	$("#theory").empty().append(reflist);
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"theory"]);
 	texlist += "\\end{align*} $$";
 	$("#values").text(texlist);
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"values"]);
 	$("td.pg").text(inv.pg.v);
 	$("td.q").text(inv.q.v);
 	$("td.h11").text(inv.h11.v);
-}
+};
 
 function toggle_lock(i) {
 	var lock = $("#" + i + "_lock");

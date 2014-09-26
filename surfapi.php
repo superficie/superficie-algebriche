@@ -4,6 +4,9 @@ error_reporting(-1); // Report all PHP errors
 header('Content-Type: application/json; charset=utf-8', true,200);
 
 $ps = array();
+if (isset($_GET['kdim'])) {
+	$ps['kdim'] = 'kdim=' . ((int) $_GET['kdim']);
+}
 if (isset($_GET['pg'])) {
 	$ps['pg'] = 'pg=' . ((int) $_GET['pg']);
 }
@@ -38,7 +41,7 @@ try {
 		}
 		$out['invariants'] = $row;
 	}
-	foreach(array('pg','q','K2','chi','e','h11') as $k) {
+	foreach(array('kdim','pg','q','K2','chi','e','h11') as $k) {
 		$pscopy = $ps;
 		unset($pscopy[$k]);
 		$qs = implode(' AND ', array_values($pscopy));
@@ -53,7 +56,7 @@ try {
 		$out['values'][$k] = $arr;
 	}
 	$a = array();
-	foreach(array('pg','q','K2','chi','e','h11') as $k) {
+	foreach(array('kdim','pg','q','K2','chi','e','h11') as $k) {
 		if (array_key_exists($k, $ps)) {
 			$a[] = $ps[$k];
 		} else {
