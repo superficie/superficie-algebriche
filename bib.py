@@ -44,10 +44,27 @@ kdim0 = [
 (0, 0, 0, 0, 1, 12, 10, 7, "Enriques surfaces."),
 (0, 1, 0, 0, 2, 24, 20, 7, "K3 surfaces."),
 (0, 0, 1, 0, 0, 0,  2,  7, "Hyperelliptic surfaces."),
-(0, 1, 2, 0, 0, 0,  4,  7, "Abelian surfaces."),
+(0, 1, 2, 0, 0, 0,  4,  7, "Abelian surfaces.")
 ]
 
 c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", kdim0)
+
+### Kodaira dimension = 1 ###
+
+### Kodaira dimension = 2 ###
+
+pg2q2 = [
+(2, 2, 2, None, 1, None, None, 4, '''Penegini, Matteo. On the classification of surfaces of general type with $p_{g}=q=2$. Boll. Unione Mat. Ital. (9) 6 (2013), no. 3, 549&ndash;563.'''),
+(2, 2, 2, 4, 1, 8, 10, 7, '''At least 1 component in the moduli space, consisting of surfaces that are a double cover of an abelian surface.'''),
+(2, 2, 2, 5, 1, 7, 9, 4, '''At least 1 component of dimension 4 in the moduli space, consisting of Chen&ndash;Hacon surfaces.'''),
+(2, 2, 2, 6, 1, 6, 8, 4, '''At least 4 components in the moduli space; 3 generically smooth components in the moduli space, of dimensions 4, 4, 3.'''),
+(2, 2, 2, 7, 1, 5, 7, 4, '''No examples known.'''),
+(2, 2, 2, 8, 1, 4, 6, 4, '''If the image of the albanese map is a curve, there are 24 components in the moduli space coming from surfaces isogenous to a product of curves. It is not know if there are more components.'''),
+(2, 2, 2, 8, 1, 4, 6, 4, '''If the image of the albanese map is a surface, there are at least 4 components in the moduli space.'''),
+(2, 2, 2, 9, 1, 3, 5, 4, '''No examples known.''')
+]
+
+c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", pg2q2)
 
 c.close()
 conn.commit()
