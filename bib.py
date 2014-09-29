@@ -66,5 +66,16 @@ pg2q2 = [
 
 c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", pg2q2)
 
+pg1q0 = [
+(2, 1, 0, 1, 2, 23, 19, 7, '''Irreducible moduli space of dimension 18.'''),
+(2, 1, None, 1, None, None, None, 3, '''Catanese, Fabrizio. Surfaces with $K^{2}=p_{g}=1$ and their period mapping. Algebraic geometry (Proc. Summer Meeting, Univ. Copenhagen, Copenhagen, 1978), pp. 1&ndash;29, Lecture Notes in Math., 732, Springer, Berlin, 1979.'''),
+(2, 1, None, 1, None, None, None, 3, '''Catanese, F. The moduli and the global period mapping of surfaces with $K^{2}=p_{g}=1$: a counterexample to the global Torelli problem. Compositio Math. 41 (1980), no. 3, 401&ndash;414.'''),
+(2, 1, None, 1, None, None, None, 3, '''Todorov, Andrei N. Surfaces of general type with $p_{g}=1$ and $(K,K)=1$. I. Ann. Sci. &Eacute;cole Norm. Sup. (4) 13 (1980), no. 1, 1&ndash;21.'''),
+]
+
+c.executemany("INSERT INTO bibliography VALUES (?,?,?,?,?,?,?,?,?)", pg1q0)
+
+
+
 c.close()
 conn.commit()
