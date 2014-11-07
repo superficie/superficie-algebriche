@@ -1,0 +1,48 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.main {
+	margin: 1em;
+}
+#input, #output {
+	padding: 1em;
+}
+#input {
+	width: 75%;
+	float: left;
+}
+#output {
+	15%;
+	float: right;
+}
+#theory {
+	width: 100%;
+	clear: both;
+	padding-left: 3em;
+}
+#hodgediamond {
+	margin-left: auto;
+	margin-right: auto;
+}
+#hodgediamond td {
+	width: 1em;
+}
+.ui-slider {
+	text-align: center;
+}
+#input .ui-slider-handle {
+	width: 0.2em;
+	margin-left: -0.1em;
+}
+.ui-slider-label-ticks {
+	height: 0px;
+	width: 0px;
+	position: relative;
+	font-size: 60%;
+	color: #999;
+}
+.slider-labels {
+	position: relative;
+	left: -1px;
+}

@@ -1,11 +1,11 @@
 var minsurf = {};
-minsurf.sliders = {};
+minsurf.sliders = {}; // Object containing JQuery objects for the sliders
 minsurf.invariants = {
 	"kdim" : {
 		"text" : "\\kappa",
-		"v" : -1,
-		"min": -1,
-		"max": 2,
+		"v" : -1, // value
+		"min": -1, // minimum value
+		"max": 2, // maximum value
 		"immutable" : false
 	},
 	"pg" : {
@@ -54,22 +54,33 @@ minsurf.invariants = {
 minsurf.values = {};
 minsurf.references = [];
 
+// This function is called when a slider is moved
+// We have to round of the movement to the nearest tick
 minsurf.update_invariants = function(i, v) {
 	var vs = minsurf.values[i];
+
+	// Calculate the nearest tick on the slider
 	var nearest = 0;
-	var m = 99999;
+	var m = 99999; // infinity
 	$.each(vs, function(a, b) {
 		if (Math.abs(v - b) < m) {
 			m = Math.abs(v - b);
 			nearest = b;
 		}
 	});
+
+	// Add the nearest value to the API query
 	var url = "surfapi.php?" + i + "=" + nearest;
+
+	// Add all other locked values to the query
 	$.each(minsurf.invariants, function(a, b) {
 		if (a != i && b.immutable) {
 			url += "&" + a + "=" + b.v;
 		}
 	});
+
+	// Merge the response with the current state
+	// Update the display
 	$.getJSON(url, function(data) {
 		minsurf.values = data.values;
 		minsurf.references = data.references;
@@ -78,12 +89,19 @@ minsurf.update_invariants = function(i, v) {
 		});
 		minsurf.update_output();
 	});
+
+	// Lock the slider if it was not yet locked
 	if (minsurf.invariants[i].immutable === false) {
 		toggle_lock(i);
 	}
+
+	// Return whether the position of the mouse equals that of the nearest
+	// tick
 	return (nearest == v);
 };
 
+// This function is called when a lock is toggled
+// Toggling a lock might change the ticks (possible values) on a slider
 minsurf.refresh = function() {
 	var url = "surfapi.php?";
 	var params = "";
@@ -97,6 +115,9 @@ minsurf.refresh = function() {
 		}
 	});
 	url += params;
+
+	// Merge the response with the current state
+	// Update the display
 	$.getJSON(url, function(data) {
 		minsurf.values = data.values;
 		minsurf.references = data.references;
@@ -107,6 +128,10 @@ minsurf.refresh = function() {
 	});
 };
 
+// Update the display math with the values of the invariants
+// Update the tick marks for possible values of a slider
+// Update the bibliography (#theory)
+// Call MathJax on certain DOM items
 minsurf.update_output = function() {
 	var inv = this.invariants;
 	var texlist = "$$ \\begin{align*}";
@@ -144,6 +169,7 @@ minsurf.update_output = function() {
 	$("td.h11").text(inv.h11.v);
 };
 
+// Toggle the lock icon, and save the state (minsurf.invariants[i].immutable)
 function toggle_lock(i) {
 	var lock = $("#" + i + "_lock");
 	if (minsurf.invariants[i].immutable) {
@@ -157,6 +183,11 @@ function toggle_lock(i) {
 	}
 }
 
+// Build the slider interface
+// The Hodge diamond is hard-coded in the HTML file
+// Currently this is done as a table.
+// For each row, we make three cells (text, slider, lock)
+// Finally, call the refresh function
 $(function() {
 	var slider_box = $("<table width='100%'>");
 	$("#input").append(slider_box);
@@ -170,6 +201,7 @@ $(function() {
 			max: v.max,
 			step: v.step
 		});
+		// Only actually slide the slider if it pulled onto a tick
 		slider.on("slide", function(event, ui) {
 			return minsurf.update_invariants(i, ui.value);
 		});

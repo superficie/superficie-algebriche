@@ -1,3 +1,6 @@
+# This script populates the database with invariants that satisfy all known
+# (in)equalities
+
 pgmax = 30 
 qmax  = 30 
 K2max = 180

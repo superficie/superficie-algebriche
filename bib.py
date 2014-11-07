@@ -1,3 +1,5 @@
+# This script adds bibliographical data to the database
+# for certain invariants.
 pgmax = 30 
 qmax  = 30 
 K2max = 180
