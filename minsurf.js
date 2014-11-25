@@ -145,10 +145,10 @@ minsurf.update_output = function() {
 		$.each(vs, function(a,b) {
 			var r = (100 * (b - min)/(max - min)).toFixed(1);
 			if (r > -0.2 && r < 100.2) {
-				if (r < 0.3) {
-					r = 0.3;
-				} else if (r > 99.7) {
-					r = 99.7;
+				if (r < 0.2) {
+					r = 0.2;
+				} else if (r > 99.8) {
+					r = 99.8;
 				}
 				labels += "<div class='ui-slider-label-ticks' style='left: " + r + "%;'><span>|</span></div>";
 			}

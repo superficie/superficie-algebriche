@@ -1,7 +1,4 @@
-* {
-	margin: 0;
-	padding: 0;
-}
+/*
 .main {
 	margin: 1em;
 }
@@ -21,28 +18,36 @@
 	clear: both;
 	padding-left: 3em;
 }
+*/
 #hodgediamond {
 	margin-left: auto;
 	margin-right: auto;
 }
 #hodgediamond td {
-	width: 1em;
+	text-align: center;
+	width: 1.2em;
+	height: 1.2em;
+	padding: 0em;
+	margin: 0em;
 }
 .ui-slider {
 	text-align: center;
 }
 #input .ui-slider-handle {
-	width: 0.2em;
-	margin-left: -0.1em;
+	width: 0.3em;
+	margin-left: -0.15em;
+	background: #a77;
+	border-color: #777;
 }
 .ui-slider-label-ticks {
 	height: 0px;
 	width: 0px;
 	position: relative;
 	font-size: 60%;
-	color: #999;
+	color: #777;
 }
 .slider-labels {
 	position: relative;
+	top: -2px;
 	left: -1px;
 }
