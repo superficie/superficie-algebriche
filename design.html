@@ -21,6 +21,16 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
+  function updateHodgeDiamond() {
+    pg = $("input#genus").val();
+    h11 = $("input#h11").val();
+    q = $("input#irregularity").val();
+
+    $("output#h20, output#h02").text(pg);
+    $("output#h01, output#h10, output#h21, output#h12").text(q);
+    $("output#h11").text(h11);
+  }
+
   function updateValue(field, value) {
     switch (field.id) {
       case "kodaira":
@@ -33,6 +43,8 @@
       default:
         // mustn't happen
     }
+
+    updateHodgeDiamond();
 
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   }
@@ -83,6 +95,16 @@ output#kodaira-output {
   <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="updateValue(kodaira, value)">
   <datalist id="kodaira-values">
     <option>-1</option>
+
+div#diamond {
+  width: 10em;
+  text-align: center;
+}
+
+div#diamond output {
+  display: inline-block;
+  padding: 0 .5em;
+}
     <option>0</option>
     <option>1</option>
     <option>2</option>
@@ -110,10 +132,22 @@ output#kodaira-output {
   <input type="number" id="euler" value="0" onchange="updateValue(euler, value)">
   <br style="clear: both">
 
-  <label for="hodge">$\mathrm{h}^{1,1}$</label>
-  <input type="number" id="hodge" value="0" min="0" onchange="updateValue(hodge, value)">
+  <label for="h11">$\mathrm{h}^{1,1}$</label>
+  <input type="number" id="h11" value="0" min="0" onchange="updateValue(h11, value)">
   <br style="clear: both">
 </form>
 
 </body>
 </html>
+
+  <div id="diamond">
+    <output id="h00">1</output><br style="clear: both">
+    <output for="irregularity" id="h10">0</output>
+    <output for="irregularity" id="h01">0</output><br style="clear: both">
+    <output for="genus" id="h20">0</output>
+    <output for="h11" id="h11">1</output>
+    <output for="genus" id="h02">0</output><br style="clear: both">
+    <output for="irregularity" id="h21">0</output>
+    <output for="irregularity" id="h12">0</output><br style="clear: both">
+    <output id="h22">1</output>
+  </div>
