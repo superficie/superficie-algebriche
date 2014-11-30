@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/x-mathjax-config'>
+	MathJax.Hub.Config({
+		extensions: ['tex2jax.js'],
+		jax: ['input/TeX','output/HTML-CSS'],
+		TeX: {
+			extensions: ['AMSmath.js','AMSsymbols.js'],
+			TagSide: 'left'
+		},
+		tex2jax: {
+			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		'HTML-CSS': { scale: 85 }
+	});
+</script>
+<script type="text/javascript" charset="utf-8"	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  function updateValue(field, value) {
+    switch (field.id) {
+      case "kodaira":
+        if (value == -1)
+          $("output#" + field.id + "-output").text("$-\\infty$");
+        else
+          $("output#" + field.id + "-output").text(value);
+        break;
+
+      default:
+        // mustn't happen
+    }
+
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  }
+</script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<style type="text/css">
+form {
+  margin: 2em;
+  width: 18em;
+}
+
+label {
+  float: left;
+  width: 12em;
+  padding-top: .3em;
+}
+
+input {
+  float: left;
+}
+
+label, input {
+  height: 2em;
+}
+
+input[type="range"] {
+  width: 3em;
+}
+
+input[type="number"] {
+  text-align: right;
+  border: none;
+  width: 3em;
+}
+
+output#kodaira-output {
+  padding-top: 2px;
+  float: right;
+}
+</style>
+</head>
+
+<body>
+<form>
+  <label for="kodaira">Kodaira dimension</label>
+  <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="updateValue(kodaira, value)">
+  <datalist id="kodaira-values">
+    <option>-1</option>
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+  </datalist>
+  <output for="kodaira" id="kodaira-output"></output>
+  <br style="clear: both">
+
+  <label for="genus">geometric genus</label>
+  <input type="number" id="genus" value="0" min="0" onchange="updateValue(genus, value)">
+  <br style="clear: both">
+
+  <label for="irregularity">irregularity</label>
+  <input type="number" id="irregularity" value="0" min="0" onchange="updateValue(irregularity, value)">
+  <br style="clear: both">
+
+  <label for="first-chern">first Chern number</label>
+  <input type="number" id="first-chern" value="0" min="0" onchange="updateValue(first-chern, value)">
+  <br style="clear: both">
+
+  <label for="second-chern">second Chern number</label>
+  <input type="number" id="second-chern" value="0" min="0" onchange="updateValue(second-chern, value)">
+  <br style="clear: both">
+
+  <label for="euler">Euler characteristic</label>
+  <input type="number" id="euler" value="0" onchange="updateValue(euler, value)">
+  <br style="clear: both">
+
+  <label for="hodge">$\mathrm{h}^{1,1}$</label>
+  <input type="number" id="hodge" value="0" min="0" onchange="updateValue(hodge, value)">
+  <br style="clear: both">
+</form>
+
+</body>
+</html>
