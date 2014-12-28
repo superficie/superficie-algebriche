@@ -14,6 +14,11 @@ circle.kodaira-2 {
   //display: none;
 }
 
+circle {
+  cursor: pointer;
+}
+
 circle.inactive {
   fill-opacity: .1;
+  cursor: default;
 }

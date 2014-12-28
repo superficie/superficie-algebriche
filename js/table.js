@@ -1,6 +1,6 @@
 // dimensions of the SVG viewport
-var w = 600;
-var h = 400;
+var w = 700;
+var h = 500;
 
 // TODO change domain and range according to some configuration
 
@@ -67,6 +67,35 @@ svg.selectAll("circle")
   .append("circle")
   .attr("cx", function(d) { return c2(d[0]); })
   .attr("cy", function(d) { return c12(d[1]); })
-  .attr("r", function(d) { return 3; })
+  .attr("r", function(d) { return 4; })
   .attr("class", function(d) { return kodaira(d[2]); })
 
+d3.selectAll("circle").on("click", clickedPoint);
+
+function clickedPoint(point) {
+  // only act when the clicked node is active (i.e. has the correct Kodaira dimension)
+  if (!d3.select(this).classed("inactive")) {
+    // we reset the Hodge diamond
+    updateHodgeDiamond("?", "?", "?");
+    // we make the Hodge diamond inactive, to indicate that there is no surface being shown
+    $("fieldset#diamond output").toggleClass("inactive", true);
+
+    // remove the "no pair selected" message
+    $("fieldset#candidates p").remove();
+
+    // remove all children in the candidates list
+    $("fieldset#candidates ol").empty();
+
+    // look for surfaces with the correct invariants
+    for (var i = 0; i < surfaces.length; i++) {
+      if (surfaces[i].c2 == point[0] && surfaces[i].c12 == point[1] && surfaces[i].kodaira == point[2])
+        addCandidateSurface(surfaces[i]);
+    }
+
+    console.log($("fieldset#candidates ol"));
+
+    // check whether we have found surfaces, otherwise display a message
+    if ($("fieldset#candidates ol li").length == 0)
+      $("fieldset#candidates").append("<p>No explicit surfaces known with these invariants, sorry.");
+  }
+}
