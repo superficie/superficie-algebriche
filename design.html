@@ -92,12 +92,15 @@ output#kodaira-output {
   float: right;
 }
 
-div#diamond {
-  width: 10em;
+fieldset#diamond {
   text-align: center;
 }
 
-div#diamond output {
+fieldset#diamond legend {
+  text-align: left;
+}
+
+fieldset#diamond output {
   display: inline-block;
   padding: 0 .5em;
 }
@@ -117,31 +120,37 @@ div#diamond output {
   <output for="kodaira" id="kodaira-output"></output>
   <br style="clear: both">
 
-  <label for="genus">geometric genus</label>
-  <input type="number" id="genus" value="0" min="0" onchange="updateValue(genus, value)">
-  <br style="clear: both">
+  <fieldset>
+    <legend>Hodge numbers</legend>
 
-  <label for="irregularity">irregularity</label>
-  <input type="number" id="irregularity" value="0" min="0" onchange="updateValue(irregularity, value)">
-  <br style="clear: both">
+    <label for="genus">geometric genus</label>
+    <input type="number" id="genus" value="0" min="0" onchange="updateValue(genus, value)">
+    <br style="clear: both">
 
-  <label for="first-chern">first Chern number</label>
-  <input type="number" id="first-chern" value="0" min="0" onchange="updateValue(first-chern, value)">
-  <br style="clear: both">
+    <label for="irregularity">irregularity</label>
+    <input type="number" id="irregularity" value="0" min="0" onchange="updateValue(irregularity, value)">
+    <br style="clear: both">
 
-  <label for="second-chern">second Chern number</label>
-  <input type="number" id="second-chern" value="0" min="0" onchange="updateValue(second-chern, value)">
-  <br style="clear: both">
+    <label for="h11">$\mathrm{h}^{1,1}$</label>
+    <input type="number" id="h11" value="0" min="0" onchange="updateValue(h11, value)">
+    <br style="clear: both">
+  </fieldset>
 
-  <label for="euler">Euler characteristic</label>
-  <input type="number" id="euler" value="0" onchange="updateValue(euler, value)">
-  <br style="clear: both">
+  <fieldset>
+    <legend>Chern numbers</legend>
 
-  <label for="h11">$\mathrm{h}^{1,1}$</label>
-  <input type="number" id="h11" value="0" min="0" onchange="updateValue(h11, value)">
-  <br style="clear: both">
+    <label for="first-chern">first Chern number</label>
+    <input type="number" id="first-chern" value="0" min="0" onchange="updateValue(first-chern, value)">
+    <br style="clear: both">
 
-  <div id="diamond">
+    <label for="second-chern">second Chern number</label>
+    <input type="number" id="second-chern" value="0" min="0" onchange="updateValue(second-chern, value)">
+    <br style="clear: both">
+  </fieldset>
+
+  <fieldset id="diamond">
+    <legend>Hodge diamond</legend>
+
     <output id="h00">1</output><br style="clear: both">
     <output for="irregularity" id="h10">0</output>
     <output for="irregularity" id="h01">0</output><br style="clear: both">
@@ -151,7 +160,7 @@ div#diamond output {
     <output for="irregularity" id="h21">0</output>
     <output for="irregularity" id="h12">0</output><br style="clear: both">
     <output id="h22">1</output>
-  </div>
+  </fieldset>
 </form>
 
 </body>
