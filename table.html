@@ -21,99 +21,52 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/table.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="css/form.css" type="text/css" rel="stylesheet">
+<link href="css/table.css" type="text/css" rel="stylesheet">
+
 <style type="text/css">
-circle.kodaira-infty {
-  fill: red;
-}
-
-circle.kodaira-0 {
-  fill: green;
-}
-
-circle.kodaira-1 {
-  fill: blue;
-}
-
-circle.kodaira-2 {
-  //display: none;
-}
 </style>
 
 </head>
 
 <body>
-<script type="text/javascript">
-// dimensions of the SVG viewport
-var w = 600;
-var h = 400;
+<form>
+  <label for="kodaira">Kodaira dimension</label>
+  <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)">
+  <datalist id="kodaira-values">
+    <option>-1</option>
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+  </datalist>
+  <output for="kodaira" id="kodaira-output"></output>
+  <br style="clear: both">
 
-// TODO change domain and range according to some configuration
+  <fieldset id="diamond">
+    <legend>Hodge diamond</legend>
 
-// scale for the second Chern number
-var c2 = d3.scale.linear()
-  .domain([-20, 80])
-  .range([0, w]);
-
-// scale for the first Chern number
-var c12 = d3.scale.linear()
-  .domain([-20, 60])
-  .range([h, 0]);
-
-// scale for the Kodaira dimension
-var kodaira = d3.scale.ordinal()
-  .domain([-1, 0, 1, 2])
-  .range(["kodaira-infty", "kodaira-0", "kodaira-1", "kodaira-2"]);
-
-// TODO auto generate the valid points
-var points = []
-
-// projective plane
-points.push([3, 9, -1]);
-
-// minimal surfaces of Kodaira dimension 0
-points.push([0, 0, 0]); // abelian and hyperelliptic surfaces
-points.push([12, 0, 0]); // Enriques surfaces
-points.push([24, 0, 0]); // K3 surfaces
-
-for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
-  for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
-    // ruled surfaces
-    var positivity = (i2 <= 8) && (i12 <= -4);
-    var congruence = (i2 % 4 == 0) && (i12 % 8 == 0) && (i12 == i2 * 2);
-    if (congruence && positivity)
-      points.push([i2, i12, -1]);
-
-    // minimal surface of Kodaira dimension 1
-    var congruence = ((i12 + i2) % 12 == 0);
-    var positivity = (i12 == 0) && (i2 >= 0);
-    if (congruence && positivity)
-      points.push([i2, i12, 1]);
-
-    // minimal surface of general type
-    var congruence = ((i12 + i2) % 12 == 0);
-    var positivity = (i12 >= 0) && (i2 >= 0);
-    var BMY = (i12 <= (3 * i2));
-    var noether = ((5 * i12 - i2 + 36) >= 0);
-
-    if (congruence && positivity && BMY && noether)
-      points.push([i2, i12, 2]);
-  }
-}
+    <output id="h00">1</output><br style="clear: both">
+    <output for="irregularity" id="h10">0</output>
+    <output for="irregularity" id="h01">0</output><br style="clear: both">
+    <output for="genus" id="h20">0</output>
+    <output for="h11" id="h11">1</output>
+    <output for="genus" id="h02">0</output><br style="clear: both">
+    <output for="irregularity" id="h21">0</output>
+    <output for="irregularity" id="h12">0</output><br style="clear: both">
+    <output id="h22">1</output>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Overview</legend>
 
 
-var svg = d3.select("body")
-  .append("svg")
-  .attr("width", w)
-  .attr("height", h);
+  </fieldset>
+</form>
 
-svg.selectAll("circle")
-  .data(points)
-  .enter()
-  .append("circle")
-  .attr("cx", function(d) { return c2(d[0]); })
-  .attr("cy", function(d) { return c12(d[1]); })
-  .attr("r", function(d) { return 3; })
-  .attr("class", function(d) { return kodaira(d[2]); })
-</script>
+<script type="text/javascript" src="js/table.js"></script>
 </body>
 </html>

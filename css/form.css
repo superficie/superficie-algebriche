@@ -1,0 +1,52 @@
+form {
+  margin: 2em;
+  width: 18em;
+  float: right;
+}
+
+label {
+  float: left;
+  width: 12em;
+}
+
+input {
+  float: left;
+}
+
+label, input {
+  height: 2em;
+}
+
+input[type="range"] {
+  width: 3em;
+}
+
+input[type="number"] {
+  text-align: right;
+  border: none;
+  width: 3em;
+}
+
+output#kodaira-output {
+  padding-top: 2px;
+  float: right;
+}
+
+fieldset.disabled legend,
+fieldset.disabled label,
+fieldset.disabled input {
+  color: #bbb;
+}
+
+fieldset#diamond {
+  text-align: center;
+}
+
+fieldset#diamond legend {
+  text-align: left;
+}
+
+fieldset#diamond output {
+  display: inline-block;
+  padding: 0 .5em;
+}
