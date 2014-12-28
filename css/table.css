@@ -13,3 +13,7 @@ circle.kodaira-1 {
 circle.kodaira-2 {
   //display: none;
 }
+
+circle.inactive {
+  fill-opacity: .1;
+}

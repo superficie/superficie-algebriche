@@ -19,7 +19,7 @@ var kodaira = d3.scale.ordinal()
   .domain([-1, 0, 1, 2])
   .range(["kodaira-infty", "kodaira-0", "kodaira-1", "kodaira-2"]);
 
-// TODO auto generate the valid points
+// all the pairs (c_2,c_1^2) corresponding to a minimal projective surface
 var points = []
 
 // projective plane
@@ -33,7 +33,7 @@ points.push([24, 0, 0]); // K3 surfaces
 for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
   for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
     // ruled surfaces
-    var positivity = (i2 <= 8) && (i12 <= -4);
+    var positivity = (i2 <= 8) && (i12 <= 4);
     var congruence = (i2 % 4 == 0) && (i12 % 8 == 0) && (i12 == i2 * 2);
     if (congruence && positivity)
       points.push([i2, i12, -1]);
@@ -54,7 +54,6 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
       points.push([i2, i12, 2]);
   }
 }
-
 
 var svg = d3.select("body")
   .append("svg")
