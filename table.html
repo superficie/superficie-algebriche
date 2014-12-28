@@ -25,23 +25,37 @@
 
 <body>
 <script type="text/javascript">
+// dimensions of the SVG viewport
 var w = 600;
 var h = 400;
 
-// TODO auto generate the valid points
-var points = [[0,0], [12, 0], [11, 1], [10, 2]];
-
-// TODO change domain and range according to the array of points
+// TODO change domain and range according to some configuration
 
 // scale for the second Chern number
 var c2 = d3.scale.linear()
-  .domain([-10, 20])
+  .domain([-20, 60])
   .range([0, w]);
 
 // scale for the first Chern number
 var c12 = d3.scale.linear()
-  .domain([-10, 20])
+  .domain([-20, 60])
   .range([h, 0]);
+
+// TODO auto generate the valid points
+var points = []
+// generating all points for surfaces of general type
+for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
+  for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
+    var congruence = ((i12 + i2) % 12 == 0);
+    var positivity = (i12 >= 0) && (i2 >= 0);
+    var BMY = (i12 <= (3 * i2));
+    var noether = ((5 * i12 - i2 + 36) >= 0);
+
+    if (congruence && positivity && BMY && noether)
+      points.push([i2, i12, 2]);
+  }
+}
+
 
 var svg = d3.select("body")
   .append("svg")
@@ -54,7 +68,7 @@ svg.selectAll("circle")
   .append("circle")
   .attr("cx", function(d) { return c2(d[0]); })
   .attr("cy", function(d) { return c12(d[1]); })
-  .attr("r", function(d) { return 4; })
+  .attr("r", function(d) { return 3; })
 </script>
 </body>
 </html>
