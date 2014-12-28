@@ -1,3 +1,9 @@
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
+
 function setKodairaDimension(value) {
   if (value == -1)
     $("output#kodaira-output").text("$-\\infty$");
@@ -12,9 +18,10 @@ function setKodairaDimension(value) {
   d3.selectAll("circle")
     .classed("inactive", true);
 
-  d3.selectAll("circle")
+  var activeNodes = d3.selectAll("circle")
     .filter(function(d, i) { return d[2] == value; })
-    .classed("inactive", false);
+  activeNodes.classed("inactive", false);
+  activeNodes.moveToFront();
 
 
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
