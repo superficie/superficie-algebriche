@@ -31,6 +31,14 @@ function setKodairaDimension(value) {
   // SVG doesn't have a z-index so we change the order of elements
   activeNodes.moveToFront();
 
+  // remove candidates
+  clearCandidates();
+  // make the Hodge diamond and invariants shaded
+  setInactive();
+
+  // make all nodes inactive
+  d3.selectAll("circle").classed("active", false);
+
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 };
 
@@ -44,10 +52,27 @@ function toggleInvariants(state) {
   $("fieldset#overview output").toggleClass("inactive", state);
 };
 
+// clear candidates
+function clearCandidates() {
+  // remove the "no pair selected" message
+  $("fieldset#candidates p").remove();
+
+  // remove all children in the candidates list
+  $("fieldset#candidates ol").empty();
+}
+
 // add a surface to the candidates list
 function addCandidateSurface(surface) {
   $("fieldset#candidates ol").append("<li><a href='#'>" + surface.name).click(function() { loadSurface(surface); });
 };
+
+// we make the Hodge diamond and the invariants inactive and empty
+function setInactive() {
+  toggleHodgeDiamond(true);
+  toggleInvariants(true);
+
+  updateHodgeDiamond("?", "?", "?");
+}
 
 // load the invariants of a surface
 function loadSurface(surface) {
@@ -67,9 +92,7 @@ $(document).ready(function() {
   // we initialise everything on Kodaira dimension -oo
   setKodairaDimension("-1");
 
-  // we make the Hodge diamond and the invariants inactive
-  toggleHodgeDiamond(true);
-  toggleInvariants(true);
-  updateHodgeDiamond("?", "?", "?");
+  // display a nice message
+  $("fieldset#candidates").append("<p>No pair of Chern numbers selected.");
 });
 

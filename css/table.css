@@ -18,6 +18,11 @@ circle {
   cursor: pointer;
 }
 
+circle.active {
+  stroke: black;
+  stroke-width: 2;
+}
+
 circle.inactive {
   fill-opacity: .1;
   cursor: default;

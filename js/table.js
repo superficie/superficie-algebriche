@@ -75,24 +75,23 @@ d3.selectAll("circle").on("click", clickedPoint);
 function clickedPoint(point) {
   // only act when the clicked node is active (i.e. has the correct Kodaira dimension)
   if (!d3.select(this).classed("inactive")) {
-    // we reset the Hodge diamond
-    updateHodgeDiamond("?", "?", "?");
-    // we make the Hodge diamond inactive, to indicate that there is no surface being shown
-    $("fieldset#diamond output").toggleClass("inactive", true);
+    // make all nodes inactive
+    d3.selectAll("circle").classed("active", false);
 
-    // remove the "no pair selected" message
-    $("fieldset#candidates p").remove();
+    // make this node active
+    d3.select(this).classed("active", true);
 
-    // remove all children in the candidates list
-    $("fieldset#candidates ol").empty();
+    // remove candidates
+    clearCandidates();
+
+    // reset the Hodge diamond
+    setInactive();
 
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
       if (surfaces[i].c2 == point[0] && surfaces[i].c12 == point[1] && surfaces[i].kodaira == point[2])
         addCandidateSurface(surfaces[i]);
     }
-
-    console.log($("fieldset#candidates ol"));
 
     // check whether we have found surfaces, otherwise display a message
     if ($("fieldset#candidates ol li").length == 0)
