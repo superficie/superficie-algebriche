@@ -17,28 +17,70 @@
 		'HTML-CSS': { scale: 85 }
 	});
 </script>
-<script type="text/javascript" charset="utf-8"	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
   function updateHodgeDiamond() {
-    pg = $("input#genus").val();
-    h11 = $("input#h11").val();
-    q = $("input#irregularity").val();
+    var pg = $("input#genus").val();
+    var h11 = $("input#h11").val();
+    var q = $("input#irregularity").val();
 
     $("output#h20, output#h02").text(pg);
     $("output#h01, output#h10, output#h21, output#h12").text(q);
     $("output#h11").text(h11);
   }
 
+  // disable the Hodge number input
+  function disableHodgeInput() {
+    $("fieldset#hodge input").prop("disabled", true);
+    $("fieldset#hodge").toggleClass("disabled", true);
+  }
+
+  // disable the Chern number input
+  function disableChernInput() {
+    $("fieldset#chern input").prop("disabled", true);
+    $("fieldset#chern").toggleClass("disabled", true);
+  }
+
+  // TODO enabling the input can only be done when the constraints are satisfied (!)
+
+  // TODO there must be an indication of when a surface is minimal, and only Kodaira dimension -\infty should have non-minimal possibilities?
+
+
+  function checkConstraints() {
+  }
+
   function updateValue(field, value) {
+    var pg = $("input#genus").val();
+    var h11 = $("input#h11").val();
+    var q = $("input#irregularity").val();
+    var c12 = $("input#first-chern").val();
+    var c2 = $("input#second-chern").val();
+
     switch (field.id) {
+      // changing the Kodaira dimension
       case "kodaira":
         if (value == -1)
           $("output#" + field.id + "-output").text("$-\\infty$");
         else
           $("output#" + field.id + "-output").text(value);
         break;
+
+      // changing the Hodge numbers
+      case "irregularity":
+      case "genus":
+      case "h11":
+        // disable Chern numbers
+        disableChernInput();
+
+        break;
+
+      // changing the Chern numbers
+      case "firstChern":
+      case "secondChern":
+        // disable Hodge numbers
+        disableHodgeInput();
 
       default:
         // mustn't happen
@@ -66,7 +108,6 @@ form {
 label {
   float: left;
   width: 12em;
-  padding-top: .3em;
 }
 
 input {
@@ -90,6 +131,12 @@ input[type="number"] {
 output#kodaira-output {
   padding-top: 2px;
   float: right;
+}
+
+fieldset.disabled legend,
+fieldset.disabled label,
+fieldset.disabled input {
+  color: #bbb;
 }
 
 fieldset#diamond {
@@ -120,7 +167,44 @@ fieldset#diamond output {
   <output for="kodaira" id="kodaira-output"></output>
   <br style="clear: both">
 
-  <fieldset>
+  <fieldset class="constraints" id="constraints-infinity">
+    <legend>Constraints</legend>
+
+    <dl>
+      <dt>rational
+      <dd>$q=\mathrm{p}_{\mathrm{g}}=0$, $\mathrm{h}^{1,1}\geq 1$
+
+      <dt>ruled
+      <dd>$\mathrm{p}_{\mathrm{g}}=0$, $\mathrm{h}^{1,1}\geq 2$
+    </dl>
+  </fieldset>
+
+  <fieldset class="constraints" id="constraints-0">
+    <legend>Constraints</legend>
+
+    <dl>
+      <dt>K3 surfaces
+      <dt>Enriques surfaces
+      <dt>abelian surfaces
+      <dt>bielliptic surfaces
+    </dl>
+  </fieldset>
+
+  <fieldset class="constraints" id="constraints-1">
+    <legend>Constraints</legend>
+
+    $\mathrm{c}_1^2=0$
+  </fieldset>
+
+  <fieldset class="constraints" id="constraints-2">
+    <legend>Constraints</legend>
+
+    $\mathrm{c}_1^2+\mathrm{c}_2\equiv 0\pmod 12$
+
+    $
+  </fieldset>
+
+  <fieldset id="hodge">
     <legend>Hodge numbers</legend>
 
     <label for="genus">geometric genus</label>
@@ -136,15 +220,15 @@ fieldset#diamond output {
     <br style="clear: both">
   </fieldset>
 
-  <fieldset>
+  <fieldset id="chern">
     <legend>Chern numbers</legend>
 
     <label for="first-chern">first Chern number</label>
-    <input type="number" id="first-chern" value="0" min="0" onchange="updateValue(first-chern, value)">
+    <input type="number" id="firstChern" value="0" min="0" onchange="updateValue(firstChern, value)">
     <br style="clear: both">
 
     <label for="second-chern">second Chern number</label>
-    <input type="number" id="second-chern" value="0" min="0" onchange="updateValue(second-chern, value)">
+    <input type="number" id="secondChern" value="0" min="0" onchange="updateValue(secondChern, value)">
     <br style="clear: both">
   </fieldset>
 
@@ -160,6 +244,12 @@ fieldset#diamond output {
     <output for="irregularity" id="h21">0</output>
     <output for="irregularity" id="h12">0</output><br style="clear: both">
     <output id="h22">1</output>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Overview</legend>
+
+
   </fieldset>
 </form>
 
