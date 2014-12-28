@@ -46,8 +46,13 @@
 
     updateHodgeDiamond();
 
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   }
+
+  $(document).ready(function() {
+    updateValue($("input#kodaira")[0], "-1");
+  });
+
 </script>
 
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -86,15 +91,6 @@ output#kodaira-output {
   padding-top: 2px;
   float: right;
 }
-</style>
-</head>
-
-<body>
-<form>
-  <label for="kodaira">Kodaira dimension</label>
-  <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="updateValue(kodaira, value)">
-  <datalist id="kodaira-values">
-    <option>-1</option>
 
 div#diamond {
   width: 10em;
@@ -105,6 +101,15 @@ div#diamond output {
   display: inline-block;
   padding: 0 .5em;
 }
+</style>
+</head>
+
+<body>
+<form>
+  <label for="kodaira">Kodaira dimension</label>
+  <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="updateValue(kodaira, value)">
+  <datalist id="kodaira-values">
+    <option>-1</option>
     <option>0</option>
     <option>1</option>
     <option>2</option>
@@ -135,10 +140,6 @@ div#diamond output {
   <label for="h11">$\mathrm{h}^{1,1}$</label>
   <input type="number" id="h11" value="0" min="0" onchange="updateValue(h11, value)">
   <br style="clear: both">
-</form>
-
-</body>
-</html>
 
   <div id="diamond">
     <output id="h00">1</output><br style="clear: both">
@@ -151,3 +152,7 @@ div#diamond output {
     <output for="irregularity" id="h12">0</output><br style="clear: both">
     <output id="h22">1</output>
   </div>
+</form>
+
+</body>
+</html>
