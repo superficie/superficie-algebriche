@@ -16,9 +16,11 @@ div#header {
 div#header p {
   font-style: italic;
   font-size: .9em;
+  font-family: Georgia, serif;
 }
 
 h1 {
+  font-family: Georgia, serif;
   font-size: 2em;
   margin-top: 0;
   text-align: center;
