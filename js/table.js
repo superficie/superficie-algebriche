@@ -110,6 +110,10 @@ function clickedPoint(point) {
     // reset the Hodge diamond
     setInactive();
 
+    // add the coordinates to the legend in the fieldset
+    $("fieldset#candidates legend").html("Candidates<br>for $\\mathrm{c}_2=" + point[0] + "$, $\\mathrm{c}_1^2=" + point[1] + "$");
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
       if (surfaces[i].c2 == point[0] && surfaces[i].c12 == point[1] && surfaces[i].kodaira == point[2])

@@ -62,6 +62,9 @@ function clearCandidates() {
 
   // remove all children in the candidates list
   $("fieldset#candidates ol").empty();
+
+  // remove the coordinates from the legend in the fieldset
+  $("fieldset#candidates legend").text("Candidates");
 };
 
 // show that no selection of Chern numbers has been made
