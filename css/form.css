@@ -46,6 +46,7 @@ fieldset#diamond output {
   width: auto;
   display: inline-block;
   padding: 0 .5em;
+  margin: 0;
 }
 
 fieldset#diamond output.inactive {
