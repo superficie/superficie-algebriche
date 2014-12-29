@@ -55,15 +55,22 @@ svg {
 p#meta {
   position: fixed;
   top: 39em;
+  margin-left: 1em;
 }
 
 div#text {
   position: relative;
   top: 9em;
-  width: 37em;
+  width: 19em;
   margin: 2em;
   float: right;
   z-index: 1;
+}
+
+@media screen and (min-width: 1200px) {
+  div#text {
+    width: 37em;
+  }
 }
 
 /* TODO

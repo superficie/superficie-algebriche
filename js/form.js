@@ -98,9 +98,3 @@ function loadSurface(surface) {
   toggleInvariants(false);
   updateHodgeDiamond(pg, q, h11);
 }
-
-$(document).ready(function() {
-  // we initialise everything on Kodaira dimension -oo
-  setKodairaDimension("-1");
-});
-
