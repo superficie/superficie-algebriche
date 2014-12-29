@@ -3,3 +3,69 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+div#header {
+  top: 0;
+  width: 86em;
+  position: fixed;
+  background-color: #eee;
+  z-index: 2;
+  text-align: center;
+}
+
+div#header p {
+  font-style: italic;
+  font-size: .9em;
+}
+
+h1 {
+  font-size: 2em;
+  margin-top: 0;
+  text-align: center;
+  font-variant: small-caps;
+}
+
+ul#menu {
+  max-width: 86em;
+  height: 3em;
+  background-color: #222;
+  list-style-type: none;
+  text-align: center;
+  margin: 2px auto;
+}
+
+ul#menu li {
+  padding: .7em 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+ul#menu li a:hover {
+  text-decoration: none;
+  color: #d9edf7;
+}
+
+svg {
+  position: fixed;
+  margin: 1em;
+  border: 1px solid #e5e5e5;
+  top: 8.5em;
+}
+
+p#meta {
+  position: fixed;
+  top: 39em;
+}
+
+div#text {
+  position: relative;
+  top: 9em;
+  width: 37em;
+  margin: 2em;
+  float: right;
+  z-index: 1;
+}
+
+/* TODO
+ * make sure <h2> is displayed as <legend>
+ */

@@ -36,96 +36,131 @@
 </head>
 
 <body>
-<form>
-  <div id="left">
-  <fieldset id="kodaira-fieldset">
-    <label for="kodaira">Kodaira dimension</label>
-    <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)">
-    <datalist id="kodaira-values">
-      <option>-1</option>
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-    </datalist>
-    <output for="kodaira" id="kodaira-output"></output>
-    <br style="clear: both">
-  </fieldset>
+<div id="header">
+  <ul id="menu">
+    <li><a href="#top">top</a>
+    <li><a href="#howto">howto</a>
+    <li><a href="#contribute">contribute</a>
+    <li><a href="#about">about</a>
+    <li><a href="http://github.com/jcommelin/superficie-algebriche">code</a>
+    <li><a href="mailto:superfiche.algebriche@gmail.com">contact</a>
+  </ul>
 
-  <fieldset id="candidates">
-    <legend>Candidates</legend>
+  <h1>le superficie algebriche</h1>
+  <p>A tool to visually study the classification of (minimal) complex algebraic smooth surfaces by Enriques.
+</div>
 
-    <ol>
-    </ol>
-  </fieldset>
+<div id="text">
+  <form>
+    <a name="top"></a>
+    <div id="left">
+      <fieldset id="kodaira-fieldset">
+        <label for="kodaira">Kodaira dimension</label>
+        <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)">
+        <datalist id="kodaira-values">
+          <option>-1</option>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+        </datalist>
+        <output for="kodaira" id="kodaira-output"></output>
+        <br style="clear: both">
+      </fieldset>
+  
+      <fieldset id="candidates">
+        <legend>Candidates</legend>
+  
+        <ol>
+        </ol>
+      </fieldset>
+  
+      <fieldset id="diamond">
+        <legend>Hodge diamond</legend>
+  
+        <div>
+          <label for="h00">$\mathrm{h}^{0,0}$</label><br style="clear: both">
+          <label for="h10">$\mathrm{h}^{1,0}$</label>
+          <label for="h01">$\mathrm{h}^{1,0}$</label><br style="clear: both">
+          <label for="h20">$\mathrm{h}^{2,0}$</label>
+          <label for="h11">$\mathrm{h}^{1,1}$</label>
+          <label for="h02">$\mathrm{h}^{0,2}$</label><br style="clear: both">
+          <label for="h21">$\mathrm{h}^{2,1}$</label>
+          <label for="h12">$\mathrm{h}^{1,2}$</label><br style="clear: both">
+          <label for="h22">$\mathrm{h}^{2,2}$</label>
+        </div>
+  
+        <div>
+          <output id="h00">1</output><br style="clear: both">
+          <output for="irregularity" id="h10">0</output>
+          <output for="irregularity" id="h01">0</output><br style="clear: both">
+          <output for="genus" id="h20">0</output>
+          <output for="h11" id="h11">1</output>
+          <output for="genus" id="h02">0</output><br style="clear: both">
+          <output for="irregularity" id="h21">0</output>
+          <output for="irregularity" id="h12">0</output><br style="clear: both">
+          <output id="h22">1</output>
+        </div>
+      </fieldset>
 
-  <fieldset id="diamond">
-    <legend>Hodge diamond</legend>
+      <fieldset id="surface">
+        <legend>About the surface</legend>
 
-    <div>
-      <label for="h00">$\mathrm{h}^{0,0}$</label><br style="clear: both">
-      <label for="h10">$\mathrm{h}^{1,0}$</label>
-      <label for="h01">$\mathrm{h}^{1,0}$</label><br style="clear: both">
-      <label for="h20">$\mathrm{h}^{2,0}$</label>
-      <label for="h11">$\mathrm{h}^{1,1}$</label>
-      <label for="h02">$\mathrm{h}^{0,2}$</label><br style="clear: both">
-      <label for="h21">$\mathrm{h}^{2,1}$</label>
-      <label for="h12">$\mathrm{h}^{1,2}$</label><br style="clear: both">
-      <label for="h22">$\mathrm{h}^{2,2}$</label>
+        <p><em>no surface selected</em>
+      </fieldset>
     </div>
-
-    <div>
-      <output id="h00">1</output><br style="clear: both">
-      <output for="irregularity" id="h10">0</output>
-      <output for="irregularity" id="h01">0</output><br style="clear: both">
-      <output for="genus" id="h20">0</output>
-      <output for="h11" id="h11">1</output>
-      <output for="genus" id="h02">0</output><br style="clear: both">
-      <output for="irregularity" id="h21">0</output>
-      <output for="irregularity" id="h12">0</output><br style="clear: both">
-      <output id="h22">1</output>
+  
+    <div id="right">
+      <fieldset>
+        <legend>Numerical invariants</legend>
+  
+        <dl>
+          <dt>Betti numbers
+          <dd>$\mathrm{b}_0=1$
+          <dd>$\mathrm{b}_1=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
+          <dd>$\mathrm{b}_2=\mathrm{h}^{2,0}+\mathrm{h}^{1,1}+\mathrm{h}^{0,2}$
+          <dd>$\mathrm{b}_3=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
+          <dd>$\mathrm{b}_4=1$
+  
+          <dt>Euler characteristic
+          <dd>$\mathrm{e}=\sum_{i=0}^4(-1)^i\mathrm{b}_i$
+  
+          <dt>irregularity
+          <dd>$\mathrm{q}=\mathrm{h}^{0,1}$
+  
+          <dt>geometric genus
+          <dd>$\mathrm{p}_{\mathrm{g}}=\mathrm{h}^{0,2}$
+  
+          <dt>arithmetic genus
+          <dd>$\mathrm{p}_{\mathrm{a}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}$
+  
+          <dt>holomorphic Euler characteristic
+          <dt>Todd genus
+          <dd>$\chi=\mathrm{p}_{\mathrm{g}}-\mathrm{q}+1=(\mathrm{c}_1^2+\mathrm{c}_2)/12$
+  
+          <dt>signature
+          <dd>$\tau=4\chi-\mathrm{e}=\sum_{i,j}(-1)^j\mathrm{h}^{i,j}$
+  
+          <dt>Chern numbers
+          <dd>$\mathrm{c}_2=\mathrm{e}$
+          <dd>$\mathrm{c}_1^2=\mathrm{K}^2=12\chi-\mathrm{e}$
+        </dl>
+      </fieldset>
     </div>
-  </fieldset>
-  </div>
+  </form>
+  <br style="clear: both">
 
-  <div id="right">
-  <fieldset>
-    <legend>Numerical invariants</legend>
+  <h2>How to use it</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-    <dl>
-      <dt>Betti numbers
-      <dd>$\mathrm{b}_0=1$
-      <dd>$\mathrm{b}_1=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
-      <dd>$\mathrm{b}_2=\mathrm{h}^{2,0}+\mathrm{h}^{1,1}+\mathrm{h}^{0,2}$
-      <dd>$\mathrm{b}_3=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
-      <dd>$\mathrm{b}_4=1$
+  <h2>Contribute</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-      <dt>Euler characteristic
-      <dd>$\mathrm{e}=\sum_{i=0}^4(-1)^i\mathrm{b}_i$
-
-      <dt>irregularity
-      <dd>$\mathrm{q}=\mathrm{h}^{0,1}$
-
-      <dt>geometric genus
-      <dd>$\mathrm{p}_{\mathrm{g}}=\mathrm{h}^{0,2}$
-
-      <dt>arithmetic genus
-      <dd>$\mathrm{p}_{\mathrm{a}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}$
-
-      <dt>holomorphic Euler characteristic
-      <dt>Todd genus
-      <dd>$\chi=\mathrm{p}_{\mathrm{g}}-\mathrm{q}+1=(\mathrm{c}_1^2+\mathrm{c}_2)/12$
-
-      <dt>signature
-      <dd>$\tau=4\chi-\mathrm{e}=\sum_{i,j}(-1)^j\mathrm{h}^{i,j}$
-
-      <dt>Chern numbers
-      <dd>$\mathrm{c}_2=\mathrm{e}$
-      <dd>$\mathrm{c}_1^2=\mathrm{K}^2=12\chi-\mathrm{e}$
-    </dl>
-  </fieldset>
-  </div>
-</form>
+  <h2>About</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+</div>
 
 <script type="text/javascript" src="js/table.js"></script>
+
+<p id="meta">by <a href="http://win.ua.ac.be/~pbelmans/">Pieter Belmans</a> and <a href="http://www.math.ru.nl/~jcommelin/">Johan Commelin</a>
 </body>
 </html>

@@ -1,9 +1,3 @@
-svg {
-  position: fixed;
-  margin: 1em;
-  border: 1px solid #e5e5e5;
-}
-
 circle.kodaira-infty {
   fill: red;
 }
