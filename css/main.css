@@ -73,6 +73,19 @@ div#text {
   }
 }
 
+/* copy of legend from bootstrap.css */
+h2 {
+  font-weight: normal;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
 /* TODO
  * make sure <h2> is displayed as <legend>
  */
