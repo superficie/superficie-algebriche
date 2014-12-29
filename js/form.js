@@ -36,6 +36,9 @@ function setKodairaDimension(value) {
   // make the Hodge diamond and invariants shaded
   setInactive();
 
+  // indicate that no Chern numbers have been selected
+  noSelectionMessage();
+
   // make all nodes inactive
   d3.selectAll("circle").classed("active", false);
 
@@ -59,7 +62,12 @@ function clearCandidates() {
 
   // remove all children in the candidates list
   $("fieldset#candidates ol").empty();
-}
+};
+
+// show that no selection of Chern numbers has been made
+function noSelectionMessage() {
+  $("fieldset#candidates").prepend("<p>No pair of Chern numbers selected.");
+};
 
 // add a surface to the candidates list
 function addCandidateSurface(surface) {
@@ -91,8 +99,5 @@ function loadSurface(surface) {
 $(document).ready(function() {
   // we initialise everything on Kodaira dimension -oo
   setKodairaDimension("-1");
-
-  // display a nice message
-  $("fieldset#candidates").append("<p>No pair of Chern numbers selected.");
 });
 

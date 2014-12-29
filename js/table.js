@@ -95,6 +95,6 @@ function clickedPoint(point) {
 
     // check whether we have found surfaces, otherwise display a message
     if ($("fieldset#candidates ol li").length == 0)
-      $("fieldset#candidates").append("<p>No explicit surfaces known with these invariants, sorry.");
+      $("fieldset#candidates").prepend("<p>No explicit surfaces known with these invariants, sorry.");
   }
 }
