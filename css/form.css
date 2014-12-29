@@ -1,30 +1,25 @@
 form {
+  width: 37em;
   margin: 2em;
-  width: 18em;
   float: right;
 }
 
-label {
-  float: left;
-  width: 12em;
-}
-
-input {
-  float: left;
-}
-
-label, input {
-  height: 2em;
+fieldset {
+  width: 18em;
 }
 
 input[type="range"] {
-  width: 3em;
+  width: 5em;
 }
 
-input[type="number"] {
-  text-align: right;
-  border: none;
-  width: 3em;
+fieldset#kodaira-fieldset label,
+fieldset#kodaira-fieldset input {
+  float: left;
+  height: 2em;
+}
+
+fieldset#kodaira-fieldset label {
+  width: 10em;
 }
 
 output#kodaira-output {
@@ -53,7 +48,6 @@ fieldset#diamond legend {
 
 fieldset#diamond label,
 fieldset#diamond output {
-  float: none;
   height: auto;
   width: auto;
   display: inline-block;
@@ -62,4 +56,13 @@ fieldset#diamond output {
 
 fieldset#diamond output.inactive {
   color: #ddd;
+}
+
+div#left {
+  margin-right: 1em;
+  float: left;
+}
+
+div#right {
+  float: left;
 }

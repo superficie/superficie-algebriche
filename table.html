@@ -36,16 +36,19 @@
 
 <body>
 <form>
-  <label for="kodaira">Kodaira dimension</label>
-  <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)">
-  <datalist id="kodaira-values">
-    <option>-1</option>
-    <option>0</option>
-    <option>1</option>
-    <option>2</option>
-  </datalist>
-  <output for="kodaira" id="kodaira-output"></output>
-  <br style="clear: both">
+  <div id="left">
+  <fieldset id="kodaira-fieldset">
+    <label for="kodaira">Kodaira dimension</label>
+    <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)">
+    <datalist id="kodaira-values">
+      <option>-1</option>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+    </datalist>
+    <output for="kodaira" id="kodaira-output"></output>
+    <br style="clear: both">
+  </fieldset>
 
   <fieldset id="candidates">
     <legend>Candidates</legend>
@@ -81,7 +84,9 @@
       <output id="h22">1</output>
     </div>
   </fieldset>
-  
+  </div>
+
+  <div id="right">
   <fieldset>
     <legend>Overview</legend>
 
@@ -117,6 +122,7 @@
       <dd>$\mathrm{c}_1^2=\mathrm{K}^2=12\chi-\mathrm{e}$
     </dl>
   </fieldset>
+  </div>
 </form>
 
 <script type="text/javascript" src="js/table.js"></script>
