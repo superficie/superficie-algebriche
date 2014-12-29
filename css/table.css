@@ -1,3 +1,8 @@
+svg {
+  margin: 1em;
+  border: 1px solid #e5e5e5;
+}
+
 circle.kodaira-infty {
   fill: red;
 }
@@ -32,4 +37,14 @@ circle.active,
 circle.active:hover {
   stroke: black;
   stroke-width: 2;
+}
+
+.axis {
+  fill: none;
+  stroke-width: 1px;
+  stroke: #000;
+}
+
+.axis .tick {
+  fill: black;
 }

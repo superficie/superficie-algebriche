@@ -1,6 +1,7 @@
 // dimensions of the SVG viewport
-var w = 700;
-var h = 500;
+var w = 600;
+var h = 400;
+var r = 3;
 
 // TODO change domain and range according to some configuration
 
@@ -13,6 +14,15 @@ var c2 = d3.scale.linear()
 var c12 = d3.scale.linear()
   .domain([-30, 60])
   .range([h, 0]);
+
+// axis for the second Chern number
+var c2Axis = d3.svg.axis()
+  .scale(c2);
+
+// axis for the first Chern number
+var c12Axis = d3.svg.axis()
+  .scale(c12)
+  .orient("left");
 
 // scale for the Kodaira dimension
 var kodaira = d3.scale.ordinal()
@@ -67,9 +77,22 @@ svg.selectAll("circle")
   .append("circle")
   .attr("cx", function(d) { return c2(d[0]); })
   .attr("cy", function(d) { return c12(d[1]); })
-  .attr("r", function(d) { return 4; })
+  .attr("r", function(d) { return r; })
   .attr("class", function(d) { return kodaira(d[2]); })
 
+// horizontal axis
+svg.append("g")
+  .attr("class", "axis")
+  .attr("transform", "translate(0," + c12(0) + ")")
+  .call(c2Axis);
+
+// vertical axis
+svg.append("g")
+  .attr("class", "axis")
+  .attr("transform", "translate(" + c2(0) + ",0)")
+  .call(c12Axis);
+
+// assign click event to points
 d3.selectAll("circle").on("click", clickedPoint);
 
 function clickedPoint(point) {
