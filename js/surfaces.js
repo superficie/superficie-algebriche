@@ -122,7 +122,7 @@ surfaces.push(
   }
 );
 
-for (var n = 2; n < 6; n++) {
+for (var n = 2; n <= 6; n++) {
   surfaces.push(
     {
       "name" : "Burniat surfaces",
