@@ -148,7 +148,7 @@ function noSelectionMessage() {
 
 // add a surface to the candidates list
 function addCandidateSurface(surface) {
-  $("fieldset#candidates ol").append("<li><a href='#'>" + surface.name).click(function() { loadSurface(surface); });
+  $("fieldset#candidates ol").append("<li><a href='#'>" + surface.name).click(function(e) { loadSurface($(e.toElement).parent(), surface); });
 };
 
 // we make the Hodge diamond and the invariants inactive and empty, and reset the description
@@ -161,7 +161,11 @@ function setInactive() {
 }
 
 // load the invariants of a surface
-function loadSurface(surface) {
+function loadSurface(element, surface) {
+  // make the correct list element active
+  $("fieldset#candidates li").removeClass("active");
+  element.toggleClass("active", true);
+
   var c12 = surface.c12;
   var c2 = surface.c2;
   var h11 = surface.h11;

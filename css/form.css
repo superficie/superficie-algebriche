@@ -21,6 +21,16 @@ output#kodaira-output {
   float: right;
 }
 
+fieldset#candidates li.active {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  border-radius: 4px;
+}
+
+fieldset#candidates li a {
+  padding-left: 1em;
+}
+
 fieldset.disabled legend,
 fieldset.disabled label,
 fieldset.disabled input {
