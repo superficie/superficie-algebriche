@@ -2,7 +2,7 @@ function updateHodgeDiamond(pg, q, h11) {
   $("output#h20, output#h02").text(pg);
   $("output#h01, output#h10, output#h21, output#h12").text(q);
   $("output#h11").text(h11);
-};
+}
 
 function updateInvariant(element, value) {
   // this is ugly, but the .text() contains a plaintext version, so we look for the first backslash indicating the actual start of the LaTeX...
@@ -21,9 +21,11 @@ function updateInvariant(element, value) {
 
 function updateInvariants(pg, q, h11) {
   // Betti numbers
-  var b0 = b4 = 1,
-      b1 = b3 = 2 * q,
-      b2 = 2 * pg + h11;
+  var b0 = 1;
+  var b1 = 2 * q;
+  var b2 = 2 * pg + h11;
+  var b3 = 2 * q;
+  var b4 = 1;
   updateInvariant($("dd#b1"), b1);
   updateInvariant($("dd#b2"), b2);
   updateInvariant($("dd#b3"), b3);
@@ -81,7 +83,7 @@ function setKodairaDimension(value) {
 
   // make the nodes of the correct Kodaira dimension active
   var activeNodes = d3.selectAll("circle")
-    .filter(function(d) { return d.kodaira == value; })
+    .filter(function(d) { return d.kodaira == value; });
   activeNodes.classed("inactive", false);
   // SVG doesn't have a z-index so we change the order of elements
   activeNodes.moveToFront();
@@ -105,7 +107,7 @@ function setKodairaDimension(value) {
   d3.selectAll("circle").classed("active", false);
 
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-};
+}
 
 // the state is the value for toggleClass to inactive
 function toggleHodgeDiamond(state) {
@@ -114,7 +116,7 @@ function toggleHodgeDiamond(state) {
   // if the state is true it means we want to make the Hodge diamond inactive
   if (state)
     updateHodgeDiamond("?", "?", "?");
-};
+}
 
 // the state is the value for toggleClass to inactive
 function toggleInvariants(state) {
@@ -127,7 +129,7 @@ function toggleInvariants(state) {
     for (var i = 0; i < invariants.length; i++)
       updateInvariant($("dd#" + invariants[i]), "{\\color{undefined-gray}{?}}");
   }
-};
+}
 
 // clear candidates
 function clearCandidates() {
@@ -139,18 +141,18 @@ function clearCandidates() {
 
   // remove the coordinates from the legend in the fieldset
   $("fieldset#candidates legend").text("Candidates");
-};
+}
 
 // show that no selection of Chern numbers has been made
 function noSelectionMessage() {
   $("fieldset#candidates").prepend("<p class='message'>No pair of Chern numbers selected.");
-};
+}
 
 // add a surface to the candidates list
 function addCandidateSurface(surface) {
   var link = $("<a href='#'>" + surface.name + "</a>").click(function(e) { loadSurface($(e.toElement).parent(), surface); });
   $("fieldset#candidates ol").append($("<li>").append(link));
-};
+}
 
 // we make the Hodge diamond and the invariants inactive and empty, and reset the description
 function setInactive() {

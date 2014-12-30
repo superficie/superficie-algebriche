@@ -32,7 +32,7 @@ var kodaira = d3.scale.ordinal()
   .range(["kodaira-infty", "kodaira-0", "kodaira-1", "kodaira-2"]);
 
 // all the pairs (c_2,c_1^2) corresponding to a minimal projective surface
-var points = []
+var points = [];
 
 function Point(c2, c12, kodaira) {
   this.c2 = c2;
@@ -54,18 +54,18 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
   for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
     // ruled surfaces
     var positivity = (i2 <= 4) && (i12 <= 8);
-    var congruence = (i2 % 4 == 0) && (i12 % 8 == 0) && (i12 == i2 * 2);
+    var congruence = (i2 % 4 === 0) && (i12 % 8 === 0) && (i12 == i2 * 2);
     if (congruence && positivity)
       points.push(new Point(i2, i12, -1));
 
     // minimal surface of Kodaira dimension 1
-    var congruence = ((i12 + i2) % 12 == 0);
-    var positivity = (i12 == 0) && (i2 >= 0);
+    var congruence = ((i12 + i2) % 12 === 0);
+    var positivity = (i12 === 0) && (i2 >= 0);
     if (congruence && positivity)
       points.push(new Point(i2, i12, 1));
 
     // minimal surface of general type
-    var congruence = ((i12 + i2) % 12 == 0);
+    var congruence = ((i12 + i2) % 12 === 0);
     var positivity = (i12 >= 0) && (i2 >= 0) && ((i12 > 0) || (i2 > 0));
     var BMY = (i12 <= (3 * i2));
     var noether = ((5 * i12 - i2 + 36) >= 0);
@@ -78,7 +78,7 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
 // see which points have surfaces associated to them
 for (var i = 0; i < points.length; i++) {
   for (var j = 0; j < surfaces.length; j++) {
-    if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12 & surfaces[j].kodaira == points[i].kodaira) {
+    if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12 && surfaces[j].kodaira == points[i].kodaira) {
       points[i].hasExamples = true;
     }
   }
@@ -97,7 +97,7 @@ svg.selectAll("circle")
   .attr("cx", function(d) { return c2(d.c2); })
   .attr("cy", function(d) { return c12(d.c12); })
   .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
-  .attr("class", function(d) { return kodaira(d.kodaira); })
+  .attr("class", function(d) { return kodaira(d.kodaira); });
 
 // horizontal axis
 svg.append("g")
@@ -117,9 +117,9 @@ $("body").append("<p id='c12label'>$\\mathrm{c}_1^2$</p>");
 
 // improve origin: remove double 0
 svg.selectAll(".axis g text")
-  .filter(function(d) { return d == 0 })
-  .style("opacity", function(d, i) { if (i != 0) return 0; })
-  .attr("dx", function(d, i) { if (i == 0) return "-10px"; })
+  .filter(function(d) { return d === 0; })
+  .style("opacity", function(d, i) { if (i !== 0) return 0; })
+  .attr("dx", function(d, i) { if (i === 0) return "-10px"; });
 
 // draw Noether inequality (hardcoded constants...)
 svg.append("line")
@@ -180,7 +180,7 @@ function clickedPoint(point) {
     }
 
     // check whether we have found surfaces, otherwise display a message
-    if ($("fieldset#candidates ol li").length == 0)
+    if ($("fieldset#candidates ol li").length === 0)
       $("fieldset#candidates").prepend("<p class='message'>No surfaces known with these invariants, sorry.");
 
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
