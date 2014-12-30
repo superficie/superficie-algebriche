@@ -1,17 +1,17 @@
 circle.kodaira-infty {
-  fill: red;
+  fill: #a94442;
 }
 
 circle.kodaira-0 {
-  fill: green;
+  fill: #3c763d;
 }
 
 circle.kodaira-1 {
-  fill: blue;
+  fill: #31708f;
 }
 
 circle.kodaira-2 {
-  //display: none;
+  fill: #666;
 }
 
 circle {
