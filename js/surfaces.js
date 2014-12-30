@@ -84,3 +84,96 @@ surfaces.push(
 
 // Kodaira dimension 1
 
+// this can increase whenever we increase the size of the viewport, currently not implemented
+for (var x = 1; x < 9; g++) {
+  surfaces.push(
+    {
+      "name" : "Elliptic surfaces",
+      "kodaira" : 1,
+      "c2" : 12*x,
+      "c12" : 0,
+      "description" : "Algebraic surface with a proper morphism to a curve, such that almost all fibres are smooth curves of genus $1$.",
+    }
+  );
+}
+
+// Kodaira dimension 2
+
+surfaces.push(
+  {
+    "name" : "Fake projective planes",
+    "kodaira" : 2,
+    "c2" : 3,
+    "c12" : 9,
+    "h11" : 1,
+    "description" : "Algebraic surface with the same Betti numbers as the projective plane (but not isomorphic to it). There are 50 different such surfaces.",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Beauville surface",
+    "kodaira" : 2,
+    "c2" : 4,
+    "c12" : 8,
+    "h11" : 2,
+    "description" : "Algebraic surface introduced by Beauville. See <em>Complex algebraic surfaces</em>, Arnaud Beauville (1996).",
+  }
+);
+
+for (var x = 2; x < 6; g++) {
+  surfaces.push(
+    {
+      "name" : "Burniat surfaces",
+      "kodaira" : 2,
+      "c2" : 12 - x,
+      "c12" : x,
+      "h11" : 10 - x,
+      "description" : "Algebraic surface introduced by Burniat. See <em>Sur les surfaces de genre $P_{12}>1$</em>, Pol Burniat (1966).",
+    }
+  );
+}
+
+surfaces.push(
+  {
+    "name" : "Campedelli surface",
+    "kodaira" : 2,
+    "c2" : 10,
+    "c12" : 2,
+    "h11" : 8,
+    "description" : "Algebraic surface introduced by Campedelli.",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Catanese surface",
+    "kodaira" : 2,
+    "c2" : 10,
+    "c12" : 2,
+    "h11" : 8,
+    "description" : "Algebraic surface introduced by Catanese, in <em>Babbage's conjecture, contact of surfaces, symmetric determinantal varieties and applications</em> (1981).",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Godeaux surface",
+    "kodaira" : 2,
+    "c2" : 11,
+    "c12" : 1,
+    "h11" : 9,
+    "description" : "Algebraic surface introduced by Lucien Godeaux.",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Barlow surface",
+    "kodaira" : 2,
+    "c2" : 11,
+    "c12" : 1,
+    "h11" : 9,
+    "description" : "Algebraic surface introduced by Rebecca Barlow. See </em>Some new surfaces with $p_{g} = 0$</em>, Rebecca Barlow (1984).",
+  }
+);
