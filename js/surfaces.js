@@ -112,12 +112,13 @@ surfaces.push(
 
 surfaces.push(
   {
-    "name" : "Beauville surface",
+    "name" : "Beauville surfaces",
     "kodaira" : 2,
     "c2" : 4,
     "c12" : 8,
     "h11" : 2,
-    "description" : "Algebraic surface introduced by Beauville. See <em>Complex algebraic surfaces</em>, Arnaud Beauville (1996).",
+    "description" : "<p>Algebraic surface introduced by Beauville, with the same numerical characteristics as a quadric surface (or Hirzebruch surface). See <em>Complex algebraic surfaces</em>, Arnaud Beauville (1996).",
+    "construction" : "Take two smooth curves $C_1$ and $C_2$ of genus $g_1$ and $g_2$. Let $G$ be a finite group acting on $C_1$ and $C_2$ such that<ul><li>$\\#G=(g_1-1)(g_2-1)$<li>no $g\\in G\\setminus\\{1\\}$ has a fix point on both $C_1$ and $C_2$<li>$C_i/G$ is rational</ul> Then $(C_1\\times C_2)/G$ is a Beauville surface."
   }
 );
 

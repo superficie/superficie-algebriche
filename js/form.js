@@ -185,5 +185,8 @@ function loadSurface(element, surface) {
   else
     $("fieldset#surface").append("<div><p class='message'>No description available.</div>");
 
+  if ("construction" in surface)
+    $("fieldset#surface div").append("<h3>Construction</h3>" + surface.construction);
+
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
