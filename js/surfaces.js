@@ -19,7 +19,7 @@ surfaces.push(
     "c2" : 4,
     "c12" : 8,
     "h11" : 2,
-    "description" : "Ruled surface over $\\mathbb{P}^1$, i.e. it is defined as $\\operatorname{Proj}(\\mathcal{O}_{\\mathbb{P}^1}\\oplus\\mathcal{O}_{\\mathbb{P}^1}(n))$ for some $n\\geq 0$.",
+    "construction" : "Ruled surface over $\\mathbb{P}^1$, i.e. it is defined as $\\operatorname{Proj}(\\mathcal{O}_{\\mathbb{P}^1}\\oplus\\mathcal{O}_{\\mathbb{P}^1}(n))$ for some $n\\geq 0$.",
   }
 );
 
@@ -176,5 +176,17 @@ surfaces.push(
     "c12" : 1,
     "h11" : 9,
     "description" : "Algebraic surface introduced by Rebecca Barlow. See </em>Some new surfaces with $p_{g} = 0$</em>, Rebecca Barlow (1984).",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Fano surfaces",
+    "kodaira" : 2,
+    "c2" : 27,
+    "c12" : 45,
+    "h11" : 25,
+    "description" : "These surfaces parametrise lines on a non-singular cubic threefold.",
+    "construction" : "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ lying on a non-singular cubic threefold.",
   }
 );
