@@ -6,7 +6,8 @@ body {
 
 div#header {
   top: 0;
-  width: 86em;
+  left: 0;
+  width: 100%;
   position: fixed;
   background-color: #eee;
   z-index: 2;
@@ -28,7 +29,6 @@ h1 {
 }
 
 ul#menu {
-  max-width: 86em;
   height: 3em;
   background-color: #222;
   list-style-type: none;
