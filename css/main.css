@@ -47,6 +47,11 @@ ul#menu li a:hover {
   color: #d9edf7;
 }
 
+ul#menu li a:focus {
+  color: #337ab7;
+  text-decoration: none;
+}
+
 svg {
   position: fixed;
   margin: 1em;
