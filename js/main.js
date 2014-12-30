@@ -9,9 +9,9 @@ $(document).ready(function() {
 
     // compute the location for the scrolling
     var name = this.href.split("#")[1];
-    var target = $("a[name='" + name + "']").offset().top;
+    var target = $("#" + name).offset().top;
     // compensate for header
-    target -= 170;
+    target -= 150;
 
     // execute the scroll
     $("html, body").animate({scrollTop: target}, "slow");

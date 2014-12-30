@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>le superficie algebriche</title>
+<meta charset="utf-8"> 
 <script type='text/x-mathjax-config'>
 	MathJax.Hub.Config({
 		extensions: ['tex2jax.js'],
@@ -37,11 +38,10 @@
 </head>
 
 <body>
-<a name="top"></a>
 $\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
 <div id="header">
   <ul id="menu">
-    <li><a class="scroll" href="#top">top</a>
+    <li><a class="scroll" href="#input">top</a>
     <li><a class="scroll" href="#howto">howto</a>
     <li><a class="scroll" href="#contribute">contribute</a>
     <li><a class="scroll" href="#about">about</a>
@@ -54,7 +54,7 @@ $\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
 </div>
 
 <div id="text">
-  <form>
+  <form id="input">
     <div id="left">
       <fieldset id="kodaira-fieldset">
         <label for="kodaira">Kodaira dimension</label>
@@ -151,15 +151,15 @@ $\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
   </form>
   <br style="clear: both">
 
-  <h2>How to use it</h2><a name="howto"></a>
+  <h2 id="howto">How to use it</h2>
   <p>To use this application, please first select a Kodaira dimension using the slider at the top right. Then select a pair of Chern numbers $(\mathrm{c}_{1}^{2},\mathrm{c}_{2})$ in the graph.
   <p>Finally you can select a surface from the list of known surfaces with these invariants (if there is a class of such surfaces). You can then see a description and the other numerical invariants of this class of surfaces. 
 
-  <h2>Contribute</h2><a name="contribute"></a>
+  <h2 id="contribute">Contribute</h2>
   <p>We can be reached at <a href="mailto:superficie-algebriche@gmail.com"><code>superficie.algebriche@gmail.com</code></a>. The code is available on <a href="https://github.com/jcommelin/superficie-algebriche">GitHub</a>. Please report bugs; if you think of a feature, we would like to hear it as well.
   <p>If you have data about a (class of) surface(s), you can contribute via GitHub, or send it to us via email.
 
-  <h2>About</h2><a name="about"></a>
+  <h2 id="about">About</h2>
   <p><span style="font-family: Georgia; font-variant: small-caps">le superficie algebriche</span> is a tool for studying numerical invariants of minimal algebraic surfaces over the complex numbers. The authors implemented it in order to better understand the <a href="http://en.wikipedia.org/wiki/Enriques%E2%80%93Kodaira_classification">Enriques&ndash;Kodaira classification</a>, and to showcase how mathematics can be visualised on the web.
 </div>
 
