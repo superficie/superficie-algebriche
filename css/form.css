@@ -28,7 +28,7 @@ fieldset#candidates li.active {
 }
 
 fieldset#candidates li a {
-  padding-left: 1em;
+  padding-left: .3em;
 }
 
 fieldset.disabled legend,

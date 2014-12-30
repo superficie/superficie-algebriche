@@ -148,7 +148,8 @@ function noSelectionMessage() {
 
 // add a surface to the candidates list
 function addCandidateSurface(surface) {
-  $("fieldset#candidates ol").append("<li><a href='#'>" + surface.name).click(function(e) { loadSurface($(e.toElement).parent(), surface); });
+  var link = $("<a href='#'>" + surface.name + "</a>").click(function(e) { loadSurface($(e.toElement).parent(), surface); });
+  $("fieldset#candidates ol").append($("<li>").append(link));
 };
 
 // we make the Hodge diamond and the invariants inactive and empty, and reset the description
