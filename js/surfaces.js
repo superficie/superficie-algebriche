@@ -84,3 +84,16 @@ surfaces.push(
 
 // Kodaira dimension 1
 
+// this can increase whenever we increase the size of the viewport, currently not implemented
+for (var x = 1; x < 9; g++) {
+  surfaces.push(
+    {
+      "name" : "Elliptic surfaces fibred over a curve of genus $" + x + $",
+      "kodaira" : 1,
+      "c2" : x,
+      "c12" : 0,
+      "h11" : 2*x+2,
+      "description" : "Algebraic surface with a proper morphism to a curve of genus $" + x + "$, such that almost all fibres are smooth curves of genus $1$.",
+    }
+  );
+}
