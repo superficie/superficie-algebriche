@@ -37,9 +37,11 @@ circle.active:hover {
 .axis {
   fill: none;
   stroke-width: 1px;
-  stroke: #000;
+  stroke: #aaa;
 }
 
-.axis .tick {
+.axis text {
+  stroke-width: 0;
+  stroke: black;
   fill: black;
 }
