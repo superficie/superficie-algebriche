@@ -11,9 +11,11 @@ $(document).ready(function() {
     var name = this.href.split("#")[1];
     var target = $("a[name='" + name + "']").offset().top;
     // compensate for header
-    target -= 120;
+    target -= 170;
 
     // execute the scroll
     $("html, body").animate({scrollTop: target}, "slow");
+
+    location.hash = "#" + name;
   });
 });
