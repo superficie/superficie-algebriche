@@ -98,6 +98,34 @@ svg.selectAll(".axis g text")
   .style("opacity", function(d, i) { if (i != 0) return 0; })
   .attr("dx", function(d, i) { if (i == 0) return "-10px"; })
 
+// draw Noether inequality (hardcoded constants...)
+svg.append("line")
+  .attr("x1", c2(36))
+  .attr("x2", c2(86))
+  .attr("y1", c12(0))
+  .attr("y2", c12(10))
+  .attr("class", "axis");
+svg.append("text")
+  .attr("x", c2(65))
+  .attr("y", c12(2))
+  .attr("text-anchor", "middle")
+  .attr("transform", "rotate(-7, " + c2(65) + ", " + c12(2) + ")") 
+  .text("Noether inequality");
+
+// draw the BMY inequality (hardcoded constants...)
+svg.append("line")
+  .attr("x1", c2(0))
+  .attr("x2", c2(20))
+  .attr("y1", c12(0))
+  .attr("y2", c12(60))
+  .attr("class", "axis");
+svg.append("text")
+  .attr("x", c2(10))
+  .attr("y", c12(35))
+  .attr("text-anchor", "middle")
+  .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")") 
+  .text("Bogomolov-Miyaoka-Yau inequality");
+
 // assign click event to points
 d3.selectAll("circle").on("click", clickedPoint);
 
