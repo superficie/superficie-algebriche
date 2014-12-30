@@ -136,7 +136,7 @@ function clearCandidates() {
 
 // show that no selection of Chern numbers has been made
 function noSelectionMessage() {
-  $("fieldset#candidates").prepend("<p>No pair of Chern numbers selected.");
+  $("fieldset#candidates").prepend("<p class='message'>No pair of Chern numbers selected.");
 };
 
 // add a surface to the candidates list
@@ -144,10 +144,13 @@ function addCandidateSurface(surface) {
   $("fieldset#candidates ol").append("<li><a href='#'>" + surface.name).click(function() { loadSurface(surface); });
 };
 
-// we make the Hodge diamond and the invariants inactive and empty
+// we make the Hodge diamond and the invariants inactive and empty, and reset the description
 function setInactive() {
   toggleHodgeDiamond(true);
   toggleInvariants(true);
+
+  $("fieldset#surface div").remove();
+  $("fieldset#surface").append("<div><p class='message'>No surface selected.</div>");
 }
 
 // load the invariants of a surface
@@ -163,4 +166,12 @@ function loadSurface(surface) {
   toggleInvariants(false);
   updateHodgeDiamond(pg, q, h11);
   updateInvariants(pg, q, h11);
+
+  $("fieldset#surface div").remove();
+  if ("description" in surface)
+    $("fieldset#surface").append("<div>" + surface.description + "</div>");
+  else
+    $("fieldset#surface").append("<div><p class='message'>No description available.</div>");
+
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }

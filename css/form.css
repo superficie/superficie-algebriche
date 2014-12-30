@@ -65,3 +65,7 @@ div#right {
 fieldset dd {
   margin-left: 1em;
 }
+
+p.message {
+  font-style: italic;
+}
