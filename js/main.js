@@ -11,7 +11,7 @@ $(document).ready(function() {
     var name = this.href.split("#")[1];
     var target = $("#" + name).offset().top;
     // compensate for header
-    target -= 150;
+    target -= 130;
 
     // execute the scroll
     $("html, body").animate({scrollTop: target}, "slow");

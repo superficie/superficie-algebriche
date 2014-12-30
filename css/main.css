@@ -8,6 +8,7 @@ div#header {
   top: 0;
   left: 0;
   width: 100%;
+  margin: 0;
   position: fixed;
   background-color: #eee;
   z-index: 2;
@@ -33,7 +34,7 @@ ul#menu {
   background-color: #222;
   list-style-type: none;
   text-align: center;
-  margin: 2px auto;
+  margin: 0 auto;
 }
 
 ul#menu li {
@@ -56,7 +57,7 @@ svg {
   position: fixed;
   margin: 1em;
   border: 1px solid #e5e5e5;
-  top: 8.5em;
+  top: 8em;
 }
 
 p#meta {
@@ -67,7 +68,7 @@ p#meta {
 
 div#text {
   position: relative;
-  top: 9em;
+  top: 8em;
   width: 19em;
   margin: 2em;
   float: right;
