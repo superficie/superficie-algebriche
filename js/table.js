@@ -17,11 +17,13 @@ var c12 = d3.scale.linear()
 
 // axis for the second Chern number
 var c2Axis = d3.svg.axis()
+  .tickValues([-10, 0, 10, 20, 30, 40, 50, 60, 70])
   .scale(c2);
 
 // axis for the first Chern number
 var c12Axis = d3.svg.axis()
   .scale(c12)
+  .tickValues([-20, -10, 0, 10, 20, 30, 40, 50])
   .orient("left");
 
 // scale for the Kodaira dimension
@@ -85,12 +87,20 @@ svg.append("g")
   .attr("class", "axis")
   .attr("transform", "translate(0," + c12(0) + ")")
   .call(c2Axis);
+svg.append("text")
+  .attr("x", c2(-18))
+  .attr("y", c12(2))
+  .text("c2"); // TODO MathJax inside SVG seems to be a challenge...
 
 // vertical axis
 svg.append("g")
   .attr("class", "axis")
   .attr("transform", "translate(" + c2(0) + ",0)")
   .call(c12Axis);
+svg.append("text")
+  .attr("x", c2(1))
+  .attr("y", c12(-28))
+  .text("c12"); // TODO MathJax inside SVG seems to be a challenge...
 
 // improve origin: remove double 0
 svg.selectAll(".axis g text")
