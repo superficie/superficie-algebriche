@@ -56,7 +56,7 @@ surfaces.push(
     "c2" : 12,
     "c12" : 0,
     "h11" : 10,
-    "description" : "Algebraic surface such that the irregularity $q = 0$ and the canonical line bundle $K$ is non-trivial but has trivial square.",
+    "description" : "Algebraic surface such that $q = 0$ and the canonical line bundle $K$ is non-trivial but has trivial square.",
   }
 );
 
@@ -67,7 +67,7 @@ surfaces.push(
     "c2" : 24,
     "c12" : 0,
     "h11" : 20,
-    "description" : "Algebraic surface that is regular and has trivial canonical bundle.",
+    "description" : "Algebraic surface such that $q = 0$ and the canonical bundle is trivial.",
   }
 );
 
