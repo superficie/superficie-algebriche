@@ -88,12 +88,11 @@ surfaces.push(
 for (var x = 1; x < 9; g++) {
   surfaces.push(
     {
-      "name" : "Elliptic surfaces fibred over a curve of genus $" + x + $",
+      "name" : "Elliptic surfaces",
       "kodaira" : 1,
-      "c2" : x,
+      "c2" : 12*x,
       "c12" : 0,
-      "h11" : 2*x+2,
-      "description" : "Algebraic surface with a proper morphism to a curve of genus $" + x + "$, such that almost all fibres are smooth curves of genus $1$.",
+      "description" : "Algebraic surface with a proper morphism to a curve, such that almost all fibres are smooth curves of genus $1$.",
     }
   );
 }
