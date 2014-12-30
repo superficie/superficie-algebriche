@@ -78,7 +78,7 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
 // see which points have surfaces associated to them
 for (var i = 0; i < points.length; i++) {
   for (var j = 0; j < surfaces.length; j++) {
-    if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12) {
+    if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12 & surfaces[j].kodaira == points[i].kodaira) {
       points[i].hasExamples = true;
     }
   }
@@ -96,7 +96,7 @@ svg.selectAll("circle")
   .append("circle")
   .attr("cx", function(d) { return c2(d.c2); })
   .attr("cy", function(d) { return c12(d.c12); })
-  .attr("r", function(d) { return r; })
+  .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
   .attr("class", function(d) { return kodaira(d.kodaira); })
 
 // horizontal axis
