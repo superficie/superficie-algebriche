@@ -34,13 +34,21 @@ var kodaira = d3.scale.ordinal()
 // all the pairs (c_2,c_1^2) corresponding to a minimal projective surface
 var points = []
 
+function Point(c2, c12, kodaira) {
+  this.c2 = c2;
+  this.c12 = c12;
+  this.kodaira = kodaira;
+
+  this.hasExamples = false;
+}
+
 // projective plane
-points.push([3, 9, -1]);
+points.push(new Point(3, 9, -1));
 
 // minimal surfaces of Kodaira dimension 0
-points.push([0, 0, 0]); // abelian and hyperelliptic surfaces
-points.push([12, 0, 0]); // Enriques surfaces
-points.push([24, 0, 0]); // K3 surfaces
+points.push(new Point(0, 0, 0)); // abelian and hyperelliptic surfaces
+points.push(new Point(12, 0, 0)); // Enriques surfaces
+points.push(new Point(24, 0, 0)); // K3 surfaces
 
 for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
   for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
@@ -48,13 +56,13 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
     var positivity = (i2 <= 4) && (i12 <= 8);
     var congruence = (i2 % 4 == 0) && (i12 % 8 == 0) && (i12 == i2 * 2);
     if (congruence && positivity)
-      points.push([i2, i12, -1]);
+      points.push(new Point(i2, i12, -1));
 
     // minimal surface of Kodaira dimension 1
     var congruence = ((i12 + i2) % 12 == 0);
     var positivity = (i12 == 0) && (i2 >= 0);
     if (congruence && positivity)
-      points.push([i2, i12, 1]);
+      points.push(new Point(i2, i12, 1));
 
     // minimal surface of general type
     var congruence = ((i12 + i2) % 12 == 0);
@@ -63,7 +71,16 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
     var noether = ((5 * i12 - i2 + 36) >= 0);
 
     if (congruence && positivity && BMY && noether)
-      points.push([i2, i12, 2]);
+      points.push(new Point(i2, i12, 2));
+  }
+}
+
+// see which points have surfaces associated to them
+for (var i = 0; i < points.length; i++) {
+  for (var j = 0; j < surfaces.length; j++) {
+    if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12) {
+      points[i].hasExamples = true;
+    }
   }
 }
 
@@ -72,15 +89,15 @@ var svg = d3.select("body")
   .attr("width", w)
   .attr("height", h);
 
-// all the minimal nodes
+// all the minimal n.c12s
 svg.selectAll("circle")
   .data(points)
   .enter()
   .append("circle")
-  .attr("cx", function(d) { return c2(d[0]); })
-  .attr("cy", function(d) { return c12(d[1]); })
+  .attr("cx", function(d) { return c2(d.c2); })
+  .attr("cy", function(d) { return c12(d.c12); })
   .attr("r", function(d) { return r; })
-  .attr("class", function(d) { return kodaira(d[2]); })
+  .attr("class", function(d) { return kodaira(d.kodaira); })
 
 // horizontal axis
 svg.append("g")
@@ -153,12 +170,12 @@ function clickedPoint(point) {
     setInactive();
 
     // add the coordinates to the legend in the fieldset
-    $("fieldset#candidates legend").html("Candidates<br>for $\\mathrm{c}_2=" + point[0] + "$, $\\mathrm{c}_1^2=" + point[1] + "$");
+    $("fieldset#candidates legend").html("Candidates<br>for $\\mathrm{c}_2=" + point.c2 + "$, $\\mathrm{c}_1^2=" + point.c12 + "$");
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
-      if (surfaces[i].c2 == point[0] && surfaces[i].c12 == point[1] && surfaces[i].kodaira == point[2])
+      if (surfaces[i].c2 == point.c2 && surfaces[i].c12 == point.c12 && surfaces[i].kodaira == point.kodaira)
         addCandidateSurface(surfaces[i]);
     }
 

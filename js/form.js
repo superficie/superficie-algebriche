@@ -81,7 +81,7 @@ function setKodairaDimension(value) {
 
   // make the nodes of the correct Kodaira dimension active
   var activeNodes = d3.selectAll("circle")
-    .filter(function(d, i) { return d[2] == value; })
+    .filter(function(d) { return d.kodaira == value; })
   activeNodes.classed("inactive", false);
   // SVG doesn't have a z-index so we change the order of elements
   activeNodes.moveToFront();
