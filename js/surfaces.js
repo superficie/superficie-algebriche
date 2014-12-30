@@ -45,6 +45,7 @@ surfaces.push(
     "c2" : 0,
     "c12" : 0,
     "h11" : 4,
+    "description" : "Abelian variety of dimension $2$.",
   }
 );
 
@@ -55,6 +56,7 @@ surfaces.push(
     "c2" : 12,
     "c12" : 0,
     "h11" : 10,
+    "description" : "Algebraic surface such that the irregularity $q = 0$ and the canonical line bundle $K$ is non-trivial but has trivial square.",
   }
 );
 
@@ -65,6 +67,7 @@ surfaces.push(
     "c2" : 24,
     "c12" : 0,
     "h11" : 20,
+    "description" : "Algebraic surface that is regular and has trivial canonical bundle.",
   }
 );
 
@@ -72,8 +75,12 @@ surfaces.push(
   {
     "name" : "Hyperelliptic surfaces",
     "kodaira" : 0,
-    "c2" : 36,
+    "c2" : 0,
     "c12" : 0,
     "h11" : 2,
+    "description" : "Algebraic surface with an elliptic fibration over an elliptic curve.",
   }
 );
+
+// Kodaira dimension 1
+
