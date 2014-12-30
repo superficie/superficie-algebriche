@@ -40,7 +40,7 @@ for (var g = 1; g < 5; g++) {
 
 surfaces.push(
   {
-    "name" : "Abelian surfaces",
+    "name" : "abelian surfaces",
     "kodaira" : 0,
     "c2" : 0,
     "c12" : 0,
@@ -56,7 +56,7 @@ surfaces.push(
     "c2" : 12,
     "c12" : 0,
     "h11" : 10,
-    "description" : "Algebraic surface such that $q = 0$ and the canonical line bundle $K$ is non-trivial but has trivial square.",
+    "description" : "Algebraic surface such that $\\mathrm{q}=0$ and the canonical line bundle is non-trivial but has trivial square.",
   }
 );
 
@@ -73,7 +73,7 @@ surfaces.push(
 
 surfaces.push(
   {
-    "name" : "Hyperelliptic surfaces",
+    "name" : "bielliptic surfaces",
     "kodaira" : 0,
     "c2" : 0,
     "c12" : 0,
@@ -85,23 +85,23 @@ surfaces.push(
 // Kodaira dimension 1
 
 // this can increase whenever we increase the size of the viewport, currently not implemented
-for (var x = 1; x < 9; g++) {
-  surfaces.push(
-    {
-      "name" : "Elliptic surfaces",
-      "kodaira" : 1,
-      "c2" : 12*x,
-      "c12" : 0,
-      "description" : "Algebraic surface with a proper morphism to a curve, such that almost all fibres are smooth curves of genus $1$.",
-    }
-  );
-}
+//for (var x = 1; x < 9; x++) {
+//  surfaces.push(
+//    {
+//      "name" : "elliptic surfaces",
+//      "kodaira" : 1,
+//      "c2" : 12*x,
+//      "c12" : 0,
+//      "description" : "Algebraic surface with a proper morphism to a curve, such that almost all fibres are smooth curves of genus $1$.",
+//    }
+//  );
+//}
 
 // Kodaira dimension 2
 
 surfaces.push(
   {
-    "name" : "Fake projective planes",
+    "name" : "fake projective planes",
     "kodaira" : 2,
     "c2" : 3,
     "c12" : 9,
@@ -121,14 +121,14 @@ surfaces.push(
   }
 );
 
-for (var x = 2; x < 6; g++) {
+for (var n = 2; n < 6; n++) {
   surfaces.push(
     {
       "name" : "Burniat surfaces",
       "kodaira" : 2,
-      "c2" : 12 - x,
-      "c12" : x,
-      "h11" : 10 - x,
+      "c2" : 12 - n,
+      "c12" : n,
+      "h11" : 10 - n,
       "description" : "Algebraic surface introduced by Burniat. See <em>Sur les surfaces de genre $P_{12}>1$</em>, Pol Burniat (1966).",
     }
   );
