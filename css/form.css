@@ -1,0 +1,71 @@
+fieldset {
+  width: 18em;
+}
+
+input[type="range"] {
+  width: 5em;
+}
+
+fieldset#kodaira-fieldset label,
+fieldset#kodaira-fieldset input {
+  float: left;
+  height: 2em;
+}
+
+fieldset#kodaira-fieldset label {
+  width: 10em;
+}
+
+output#kodaira-output {
+  padding-top: 2px;
+  float: right;
+}
+
+fieldset.disabled legend,
+fieldset.disabled label,
+fieldset.disabled input {
+  color: #bbb;
+}
+
+fieldset#diamond div {
+  text-align: center;
+  float: left;
+}
+
+fieldset#diamond div + div {
+  float: right;
+}
+
+fieldset#diamond legend {
+  text-align: left;
+}
+
+fieldset#diamond label,
+fieldset#diamond output {
+  height: auto;
+  width: auto;
+  display: inline-block;
+  padding: 0 .5em;
+  margin: 0;
+}
+
+fieldset#diamond output.inactive {
+  color: #ddd;
+}
+
+div#left {
+  margin-right: 1em;
+  float: left;
+}
+
+div#right {
+  float: left;
+}
+
+fieldset dd {
+  margin-left: 1em;
+}
+
+p.message {
+  font-style: italic;
+}

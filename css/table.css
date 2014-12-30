@@ -1,0 +1,51 @@
+circle.kodaira-infty {
+  fill: #a94442;
+}
+
+circle.kodaira-0 {
+  fill: #3c763d;
+}
+
+circle.kodaira-1 {
+  fill: #31708f;
+}
+
+circle.kodaira-2 {
+  fill: #666;
+}
+
+circle {
+  cursor: pointer;
+}
+
+circle.inactive {
+  fill-opacity: .1;
+  cursor: default;
+}
+
+circle:not(.inactive):hover {
+  stroke: gray;
+  stroke-width: 1;
+}
+
+circle.active,
+circle.active:hover {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.axis {
+  fill: none;
+  stroke-width: 1px;
+  stroke: #aaa;
+}
+
+.axis text {
+  stroke-width: 0;
+  stroke: black;
+  fill: black;
+}
+
+text.inactive {
+  fill-opacity: .1;
+}

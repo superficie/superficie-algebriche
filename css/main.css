@@ -1,0 +1,93 @@
+body {
+  max-width: 86em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  background-color: #eee;
+  z-index: 2;
+  text-align: center;
+}
+
+div#header p {
+  font-style: italic;
+  font-size: .9em;
+  font-family: Georgia, serif;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 2em;
+  margin-top: 0;
+  text-align: center;
+  font-variant: small-caps;
+}
+
+ul#menu {
+  height: 3em;
+  background-color: #222;
+  list-style-type: none;
+  text-align: center;
+  margin: 2px auto;
+}
+
+ul#menu li {
+  padding: .7em 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+ul#menu li a:hover {
+  text-decoration: none;
+  color: #d9edf7;
+}
+
+svg {
+  position: fixed;
+  margin: 1em;
+  border: 1px solid #e5e5e5;
+  top: 8.5em;
+}
+
+p#meta {
+  position: fixed;
+  top: 39em;
+  margin-left: 1em;
+}
+
+div#text {
+  position: relative;
+  top: 9em;
+  width: 19em;
+  margin: 2em;
+  float: right;
+  z-index: 1;
+}
+
+@media screen and (min-width: 1200px) {
+  div#text {
+    width: 37em;
+  }
+}
+
+/* copy of legend from bootstrap.css */
+h2 {
+  font-weight: normal;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* TODO
+ * make sure <h2> is displayed as <legend>
+ */
