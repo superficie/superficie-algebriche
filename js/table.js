@@ -92,6 +92,12 @@ svg.append("g")
   .attr("transform", "translate(" + c2(0) + ",0)")
   .call(c12Axis);
 
+// improve origin: remove double 0
+svg.selectAll(".axis g text")
+  .filter(function(d) { return d == 0 })
+  .style("opacity", function(d, i) { if (i != 0) return 0; })
+  .attr("dx", function(d, i) { if (i == 0) return "-10px"; })
+
 // assign click event to points
 d3.selectAll("circle").on("click", clickedPoint);
 
