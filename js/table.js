@@ -56,7 +56,7 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
 
     // minimal surface of general type
     var congruence = ((i12 + i2) % 12 == 0);
-    var positivity = (i12 >= 0) && (i2 >= 0);
+    var positivity = (i12 >= 0) && (i2 >= 0) && ((i12 > 0) || (i2 > 0));
     var BMY = (i12 <= (3 * i2));
     var noether = ((5 * i12 - i2 + 36) >= 0);
 
