@@ -4,6 +4,61 @@ function updateHodgeDiamond(pg, q, h11) {
   $("output#h11").text(h11);
 };
 
+function updateInvariant(element, value) {
+  // this is ugly, but the .text() contains a plaintext version, so we look for the first backslash indicating the actual start of the LaTeX...
+  var latex = "\\" + element.text().split("\\").slice(1).join("\\");
+
+  // the text between the first and second equals sign is what is changed
+  var parts = latex.split("=");
+  parts[1] = value;
+  // remove the last $ if there is one (this could be prettier...)
+  parts[parts.length - 1] = parts[parts.length - 1].trim();
+  if (parts[parts.length - 1][parts[parts.length - 1].length - 1] == "$")
+    parts[parts.length - 1] = parts[parts.length - 1].slice(0, -1);
+
+  element.text("$" + parts.join("=") + "$");
+}
+
+function updateInvariants(pg, q, h11) {
+  // Betti numbers
+  var b0 = b4 = 1,
+      b1 = b3 = 2 * q,
+      b2 = 2 * pg + h11;
+  updateInvariant($("dd#b1"), b1);
+  updateInvariant($("dd#b2"), b2);
+  updateInvariant($("dd#b3"), b3);
+
+  // Euler characteristic
+  var e = b0 - b1 + b2 - b3 + b4;
+  updateInvariant($("dd#e"), e);
+
+  // irregularity
+  updateInvariant($("dd#q"), q);
+
+  // geometric genus
+  updateInvariant($("dd#pg"), pg);
+
+  // arithmetic genus
+  var pa = pg - q;
+  updateInvariant($("dd#pa"), pa);
+
+  // holomorphic Euler characteristic
+  var chi = pg - q + 1;
+  updateInvariant($("dd#chi"), chi);
+
+  // signature
+  var tau = 4 * chi - e;
+  updateInvariant($("dd#tau"), tau);
+
+  // Chern numbers
+  var c2 = e,
+      c12 = 12 * chi - e;
+  updateInvariant($("dd#c2"), c2);
+  updateInvariant($("dd#c12"), c12);
+
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+}
+
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
     this.parentNode.appendChild(this);
@@ -47,12 +102,24 @@ function setKodairaDimension(value) {
 
 // the state is the value for toggleClass to inactive
 function toggleHodgeDiamond(state) {
-  $("fieldset#diamond output").toggleClass("inactive", state);
+  $("fieldset#diamond output:not(.constant)").toggleClass("inactive", state);
+
+  // if the state is true it means we want to make the Hodge diamond inactive
+  if (state)
+    updateHodgeDiamond("?", "?", "?");
 };
 
 // the state is the value for toggleClass to inactive
 function toggleInvariants(state) {
   $("fieldset#overview output").toggleClass("inactive", state);
+
+  // if the state is true it means we want to make the invariants inactive
+  if (state) {
+    var invariants = ["b1", "b2", "b3", "e", "q", "pg", "pa", "chi", "tau", "c2", "c12"];
+
+    for (var i = 0; i < invariants.length; i++)
+      updateInvariant($("dd#" + invariants[i]), "{\\color{undefined-gray}{?}}");
+  }
 };
 
 // clear candidates
@@ -81,8 +148,6 @@ function addCandidateSurface(surface) {
 function setInactive() {
   toggleHodgeDiamond(true);
   toggleInvariants(true);
-
-  updateHodgeDiamond("?", "?", "?");
 }
 
 // load the invariants of a surface
@@ -97,4 +162,5 @@ function loadSurface(surface) {
   toggleHodgeDiamond(false);
   toggleInvariants(false);
   updateHodgeDiamond(pg, q, h11);
+  updateInvariants(pg, q, h11);
 }

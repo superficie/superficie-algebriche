@@ -6,7 +6,7 @@
 		extensions: ['tex2jax.js'],
 		jax: ['input/TeX','output/HTML-CSS'],
 		TeX: {
-			extensions: ['AMSmath.js','AMSsymbols.js'],
+			extensions: ['AMSmath.js', 'AMSsymbols.js', 'color.js'],
 			TagSide: 'left'
 		},
 		tex2jax: {
@@ -37,6 +37,7 @@
 </head>
 
 <body>
+$\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
 <div id="header">
   <ul id="menu">
     <li><a href="#top">top</a>
@@ -91,7 +92,7 @@
         </div>
   
         <div>
-          <output id="h00">1</output><br style="clear: both">
+          <output class="constant" id="h00">1</output><br style="clear: both">
           <output for="irregularity" id="h10">0</output>
           <output for="irregularity" id="h01">0</output><br style="clear: both">
           <output for="genus" id="h20">0</output>
@@ -99,7 +100,7 @@
           <output for="genus" id="h02">0</output><br style="clear: both">
           <output for="irregularity" id="h21">0</output>
           <output for="irregularity" id="h12">0</output><br style="clear: both">
-          <output id="h22">1</output>
+          <output class="constant" id="h22">1</output>
         </div>
       </fieldset>
 
@@ -116,34 +117,34 @@
   
         <dl>
           <dt>Betti numbers
-          <dd>$\mathrm{b}_0=1$
-          <dd>$\mathrm{b}_1=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
-          <dd>$\mathrm{b}_2=\mathrm{h}^{2,0}+\mathrm{h}^{1,1}+\mathrm{h}^{0,2}$
-          <dd>$\mathrm{b}_3=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
-          <dd>$\mathrm{b}_4=1$
+          <dd id="b0">$\mathrm{b}_0=1$
+          <dd id="b1">$\mathrm{b}_1={\color{undefined-gray}{?}}=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
+          <dd id="b2">$\mathrm{b}_2={\color{undefined-gray}{?}}=\mathrm{h}^{2,0}+\mathrm{h}^{1,1}+\mathrm{h}^{0,2}$
+          <dd id="b3">$\mathrm{b}_3={\color{undefined-gray}{?}}=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
+          <dd id="b4">$\mathrm{b}_4=1$
   
           <dt>Euler characteristic
-          <dd>$\mathrm{e}=\sum_{i=0}^4(-1)^i\mathrm{b}_i$
+          <dd id="e">$\mathrm{e}={\color{undefined-gray}{?}}=\sum_{i=0}^4(-1)^i\mathrm{b}_i$
   
           <dt>irregularity
-          <dd>$\mathrm{q}=\mathrm{h}^{0,1}$
+          <dd id="q">$\mathrm{q}={\color{undefined-gray}{?}}=\mathrm{h}^{0,1}$
   
           <dt>geometric genus
-          <dd>$\mathrm{p}_{\mathrm{g}}=\mathrm{h}^{0,2}$
+          <dd id="pg">$\mathrm{p}_{\mathrm{g}}={\color{undefined-gray}{?}}=\mathrm{h}^{0,2}$
   
           <dt>arithmetic genus
-          <dd>$\mathrm{p}_{\mathrm{a}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}$
+          <dd id="pa">$\mathrm{p}_{\mathrm{a}}={\color{undefined-gray}{?}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}$
   
           <dt>holomorphic Euler characteristic
           <dt>Todd genus
-          <dd>$\chi=\mathrm{p}_{\mathrm{g}}-\mathrm{q}+1=(\mathrm{c}_1^2+\mathrm{c}_2)/12$
+          <dd id="chi">$\chi={\color{undefined-gray}{?}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}+1=(\mathrm{c}_1^2+\mathrm{c}_2)/12$
   
           <dt>signature
-          <dd>$\tau=4\chi-\mathrm{e}=\sum_{i,j}(-1)^j\mathrm{h}^{i,j}$
+          <dd id="tau">$\tau={\color{undefined-gray}{?}}=4\chi-\mathrm{e}=\sum_{i,j}(-1)^j\mathrm{h}^{i,j}$
   
           <dt>Chern numbers
-          <dd>$\mathrm{c}_2=\mathrm{e}$
-          <dd>$\mathrm{c}_1^2=\mathrm{K}^2=12\chi-\mathrm{e}$
+          <dd id="c2">$\mathrm{c}_2={\color{undefined-gray}{?}}=\mathrm{e}$
+          <dd id="c12">$\mathrm{c}_1^2={\color{undefined-gray}{?}}=\mathrm{K}^2=12\chi-\mathrm{e}$
         </dl>
       </fieldset>
     </div>
