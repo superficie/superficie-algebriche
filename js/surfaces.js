@@ -1,5 +1,7 @@
 var surfaces = [];
 
+// Kodaira dimension -\infty
+
 surfaces.push(
   {
     "name" : "projective plane",
@@ -33,3 +35,52 @@ for (var g = 1; g < 5; g++) {
     }
   );
 }
+
+// Kodaira dimension 0
+
+surfaces.push(
+  {
+    "name" : "Abelian surfaces",
+    "kodaira" : 0,
+    "c2" : 0,
+    "c12" : 0,
+    "h11" : 4,
+    "description" : "Abelian variety of dimension $2$.",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Enriques surfaces",
+    "kodaira" : 0,
+    "c2" : 12,
+    "c12" : 0,
+    "h11" : 10,
+    "description" : "Algebraic surface such that $q = 0$ and the canonical line bundle $K$ is non-trivial but has trivial square.",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "K3 surfaces",
+    "kodaira" : 0,
+    "c2" : 24,
+    "c12" : 0,
+    "h11" : 20,
+    "description" : "Algebraic surface such that $q = 0$ and the canonical bundle is trivial.",
+  }
+);
+
+surfaces.push(
+  {
+    "name" : "Hyperelliptic surfaces",
+    "kodaira" : 0,
+    "c2" : 0,
+    "c12" : 0,
+    "h11" : 2,
+    "description" : "Algebraic surface with an elliptic fibration over an elliptic curve.",
+  }
+);
+
+// Kodaira dimension 1
+
