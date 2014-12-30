@@ -86,6 +86,13 @@ function setKodairaDimension(value) {
   // SVG doesn't have a z-index so we change the order of elements
   activeNodes.moveToFront();
 
+  // make the inequalities active if Kodaira dimension 2
+  if (value == 2)
+    d3.selectAll("text.kodaira-2").classed("inactive", false);
+  else
+    d3.selectAll("text.kodaira-2").classed("inactive", true);
+
+
   // remove candidates
   clearCandidates();
   // make the Hodge diamond and invariants shaded

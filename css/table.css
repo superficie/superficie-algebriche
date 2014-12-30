@@ -45,3 +45,7 @@ circle.active:hover {
   stroke: black;
   fill: black;
 }
+
+text.inactive {
+  fill-opacity: .1;
+}
