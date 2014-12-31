@@ -27,7 +27,7 @@ fieldset#candidates li.active {
   border-radius: 4px;
 }
 
-fieldset#candidates li a {
+fieldset#candidates li {
   padding-left: .3em;
 }
 
