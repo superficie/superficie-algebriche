@@ -84,7 +84,7 @@ for (var i = 0; i < points.length; i++) {
   }
 }
 
-var svg = d3.select("body")
+var svg = d3.select("div#table")
   .append("svg")
   .attr("width", w)
   .attr("height", h);
@@ -104,16 +104,12 @@ svg.append("g")
   .attr("class", "axis")
   .attr("transform", "translate(0," + c12(0) + ")")
   .call(c2Axis);
-// SVG and MathJax are incompatible, we place the label in HTML...
-$("body").append("<p id='c2label'>$\\mathrm{c}_2$</p>");
 
 // vertical axis
 svg.append("g")
   .attr("class", "axis")
   .attr("transform", "translate(" + c2(0) + ",0)")
   .call(c12Axis);
-// SVG and MathJax are incompatible, we place the label in HTML...
-$("body").append("<p id='c12label'>$\\mathrm{c}_1^2$</p>");
 
 // improve origin: remove double 0
 svg.selectAll(".axis g text")

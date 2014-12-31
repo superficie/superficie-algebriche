@@ -53,11 +53,27 @@ ul#menu li a:focus {
   text-decoration: none;
 }
 
-svg {
+div#table {
   position: fixed;
-  margin: 1em;
-  border: 1px solid #e5e5e5;
   top: 8em;
+}
+
+svg {
+  border: 1px solid #e5e5e5;
+}
+
+p#c2label {
+  height: 0;
+  position: relative;
+  left: 130px;
+  top: 390px;
+}
+
+p#c12label {
+  height: 0;
+  position: relative;
+  left: 10px;
+  top: 250px;
 }
 
 p#meta {

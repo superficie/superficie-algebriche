@@ -49,15 +49,3 @@ circle.active:hover {
 text.inactive {
   fill-opacity: .1;
 }
-
-p#c2label {
-  position: fixed;
-  left: 250px;
-  top: 510px;
-}
-
-p#c12label {
-  position: fixed;
-  left: 130px;
-  top: 375px;
-}
