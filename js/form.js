@@ -94,7 +94,6 @@ function setKodairaDimension(value) {
   else
     d3.selectAll("text.kodaira-2").classed("inactive", true);
 
-
   // remove candidates
   clearCandidates();
   // make the Hodge diamond and invariants shaded
@@ -105,6 +104,11 @@ function setKodairaDimension(value) {
 
   // make all nodes inactive
   d3.selectAll("circle").classed("active", false);
+
+  // destroy tooltips for all nodes
+  $("[data-toggle='tooltip']").tooltip("destroy");
+  // enable tooltips for currently active nodes
+  $("[data-toggle='tooltip']:not(.inactive)").tooltip(tooltipConfig);
 
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
