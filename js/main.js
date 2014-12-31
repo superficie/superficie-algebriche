@@ -5,7 +5,7 @@ $(document).ready(function() {
   // smooth scrolling
   $(".scroll").click(function(e) {
     // disable the click
-    event.preventDefault();
+    e.preventDefault();
 
     // compute the location for the scrolling
     var name = this.href.split("#")[1];
