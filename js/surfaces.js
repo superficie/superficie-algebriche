@@ -1,50 +1,26 @@
 var surfaces = [];
 
-/**
- * TODO
- *
- * on how to improve this system:
- * 1) create a class Surface
- * 2) it has a constructor taking (name, kodaira, c2, c12, h11)
- * 3) add other fields as you go
- *
- * it would at least eliminate a significant amount of vertical stuff in this file
- */
+function Surface(name, kodaira, c2, c12, h11) {
+  this.name = name;
+  this.kodaira = kodaira;
+  this.c2 = c2;
+  this.c12 = c12;
+  this.h11 = h11;
+}
 
 // Kodaira dimension -\infty
 
-surfaces.push(
-  {
-    "name" : "projective plane",
-    "kodaira" : -1,
-    "c2" : 3,
-    "c12" : 9,
-    "h11" : 1,
-  }
-);
+var plane = new Surface("projective plane", -1, 3, 9, 1);
+surfaces.push(plane);
 
-surfaces.push(
-  {
-    "name" : "Hirzebruch surfaces",
-    "kodaira" : -1,
-    "c2" : 4,
-    "c12" : 8,
-    "h11" : 2,
-    "construction" : "Ruled surface over $\\mathbb{P}^1$, i.e. it is defined as $\\operatorname{Proj}(\\mathcal{O}_{\\mathbb{P}^1}\\oplus\\mathcal{O}_{\\mathbb{P}^1}(n))$ for some $n\\geq 0$.",
-  }
-);
+var hirzebruch = new Surface("Hirzebruch surfaces", -1, 4, 8, 2);
+hirzebruch.construction = "Ruled surface over $\\mathbb{P}^1$, i.e. it is defined as $\\operatorname{Proj}(\\mathcal{O}_{\\mathbb{P}^1}\\oplus\\mathcal{O}_{\\mathbb{P}^1}(n))$ for some $n\\geq 0$.";
+surfaces.push(hirzebruch);
 
 // this can increase whenever we increase the size of the viewport, currently not implemented
 for (var g = 1; g < 5; g++) {
-  surfaces.push(
-    {
-      "name" : "ruled surfaces",
-      "kodaira" : -1,
-      "c2" : 4 - 4*g,
-      "c12" : 8 - 8*g,
-      "h11" : 2,
-    }
-  );
+  var ruled = new Surface("ruled surfaces", -1, 4 - 4*g, 8 - 8*g, 2);
+  surfaces.push(ruled);
 }
 
 // Kodaira dimension 0
@@ -210,16 +186,9 @@ for (var g1 = 2; g1 < 5; g1++) {
     var c12 = 8*g1*g2 - 8*(g1+g2) + 8;
     var h11 = 2*g1*g2 + 2;
 
-    surfaces.push(
-      {
-        "name" : "Product of curves",
-        "kodaira" : 2,
-        "c2" : c2,
-        "c12" : c12,
-        "h11" : h11,
-        "construction" : "Let $C_1$ and $C_2$ be curves of genus $g_1,g_2\\geq 2$. Then $C_1\\times C_2$ is always of general type.",
-        "description" : "The numerical invariants are completely determined in terms of $g_1=" + g1 + "$ and $g_2=" + g2 + "$, with $\\mathrm{q}=g_1+g_2$, $\\mathrm{p}_{\\mathrm{g}}=g_1g_2$ and $\\mathrm{h}^{1,1}=2g_1g_2+2$."
-      }
-    );
+    var product = new Surface("Product of curves of genus " + g1 + " and " + g2, 2, c2, c12, h11);
+    product.construction = "Let $C_1$ and $C_2$ be curves of genus $g_1,g_2\\geq 2$. Then $C_1\\times C_2$ is always of general type.";
+    product.description = "The numerical invariants are completely determined in terms of $g_1=" + g1 + "$ and $g_2=" + g2 + "$, with $\\mathrm{q}=g_1+g_2$, $\\mathrm{p}_{\\mathrm{g}}=g_1g_2$ and $\\mathrm{h}^{1,1}=2g_1g_2+2$.";
+    surfaces.push(product);
   }
 }
