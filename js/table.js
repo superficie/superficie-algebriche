@@ -97,6 +97,9 @@ svg.selectAll("circle")
   .attr("cx", function(d) { return c2(d.c2); })
   .attr("cy", function(d) { return c12(d.c12); })
   .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
+  .attr("data-toggle", "tooltip")
+  .attr("data-c2", function(d) { return d.c2; })
+  .attr("data-c12", function(d) { return d.c12; })
   .attr("class", function(d) { return kodaira(d.kodaira); });
 
 // horizontal axis
