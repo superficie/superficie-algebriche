@@ -56,7 +56,6 @@ ul#menu li a:focus {
 div#table {
   position: fixed;
   top: 8em;
-  margin: 1em;
 }
 
 svg {
