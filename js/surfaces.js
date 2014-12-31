@@ -1,5 +1,16 @@
 var surfaces = [];
 
+/**
+ * TODO
+ *
+ * on how to improve this system:
+ * 1) create a class Surface
+ * 2) it has a constructor taking (name, kodaira, c2, c12, h11)
+ * 3) add other fields as you go
+ *
+ * it would at least eliminate a significant amount of vertical stuff in this file
+ */
+
 // Kodaira dimension -\infty
 
 surfaces.push(
@@ -190,3 +201,25 @@ surfaces.push(
     "construction" : "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ lying on a non-singular cubic threefold.",
   }
 );
+
+// products of two curves of genus >= 2
+for (var g1 = 2; g1 < 5; g1++) {
+  // some (i,j)'s don't show up in the graph, but this is the easiest solution
+  for (var g2 = g1; g2 < 9; g2++) {
+    var c2 = 4 - 4*(g1+g2) + 4*g1*g2;
+    var c12 = 8*g1*g2 - 8*(g1+g2) + 8;
+    var h11 = 2*g1*g2 + 2;
+
+    surfaces.push(
+      {
+        "name" : "Product of curves",
+        "kodaira" : 2,
+        "c2" : c2,
+        "c12" : c12,
+        "h11" : h11,
+        "construction" : "Let $C_1$ and $C_2$ be curves of genus $g_1,g_2\\geq 2$. Then $C_1\\times C_2$ is always of general type.",
+        "description" : "The numerical invariants are completely determined in terms of $g_1=" + g1 + "$ and $g_2=" + g2 + "$, with $\\mathrm{q}=g_1+g_2$, $\\mathrm{p}_{\\mathrm{g}}=g_1g_2$ and $\\mathrm{h}^{1,1}=2g_1g_2+2$."
+      }
+    );
+  }
+}
