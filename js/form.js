@@ -109,6 +109,9 @@ function setKodairaDimension(value) {
   $("[data-toggle='tooltip']").tooltip("destroy");
   // enable tooltips for currently active nodes
   $("[data-toggle='tooltip']:not(.inactive)").tooltip(tooltipConfig);
+  $("[data-toggle='tooltip']").on("shown.bs.tooltip", function() {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+  });
 
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
