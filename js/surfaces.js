@@ -235,8 +235,12 @@ function cic2(d) {
 
 // compute h^{1,1} of a complete intersection with degrees d
 function cih11(d) {
-  // TODO implement this...
-  return 0;
+  var c12 = cic12(d);
+  var c2 = cic2(d);
+
+  var pg = (c12 + c2) / 12 - 1;
+  
+  return c2 - 2 - 2 * pg;
 }
 
 // I didn't have a clue of how big the c_1^2 and c_2 would get, apparently this list is way bigger than what can be displayed
@@ -254,7 +258,4 @@ for (var i = 0; i < degrees.length; i++) {
 
   var product = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, c2, c12, h11);
     surfaces.push(product);
-  console.log(degrees[i]);
-  console.log(cic12(degrees[i]));
-  console.log(cic2(degrees[i]));
 }
