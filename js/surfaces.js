@@ -192,3 +192,72 @@ for (var g1 = 2; g1 < 5; g1++) {
     surfaces.push(product);
   }
 }
+
+// complete intersections
+
+// compute c_1^2 of a complete intersection with degrees d
+function cic12(d) {
+  var c12 = 0;
+
+  for (var i = 0; i < d.length; i++)
+    c12 = c12 + d[i];
+  c12 = c12 - (d.length + 3);
+  c12 = c12 * c12;
+
+  for (var i = 0; i < d.length; i++)
+    c12 = c12 * d[i];
+
+  return c12;
+}
+
+// compute c_2 of a complete intersection with degrees d
+function cic2(d) {
+  var c2 = 0;
+
+  c2 = c2 + ((d.length + 3) * (d.length + 2)) / 2;
+
+  for (var i = 0; i < d.length; i++) {
+    c2 = c2 - (d.length + 3) * d[i];
+    c2 = c2 + d[i] * d[i];
+  }
+
+  // TODO or should we take j = 0? summations are horrible to interpret...
+  for (var i = 0; i < d.length; i++) {
+    for (var j = i; j < d.length; j++) {
+      if (i != j) {
+        c2 = c2 + d[i] * d[j];
+      }
+    }
+  }
+
+  for (var i = 0; i < d.length; i++)
+    c2 = c2 * d[i];
+
+  return c2;
+}
+
+// compute h^{1,1} of a complete intersection with degrees d
+function cih11(d) {
+  // TODO implement this...
+  return 0;
+}
+
+// I didn't have a clue of how big the c_1^2 and c_2 would get, apparently this list is way bigger than what can be displayed
+var degrees = [[5], [6], [7], [8],
+               [2, 4], [2, 5], [2, 6], [3, 4], [3, 5], [4, 4],
+               [2, 2, 3], [2, 2, 4], [2, 3, 3], [2, 3, 4], [2, 4, 4],
+               [2, 2, 2, 2], [2, 2, 2, 3], [2, 2, 2, 4], [2, 2, 3, 3],
+               [2, 2, 2, 2, 2]
+              ];
+
+for (var i = 0; i < degrees.length; i++) {
+  var c12 = cic12(degrees[i]);
+  var c2 = cic2(degrees[i]);
+  var h11 = cih11(degrees[i]);
+
+  var product = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, c2, c12, h11);
+    surfaces.push(product);
+  console.log(degrees[i]);
+  console.log(cic12(degrees[i]));
+  console.log(cic2(degrees[i]));
+}
