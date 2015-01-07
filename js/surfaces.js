@@ -221,12 +221,9 @@ function cic2(d) {
     c2 = c2 + d[i] * d[i];
   }
 
-  // TODO or should we take j = 0? summations are horrible to interpret...
   for (var i = 0; i < d.length; i++) {
-    for (var j = i; j < d.length; j++) {
-      if (i != j) {
-        c2 = c2 + d[i] * d[j];
-      }
+    for (var j = i + 1; j < d.length; j++) {
+      c2 = c2 + d[i] * d[j];
     }
   }
 
