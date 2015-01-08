@@ -64,18 +64,18 @@ svg {
   border: 1px solid #e5e5e5;
 }
 
-p#c2label {
-  height: 0;
-  position: relative;
-  left: 130px;
-  top: 390px;
-}
-
 p#c12label {
   height: 0;
   position: relative;
+  left: 130px;
+  top: 380px;
+}
+
+p#c2label {
+  height: 0;
+  position: relative;
   left: 10px;
-  top: 250px;
+  top: 265px;
 }
 
 p#meta {
