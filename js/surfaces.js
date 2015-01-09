@@ -37,7 +37,7 @@ var k3 = new Surface("K3 surfaces", 0, 24, 0, 20);
 k3.description = "Algebraic surface such that $q = 0$ and the canonical bundle is trivial.";
 surfaces.push(k3);
 
-var bielliptic = new Surface("bielliptic surfaces", 0, 0, 0, 2)
+var bielliptic = new Surface("bielliptic surfaces", 0, 0, 0, 2);
 bielliptic.description = "Algebraic surface with an elliptic fibration over an elliptic curve.";
 surfaces.push(bielliptic);
 
