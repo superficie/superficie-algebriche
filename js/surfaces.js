@@ -94,6 +94,11 @@ fano.description = "These surfaces parametrise lines on a non-singular cubic thr
 fano.construction = "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ lying on a non-singular cubic threefold.";
 surfaces.push(fano);
 
+var chenhacon = new Surface("Chen\&ndash;Hacon surfaces", 2, 7, 5, 9);
+chenhacon.description = "First surface with these invariants constructed in 2006 by J.A.\&nbsp;Chen and C.D.\&nbsp;Hacon. Later, M.\&nbsp;Penegini constructed more examples, and gave a description of the component in the moduli space together with F.\&nbsp;Polizzi.";
+chenhacon.construction = "The general construction goes via Tschirnhausen bundles on $(1,2)$-polarized abelian surfaces. Penegini's construction is a product-quotient of two $S_3$-covers of two elliptic curves. For details, see <em>On surfaces with $p_g = q = 2$, $K^2 = 5$ and Albanese map of degree $3$</em>, M.\&nbsp;Penegini and F.\&nbsp;Polizzi (2013).";
+surfaces.push(chenhacon);
+
 // products of two curves of genus >= 2
 for (var g1 = 2; g1 < 5; g1++) {
   // some (i,j)'s don't show up in the graph, but this is the easiest solution
