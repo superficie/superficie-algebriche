@@ -58,97 +58,41 @@ surfaces.push(bielliptic);
 
 // Kodaira dimension 2
 
-surfaces.push(
-  {
-    "name" : "fake projective planes",
-    "kodaira" : 2,
-    "c2" : 3,
-    "c12" : 9,
-    "h11" : 1,
-    "description" : "Algebraic surface with the same Betti numbers as the projective plane (but not isomorphic to it). There are 50 different such surfaces.",
-  }
-);
+var fakeproj = new Surface("fake projective planes", 2, 3, 9, 1);
+fakeproj.description = "Algebraic surface with the same Betti numbers as the projective plane (but not isomorphic to it). There are 50 different such surfaces.";
+surfaces.push(fakeproj);
 
-surfaces.push(
-  {
-    "name" : "Beauville surfaces",
-    "kodaira" : 2,
-    "c2" : 4,
-    "c12" : 8,
-    "h11" : 2,
-    "description" : "<p>Algebraic surface introduced by Beauville, with the same numerical characteristics as a quadric surface (or Hirzebruch surface). See <em>Complex algebraic surfaces</em>, Arnaud Beauville (1996).",
-    "construction" : "Take two smooth curves $C_1$ and $C_2$ of genus $g_1$ and $g_2$. Let $G$ be a finite group acting on $C_1$ and $C_2$ such that<ul><li>$\\#G=(g_1-1)(g_2-1)$<li>no $g\\in G\\setminus\\{1\\}$ has a fix point on both $C_1$ and $C_2$<li>$C_i/G$ is rational</ul> Then $(C_1\\times C_2)/G$ is a Beauville surface."
-  }
-);
+var beauville = new Surface("Beauville surfaces", 2, 4, 8, 2);
+beauville.description = "<p>Algebraic surface introduced by Beauville, with the same numerical characteristics as a quadric surface (or Hirzebruch surface). See <em>Complex algebraic surfaces</em>, Arnaud Beauville (1996).";
+beauville.construction = "Take two smooth curves $C_1$ and $C_2$ of genus $g_1$ and $g_2$. Let $G$ be a finite group acting on $C_1$ and $C_2$ such that<ul><li>$\\#G=(g_1-1)(g_2-1)$<li>no $g\\in G\\setminus\\{1\\}$ has a fix point on both $C_1$ and $C_2$<li>$C_i/G$ is rational</ul> Then $(C_1\\times C_2)/G$ is a Beauville surface.";
+surfaces.push(beauville);
 
 for (var n = 2; n <= 6; n++) {
-  surfaces.push(
-    {
-      "name" : "Burniat surfaces",
-      "kodaira" : 2,
-      "c2" : 12 - n,
-      "c12" : n,
-      "h11" : 10 - n,
-      "description" : "Algebraic surface introduced by Burniat. See <em>Sur les surfaces de genre $P_{12}>1$</em>, Pol Burniat (1966).",
-    }
-  );
+  var burniat = new Surface("Burniat surfaces", 2, 12 - n, n, 10 - n);
+  burniat.description = "Algebraic surface introduced by Burniat. See <em>Sur les surfaces de genre $P_{12}>1$</em>, Pol Burniat (1966).";
+  surfaces.push(burniat);
 }
 
-surfaces.push(
-  {
-    "name" : "Campedelli surface",
-    "kodaira" : 2,
-    "c2" : 10,
-    "c12" : 2,
-    "h11" : 8,
-    "description" : "Algebraic surface introduced by Campedelli.",
-  }
-);
+var campedelli = new Surface("Campedelli surface", 2, 10, 2, 8);
+campedelli.description = "Algebraic surface introduced by Campedelli.";
+surfaces.push(campedelli);
 
-surfaces.push(
-  {
-    "name" : "Catanese surface",
-    "kodaira" : 2,
-    "c2" : 10,
-    "c12" : 2,
-    "h11" : 8,
-    "description" : "Algebraic surface introduced by Catanese, in <em>Babbage's conjecture, contact of surfaces, symmetric determinantal varieties and applications</em> (1981).",
-  }
-);
+var catanese = new Surface("Catanese surface", 2, 10, 2, 8);
+catanese.description = "Algebraic surface introduced by Catanese, in <em>Babbage's conjecture, contact of surfaces, symmetric determinantal varieties and applications</em> (1981).";
+surfaces.push(catanese);
 
-surfaces.push(
-  {
-    "name" : "Godeaux surface",
-    "kodaira" : 2,
-    "c2" : 11,
-    "c12" : 1,
-    "h11" : 9,
-    "description" : "Algebraic surface introduced by Lucien Godeaux.",
-  }
-);
+var godeaux = new Surface("Godeaux surface", 2, 11, 1, 9);
+godeaux.description = "Algebraic surface introduced by Lucien Godeaux.";
+surfaces.push(godeaux);
 
-surfaces.push(
-  {
-    "name" : "Barlow surface",
-    "kodaira" : 2,
-    "c2" : 11,
-    "c12" : 1,
-    "h11" : 9,
-    "description" : "Algebraic surface introduced by Rebecca Barlow. See </em>Some new surfaces with $p_{g} = 0$</em>, Rebecca Barlow (1984).",
-  }
-);
+var barlow = new Surface("Barlow surface", 2, 11, 1, 9);
+barlow.description = "Algebraic surface introduced by Rebecca Barlow. See </em>Some new surfaces with $p_{g} = 0$</em>, Rebecca Barlow (1984).";
+surfaces.push(barlow);
 
-surfaces.push(
-  {
-    "name" : "Fano surfaces",
-    "kodaira" : 2,
-    "c2" : 27,
-    "c12" : 45,
-    "h11" : 25,
-    "description" : "These surfaces parametrise lines on a non-singular cubic threefold.",
-    "construction" : "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ lying on a non-singular cubic threefold.",
-  }
-);
+var fano = new Surface("Fano surfaces", 2, 27, 45, 25);
+fano.description = "These surfaces parametrise lines on a non-singular cubic threefold.";
+fano.construction = "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ lying on a non-singular cubic threefold.";
+surfaces.push(fano);
 
 // products of two curves of genus >= 2
 for (var g1 = 2; g1 < 5; g1++) {
