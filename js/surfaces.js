@@ -228,6 +228,6 @@ for (var i = 0; i < degrees.length; i++) {
   var c2 = cic2(degrees[i]);
   var h11 = cih11(degrees[i]);
 
-  var product = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, c2, c12, h11);
-    surfaces.push(product);
+  var ci = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, c2, c12, h11);
+    surfaces.push(ci);
 }
