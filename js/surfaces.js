@@ -25,49 +25,21 @@ for (var g = 1; g < 5; g++) {
 
 // Kodaira dimension 0
 
-surfaces.push(
-  {
-    "name" : "abelian surfaces",
-    "kodaira" : 0,
-    "c2" : 0,
-    "c12" : 0,
-    "h11" : 4,
-    "description" : "Abelian variety of dimension $2$.",
-  }
-);
+var abelian = new Surface("abelian surfaces", 0, 0, 0, 4);
+abelian.description = "Abelian variety of dimension $2$.";
+surfaces.push(abelian);
 
-surfaces.push(
-  {
-    "name" : "Enriques surfaces",
-    "kodaira" : 0,
-    "c2" : 12,
-    "c12" : 0,
-    "h11" : 10,
-    "description" : "Algebraic surface such that $\\mathrm{q}=0$ and the canonical line bundle is non-trivial but has trivial square.",
-  }
-);
+var enriques = new Surface("Enriques surfaces", 0, 12, 0, 10);
+enriques.description = "Algebraic surface such that $\\mathrm{q}=0$ and the canonical line bundle is non-trivial but has trivial square.";
+surfaces.push(enriques);
 
-surfaces.push(
-  {
-    "name" : "K3 surfaces",
-    "kodaira" : 0,
-    "c2" : 24,
-    "c12" : 0,
-    "h11" : 20,
-    "description" : "Algebraic surface such that $q = 0$ and the canonical bundle is trivial.",
-  }
-);
+var k3 = new Surface("K3 surfaces", 0, 24, 0, 20);
+k3.description = "Algebraic surface such that $q = 0$ and the canonical bundle is trivial.";
+surfaces.push(k3);
 
-surfaces.push(
-  {
-    "name" : "bielliptic surfaces",
-    "kodaira" : 0,
-    "c2" : 0,
-    "c12" : 0,
-    "h11" : 2,
-    "description" : "Algebraic surface with an elliptic fibration over an elliptic curve.",
-  }
-);
+var bielliptic = new Surface("bielliptic surfaces", 0, 0, 0, 2)
+bielliptic.description = "Algebraic surface with an elliptic fibration over an elliptic curve.";
+surfaces.push(bielliptic);
 
 // Kodaira dimension 1
 
