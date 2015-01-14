@@ -99,6 +99,15 @@ chenhacon.description = "First surface with these invariants constructed in 2006
 chenhacon.construction = "The general construction goes via Tschirnhausen bundles on $(1,2)$-polarized abelian surfaces. Penegini's construction is a product-quotient of two $S_3$-covers of two elliptic curves. For details, see <em>On surfaces with $p_g = q = 2$, $K^2 = 5$ and Albanese map of degree $3$</em>, M.\&nbsp;Penegini and F.\&nbsp;Polizzi (2013).";
 surfaces.push(chenhacon);
 
+// symmetric squares of curves of genus >= 3
+for (var g = 3; g < 6; g++) {
+  var h11 = g*g + 1;
+  var c2 = h11 + 2 + g*(g-1) - 4*g;
+  var c12 = 12 - 12*g + 6*g*(g-1) - c2;
+  var sym_square = new Surface("Symmetric square of a curve of genus " + g, 2, c2, c12, h11);
+  surfaces.push(sym_square);
+}
+
 // products of two curves of genus >= 2
 for (var g1 = 2; g1 < 5; g1++) {
   // some (i,j)'s don't show up in the graph, but this is the easiest solution
