@@ -1,7 +1,13 @@
-function updateHodgeDiamond(pg, q, h11) {
-  $("output#h20, output#h02").text(pg);
-  $("output#h01, output#h10, output#h21, output#h12").text(q);
-  $("output#h11").text(h11);
+function updateHodgeDiamond(surface) {
+  $("output#h01").text(surface.h01);
+  $("output#h10").text(surface.h10);
+
+  $("output#h20").text(surface.h20);
+  $("output#h11").text(surface.h11);
+  $("output#h02").text(surface.h02);
+
+  $("output#h21").text(surface.h21);
+  $("output#h12").text(surface.h12);
 }
 
 function updateInvariant(element, value) {
@@ -19,44 +25,25 @@ function updateInvariant(element, value) {
   element.text("$" + parts.join("=") + "$");
 }
 
-function updateInvariants(pg, q, h11) {
-  // Betti numbers
-  var b0 = 1;
-  var b1 = 2 * q;
-  var b2 = 2 * pg + h11;
-  var b3 = 2 * q;
-  var b4 = 1;
-  updateInvariant($("dd#b1"), b1);
-  updateInvariant($("dd#b2"), b2);
-  updateInvariant($("dd#b3"), b3);
+function updateInvariants(surface) {
+  updateInvariant($("dd#b1"), surface.b1);
+  updateInvariant($("dd#b2"), surface.b2);
+  updateInvariant($("dd#b3"), surface.b3);
 
-  // Euler characteristic
-  var e = b0 - b1 + b2 - b3 + b4;
-  updateInvariant($("dd#e"), e);
+  updateInvariant($("dd#e"), surface.e);
 
-  // irregularity
-  updateInvariant($("dd#q"), q);
+  updateInvariant($("dd#q"), surface.h01);
 
-  // geometric genus
-  updateInvariant($("dd#pg"), pg);
+  updateInvariant($("dd#pg"), surface.h02);
 
-  // arithmetic genus
-  var pa = pg - q;
-  updateInvariant($("dd#pa"), pa);
+  updateInvariant($("dd#pa"), surface.pa);
 
-  // holomorphic Euler characteristic
-  var chi = pg - q + 1;
-  updateInvariant($("dd#chi"), chi);
+  updateInvariant($("dd#chi"), surface.chi);
 
-  // signature
-  var tau = 4 * chi - e;
-  updateInvariant($("dd#tau"), tau);
+  updateInvariant($("dd#tau"), surface.tau);
 
-  // Chern numbers
-  var c2 = e,
-      c12 = 12 * chi - e;
-  updateInvariant($("dd#c2"), c2);
-  updateInvariant($("dd#c12"), c12);
+  updateInvariant($("dd#c2"), surface.c2);
+  updateInvariant($("dd#c12"), surface.c12);
 
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
@@ -174,17 +161,10 @@ function loadSurface(element, surface) {
   $("fieldset#candidates li").removeClass("active");
   element.toggleClass("active", true);
 
-  var c12 = surface.c12;
-  var c2 = surface.c2;
-  var h11 = surface.h11;
-
-  var q = (c12 - 5*c2 + 6*h11) / 12;
-  var pg = (c2 + 4*q - h11 - 2 ) / 2;
-
   toggleHodgeDiamond(false);
   toggleInvariants(false);
-  updateHodgeDiamond(pg, q, h11);
-  updateInvariants(pg, q, h11);
+  updateHodgeDiamond(surface);
+  updateInvariants(surface);
 
   $("fieldset#surface div").remove();
   if ("description" in surface)
