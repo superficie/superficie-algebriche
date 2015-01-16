@@ -193,6 +193,7 @@ function clickedPoint(point) {
       $("fieldset#candidates").prepend("<p class='message'>No surfaces known with these invariants, sorry.");
     } else if ($("fieldset#candidates ol li").length === 1) {
       $("fieldset#candidates ol li a").click();
+      $("fieldset#candidates ol li").addClass("active");
     }
 
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
