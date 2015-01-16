@@ -107,7 +107,7 @@ function toggleHodgeDiamond(state) {
 
   // if the state is true it means we want to make the Hodge diamond inactive
   if (state)
-    updateHodgeDiamond("?", "?", "?");
+    $("output#h01, output#h10, output#h02, output#h11, output#h20, output#h12, output#h21").text("?");
 }
 
 // the state is the value for toggleClass to inactive
