@@ -179,8 +179,11 @@ function clickedPoint(point) {
     }
 
     // check whether we have found surfaces, otherwise display a message
-    if ($("fieldset#candidates ol li").length === 0)
+    if ($("fieldset#candidates ol li").length === 0) {
       $("fieldset#candidates").prepend("<p class='message'>No surfaces known with these invariants, sorry.");
+    } else if ($("fieldset#candidates ol li").length === 1) {
+      $("fieldset#candidates ol li a").click();
+    }
 
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   }
