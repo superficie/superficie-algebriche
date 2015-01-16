@@ -116,7 +116,11 @@ for (var g1 = 2; g1 < 5; g1++) {
     var c12 = 8*g1*g2 - 8*(g1+g2) + 8;
     var h11 = 2*g1*g2 + 2;
 
-    var product = new Surface("Product of curves of genus " + g1 + " and " + g2, 2, c2, c12, h11);
+    if (g1 == g2) {
+      var product = new Surface("Product of two curves of genus " + g1, 2, c2, c12, h11);
+    } else {
+      var product = new Surface("Product of curves of genus " + g1 + " and " + g2, 2, c2, c12, h11);
+    }
     product.construction = "Let $C_1$ and $C_2$ be curves of genus $g_1,g_2\\geq 2$. Then $C_1\\times C_2$ is always of general type.";
     product.description = "The numerical invariants are completely determined in terms of $g_1=" + g1 + "$ and $g_2=" + g2 + "$, with $\\mathrm{q}=g_1+g_2$, $\\mathrm{p}_{\\mathrm{g}}=g_1g_2$ and $\\mathrm{h}^{1,1}=2g_1g_2+2$.";
     surfaces.push(product);
