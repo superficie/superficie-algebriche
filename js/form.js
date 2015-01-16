@@ -89,10 +89,8 @@ function setKodairaDimension(value) {
   activeNodes.moveToFront();
 
   // make the inequalities active if Kodaira dimension 2
-  if (value == 2)
-    d3.selectAll("text.kodaira-2").classed("inactive", false);
-  else
-    d3.selectAll("text.kodaira-2").classed("inactive", true);
+  $("p.kodaira-2").toggleClass("inactive", value != 2);
+  d3.selectAll("text.kodaira-2").classed("inactive", value != 2);
 
   // remove candidates
   clearCandidates();

@@ -150,6 +150,16 @@ svg.append("text")
   .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")") 
   .text("Bogomolov-Miyaoka-Yau inequality");
 
+// draw the Debarre inequality (hardcoded constants...)
+svg.append("line")
+  .attr("x1", c2(0))
+  .attr("x2", c2(30))
+  .attr("y1", c12(0))
+  .attr("y2", c12(60))
+  .attr("class", "axis");
+$("body").append("<p id='debarre' class='kodaira-2 inactive'>Debarre inequality</p>");
+
+
 // assign click event to points
 d3.selectAll("circle").on("click", clickedPoint);
 

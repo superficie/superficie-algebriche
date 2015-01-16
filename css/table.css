@@ -46,6 +46,8 @@ circle.active:hover {
   fill: black;
 }
 
-text.inactive {
+text.inactive,
+p.inactive {
+  opacity: .1;
   fill-opacity: .1;
 }

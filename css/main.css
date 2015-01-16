@@ -78,6 +78,13 @@ p#c2label {
   top: 265px;
 }
 
+p#debarre {
+  height: 0;
+  position: relative;
+  left: 300px;
+  top: 92px;
+}
+
 p#meta {
   position: fixed;
   top: 39em;
