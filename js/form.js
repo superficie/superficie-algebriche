@@ -155,7 +155,7 @@ function noSelectionMessage() {
 
 // add a surface to the candidates list
 function addCandidateSurface(surface) {
-  var link = $("<a href='javascript:void()'>" + surface.name + "</a>").click(function(e) { loadSurface($(e.toElement).parent(), surface); });
+  var link = $("<a href='javascript:void(0)'>" + surface.name + "</a>").click(function(e) { loadSurface($(e.currentTarget).parent(), surface); });
   $("fieldset#candidates ol").append($("<li>").append(link));
 }
 
