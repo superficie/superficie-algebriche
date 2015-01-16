@@ -1,5 +1,6 @@
 fieldset {
   width: 18em;
+  margin-top: .5em;
 }
 
 input[type="range"] {
