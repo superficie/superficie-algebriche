@@ -17,6 +17,20 @@ $(document).ready(function() {
   setKodairaDimension("-1");
   $("input#kodaira").val(-1);
 
+  // handling non-algebraic surfaces
+  $("input#algebraic").change(function() {
+    if ($(this).is(":checked")) {
+      $("circle.nonalgebraic").css("visibility", "visible");
+    }
+    else {
+      $("circle.nonalgebraic").css("visibility", "hidden");
+    }
+
+    // we just reset the surface selection, this is not the best solution, but definitely the easiest...
+    setKodairaDimension($("input#kodaira").val());
+  });
+  $("input#algebraic").attr("checked", false);
+
   // smooth scrolling
   $(".scroll").click(function(e) {
     // disable the click

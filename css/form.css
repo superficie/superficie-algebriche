@@ -80,3 +80,7 @@ fieldset dd {
 p.message {
   font-style: italic;
 }
+
+input[type="checkbox"] {
+  float: right;
+}

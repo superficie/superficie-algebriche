@@ -34,10 +34,12 @@ var kodaira = d3.scale.ordinal()
 // all the pairs (c_2,c_1^2) corresponding to a minimal projective surface
 var points = [];
 
-function Point(c2, c12, kodaira) {
+function Point(c2, c12, kodaira, algebraic) {
   this.c2 = c2;
   this.c12 = c12;
   this.kodaira = kodaira;
+
+  this.algebraic = typeof algebraic !== "undefined" ? algebraic : true;
 
   this.hasExamples = false;
 }
@@ -46,9 +48,10 @@ function Point(c2, c12, kodaira) {
 points.push(new Point(3, 9, -1));
 
 // minimal surfaces of Kodaira dimension 0
-points.push(new Point(0, 0, 0)); // abelian and hyperelliptic surfaces
+points.push(new Point(0, 0, 0)); // abelian, hyperelliptic and primary Kodaira surfaces
 points.push(new Point(12, 0, 0)); // Enriques surfaces
 points.push(new Point(24, 0, 0)); // K3 surfaces
+points.push(new Point(1, -1, 0, false)); // secondary Kodaira surfaces
 
 for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
   for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
@@ -100,7 +103,12 @@ svg.selectAll("circle")
   .attr("data-toggle", "tooltip")
   .attr("data-c2", function(d) { return d.c2; })
   .attr("data-c12", function(d) { return d.c12; })
-  .attr("class", function(d) { return kodaira(d.kodaira); });
+  .attr("class", function(d) {
+    if (d.algebraic)
+      return kodaira(d.kodaira);
+    else
+      return kodaira(d.kodaira) + " " + "nonalgebraic";
+  });
 
 // horizontal axis
 svg.append("g")
@@ -184,8 +192,15 @@ function clickedPoint(point) {
 
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
-      if (surfaces[i].c2 == point.c2 && surfaces[i].c12 == point.c12 && surfaces[i].kodaira == point.kodaira)
-        addCandidateSurface(surfaces[i]);
+      // invariants are correct
+      if (surfaces[i].c2 == point.c2 && surfaces[i].c12 == point.c12 && surfaces[i].kodaira == point.kodaira) {
+        // include non-algebraic surfaces, so we don't need to check anything
+        if ($("input#algebraic").is(":checked"))
+          addCandidateSurface(surfaces[i]);
+        // only do algebraic surfaces, hence we check whether it is one
+        else if (surfaces[i].algebraic)
+          addCandidateSurface(surfaces[i]);
+      }
     }
 
     // check whether we have found surfaces, otherwise display a message

@@ -4,6 +4,8 @@ function Surface(name, kodaira, invariants) {
   this.name = name;
   this.kodaira = kodaira;
 
+  this.algebraic = true;
+
   // the idea is to compute the Hodge numbers based on the input data, as all other invariants are expressed in terms of these
   if (Object.keys(invariants).sort().equals(Array("c12", "c2", "h11"))) {
     this.h11 = invariants.h11;
@@ -24,6 +26,18 @@ function Surface(name, kodaira, invariants) {
     // the surface is Kaehler so we have computed everything now
     this.h10 = this.h21 = this.h12 = this.h01; 
     this.h02 = this.h20;
+  }
+  // for non-algebraic surfaces: four Hodge numbers are required
+  else if (Object.keys(invariants).sort().equals(Array("h01", "h10", "h11", "h20"))) {
+    this.h10 = invariants.h10;
+    this.h01 = invariants.h01;
+    this.h20 = invariants.h20;
+    this.h11 = invariants.h11;
+
+    // via Serre duality
+    this.h02 = this.h20;
+    this.h21 = this.h01;
+    this.h12 = this.h10;
   }
   else {
     console.log("Didn't recognise the input format for the invariants.");
@@ -85,6 +99,14 @@ surfaces.push(k3);
 var bielliptic = new Surface("bielliptic surfaces", 0, {c2 : 0, c12 : 0, h11 : 2});
 bielliptic.description = "Algebraic surface with an elliptic fibration over an elliptic curve.";
 surfaces.push(bielliptic);
+
+var primaryKodaira = new Surface("primary Kodaira surfaces", 0, {h10 : 1, h01 : 2, h20 : 1, h11 : 2});
+primaryKodaira.algebraic = false;
+surfaces.push(primaryKodaira);
+
+var secondaryKodaira = new Surface("secondary Kodaira surfaces", 0, {h10 : 0, h01 : 1, h20 : 0, h11 : 1});
+secondaryKodaira.algebraic = false;
+surfaces.push(secondaryKodaira);
 
 // Kodaira dimension 1
 
