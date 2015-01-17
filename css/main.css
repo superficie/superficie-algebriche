@@ -78,11 +78,11 @@ p#c2label {
   top: 265px;
 }
 
-p#debarre {
+p#signatureline {
   height: 0;
   position: relative;
   left: 300px;
-  top: 92px;
+  top: 5px;
 }
 
 p#meta {

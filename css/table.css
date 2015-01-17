@@ -46,10 +46,12 @@ circle.active:hover {
   fill: black;
 }
 
-text.inactive,
+text.inactive {
+  fill-opacity: .1;
+}
+
 p.inactive {
   opacity: .1;
-  fill-opacity: .1;
 }
 
 circle.nonalgebraic {
