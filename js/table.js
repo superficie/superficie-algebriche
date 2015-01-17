@@ -61,6 +61,12 @@ for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
     if (congruence && positivity)
       points.push(new Point(i2, i12, -1));
 
+    // Kodaira surfaces
+    var positivity = (i2 >= 0) && (i12 <= 0);
+    var congruence = (i2 + i12) == 0;
+    if (congruence && positivity)
+      points.push(new Point(i2, i12, -1, false));
+
     // minimal surface of Kodaira dimension 1
     var congruence = ((i12 + i2) % 12 === 0);
     var positivity = (i12 === 0) && (i2 >= 0);
