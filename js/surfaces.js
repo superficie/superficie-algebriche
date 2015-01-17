@@ -64,7 +64,7 @@ function Surface(name, kodaira, invariants) {
   this.chi = this.h02 - this.h01 + 1;
 
   // signature
-  var tau = 4 * this.chi - this.e;
+  this.tau = 4 * this.chi - this.e;
 }
 
 // Kodaira dimension -\infty
