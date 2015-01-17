@@ -180,6 +180,9 @@ function clickedPoint(point) {
     // make this node active
     d3.select(this).classed("active", true);
 
+    // SVG doesn't have a z-index...
+    d3.select(this).moveToFront();
+
     // remove candidates
     clearCandidates();
 
