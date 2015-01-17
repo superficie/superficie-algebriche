@@ -15,6 +15,7 @@ var tooltipConfig =
 $(document).ready(function() {
   // we initialise everything on Kodaira dimension -oo
   setKodairaDimension("-1");
+  $("input#kodaira").val(-1);
 
   // smooth scrolling
   $(".scroll").click(function(e) {
