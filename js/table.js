@@ -162,7 +162,7 @@ svg.append("text")
   .attr("class", "kodaira-2 inactive")
   .attr("text-anchor", "middle")
   .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")") 
-  .text("Bogomolov-Miyaoka-Yau inequality");
+  .text("Bogomolov–Miyaoka–Yau inequality");
 
 // draw the positive / negative signature line (hardcoded constants...)
 svg.append("line")
