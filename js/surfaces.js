@@ -38,6 +38,10 @@ function Surface(name, kodaira, invariants) {
     this.h02 = this.h20;
     this.h21 = this.h01;
     this.h12 = this.h10;
+
+    if (this.h01 != this.h10) {
+      this.algebraic = false;
+    }
   }
   else {
     console.log("Didn't recognise the input format for the invariants.");
