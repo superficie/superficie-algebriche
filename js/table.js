@@ -48,10 +48,9 @@ function Point(c2, c12, kodaira, algebraic) {
 points.push(new Point(3, 9, -1));
 
 // minimal surfaces of Kodaira dimension 0
-points.push(new Point(0, 0, 0)); // abelian, hyperelliptic and primary Kodaira surfaces
+points.push(new Point(0, 0, 0)); // abelian, hyperelliptic and Kodaira surfaces
 points.push(new Point(12, 0, 0)); // Enriques surfaces
 points.push(new Point(24, 0, 0)); // K3 surfaces
-points.push(new Point(1, -1, 0, false)); // secondary Kodaira surfaces
 
 for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
   for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {

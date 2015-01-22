@@ -125,7 +125,7 @@ var primaryKodaira = new Surface("primary Kodaira surfaces", 0, {h10 : 1, h01 : 
 primaryKodaira.algebraic = false;
 surfaces.push(primaryKodaira);
 
-var secondaryKodaira = new Surface("secondary Kodaira surfaces", 0, {h10 : 0, h01 : 1, h20 : 0, h11 : 1});
+var secondaryKodaira = new Surface("secondary Kodaira surfaces", 0, {h10 : 0, h01 : 1, h20 : 0, h11 : 0});
 secondaryKodaira.algebraic = false;
 surfaces.push(secondaryKodaira);
 
