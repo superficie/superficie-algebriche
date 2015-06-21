@@ -38,6 +38,10 @@ function Surface(name, kodaira, invariants) {
     this.h02 = this.h20;
     this.h21 = this.h01;
     this.h12 = this.h10;
+
+    if (this.h01 != this.h10) {
+      this.algebraic = false;
+    }
   }
   else {
     console.log("Didn't recognise the input format for the invariants.");
@@ -82,6 +86,17 @@ for (var g = 1; g < 5; g++) {
   surfaces.push(ruled);
 }
 
+// Class VII surfaces
+
+var hopf = new Surface("Hopf surfaces", -1, {h10 : 0, h01 : 1, h20 : 0, h11: 0});
+hopf.description = "Compact complex surface obtained as a quotient of the complex vector space (with zero deleted) $\\mathbb{C}^2 \\setminus 0$ by a free action of a discrete group.";
+surfaces.push(hopf);
+
+var inoue = new Surface("Inoue surfaces", -1, {h10 : 0, h01 : 1, h20 : 0, h11: 0});
+inoue.description = "Inoue introduced three families of surfaces, $S^0$, $S^+$ and $S^-$, which are compact quotients of $\\mathbb{C} \\times \\mathbb{H}$ solvable discrete group which acts holomorphically on $\\mathbb{C} \\times \\mathbb{H}$.";
+inoue.construction = "See <a href='http://en.wikipedia.org/wiki/Inoue_surface'>wikipedia</a> for a description of the construction.";
+surfaces.push(inoue);
+
 // Kodaira dimension 0
 
 var abelian = new Surface("abelian surfaces", 0, {c2 : 0, c12 : 0, h11 : 4});
@@ -100,11 +115,17 @@ var bielliptic = new Surface("bielliptic surfaces", 0, {c2 : 0, c12 : 0, h11 : 2
 bielliptic.description = "Algebraic surface with an elliptic fibration over an elliptic curve.";
 surfaces.push(bielliptic);
 
+var complextorus = new Surface("complex tori", 0, {c2 : 0, c12 : 0, h11 : 4});
+complextorus.description = "Complex torus of dimension $2$. It is an abelian surface (i.e., algebraic) if and only if it is polarizable.";
+complextorus.construction = "Complex tori are complex vector spaces modulo lattices of full rank. In the case of surfaces, they are hence isomorphic to $\\mathbb{C}^{2}/\\Lambda$, for some lattice $\\Lambda \\subset \\mathbb{C}^{2}$ of rank $2$.";
+complextorus.algebraic = false;
+surfaces.push(complextorus);
+
 var primaryKodaira = new Surface("primary Kodaira surfaces", 0, {h10 : 1, h01 : 2, h20 : 1, h11 : 2});
 primaryKodaira.algebraic = false;
 surfaces.push(primaryKodaira);
 
-var secondaryKodaira = new Surface("secondary Kodaira surfaces", 0, {h10 : 0, h01 : 1, h20 : 0, h11 : 1});
+var secondaryKodaira = new Surface("secondary Kodaira surfaces", 0, {h10 : 0, h01 : 1, h20 : 0, h11 : 0});
 secondaryKodaira.algebraic = false;
 surfaces.push(secondaryKodaira);
 
