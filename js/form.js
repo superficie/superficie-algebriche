@@ -11,18 +11,15 @@ function updateHodgeDiamond(surface) {
 }
 
 function updateInvariant(element, value) {
-  // this is ugly, but the .text() contains a plaintext version, so we look for the first backslash indicating the actual start of the LaTeX...
-  var latex = "\\" + element.text().split("\\").slice(1).join("\\");
+  // on the first run we save the LaTeX code for future use in a location that MathJax cannot mess with
+  if (!element.data("latex"))
+    element.data("latex", element.text());
 
   // the text between the first and second equals sign is what is changed
-  var parts = latex.split("=");
+  var parts = element.data("latex").split("=");
   parts[1] = value;
-  // remove the last $ if there is one (this could be prettier...)
-  parts[parts.length - 1] = parts[parts.length - 1].trim();
-  if (parts[parts.length - 1][parts[parts.length - 1].length - 1] == "$")
-    parts[parts.length - 1] = parts[parts.length - 1].slice(0, -1);
 
-  element.text("$" + parts.join("=") + "$");
+  element.text(parts.join("="));
 }
 
 function updateInvariants(surface) {
