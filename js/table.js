@@ -213,7 +213,7 @@ function clickedPoint(point) {
 
     // check whether we have found surfaces, otherwise display a message
     if ($("fieldset#candidates ol li").length === 0) {
-      $("fieldset#candidates").prepend("<p class='message'>No surfaces known with these invariants, sorry.");
+      $("fieldset#candidates").prepend("<p class='message'>No surfaces in the database with these invariants, sorry.<br>This does not mean that they do not exist, just that we do not have them in our database. If you think you can add one, please get in touch via <a href='mailto:superficie.algebriche@gmail.com'><code>superficie.algebriche@gmail.com</code></a>.");
     } else if ($("fieldset#candidates ol li").length === 1) {
       $("fieldset#candidates ol li a").click();
       $("fieldset#candidates ol li").addClass("active");
