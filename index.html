@@ -24,6 +24,9 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+<script src="lib/codemirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
+<script src="lib/codemirror/mode/javascript/javascript.js"></script>
 
 <script type="text/javascript" src="js/form.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
@@ -58,24 +61,24 @@ $\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
 <div id="text">
   <form id="input">
     <div id="left">
-      <fieldset id="kodaira-fieldset">
-        <label for="kodaira">Kodaira dimension</label>
-        <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)">
-        <datalist id="kodaira-values">
-          <option>-1</option>
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-        </datalist>
-        <output for="kodaira" id="kodaira-output"></output>
-        <br style="clear: both">
-      </fieldset>
+      <!-- <fieldset id="kodaira-fieldset"> -->
+      <!--   <label for="kodaira">Kodaira dimension</label> -->
+      <!--   <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="setKodairaDimension(value)"> -->
+      <!--   <datalist id="kodaira-values"> -->
+      <!--     <option>-1</option> -->
+      <!--     <option>0</option> -->
+      <!--     <option>1</option> -->
+      <!--     <option>2</option> -->
+      <!--   </datalist> -->
+      <!--   <output for="kodaira" id="kodaira-output"></output> -->
+      <!--   <br style="clear: both"> -->
+      <!-- </fieldset> -->
 
-      <fieldset>
+      <!-- <fieldset> -->
 
-        <label for="algebraic">Include non-algebraic surfaces</label>
-        <input type="checkbox" id="algebraic">
-      </fieldset>
+      <!--   <label for="algebraic">Include non-algebraic surfaces</label> -->
+      <!--   <input type="checkbox" id="algebraic"> -->
+      <!-- </fieldset> -->
   
       <fieldset id="candidates">
         <legend>Candidates</legend>
@@ -172,8 +175,27 @@ $\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
 </div>
 
 <div id="table">
-<p id='c2label'>$\mathrm{c}_2$</p>
-<p id='c12label'>$\mathrm{c}_1^2$</p>
+<p id='ylabel'>$x$</p>
+<p id='xlabel'>$y$</p>
+</div>
+
+<div id="ui_steroids">
+	<fieldset>
+		<legend>Projection</legend>
+		<textarea id="projection">
+/* Assign values to x and y */
+x = c12
+y = c2
+		</textarea>
+	</fieldset>
+	<fieldset>
+		<legend>Constraints</legend>
+		<textarea id="constraints">
+/* The last line of this input box should be a boolean expression.
+ * It will be used as constraint. */
+kdim == -1
+		</textarea>
+	</fieldset>
 </div>
 
 <script type="text/javascript" src="js/table.js"></script>

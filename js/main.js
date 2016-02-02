@@ -55,6 +55,9 @@ $(document).ready(function() {
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   });
 
+  var projectionArea = CodeMirror.fromTextArea($("#projection").get(0));
+  var constraintsArea = CodeMirror.fromTextArea($("#constraints").get(0));
+
 });
 
 // compare two arrays, see http://stackoverflow.com/questions/7837456/comparing-two-arrays-in-javascript

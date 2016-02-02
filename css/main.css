@@ -60,18 +60,29 @@ div#table {
   margin-left: 1em;
 }
 
+div#ui_steroids {
+  position: fixed;
+  top: 580px;
+  margin-left: 1em;
+}
+
+div#ui_steroids .CodeMirror {
+  width: 600px;
+  height: 8em;
+}
+
 svg {
   border: 1px solid #e5e5e5;
 }
 
-p#c12label {
+p#xlabel {
   height: 0;
   position: relative;
   left: 130px;
   top: 380px;
 }
 
-p#c2label {
+p#ylabel {
   height: 0;
   position: relative;
   left: 10px;
