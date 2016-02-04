@@ -5,24 +5,24 @@ var r = 3;
 
 // TODO change domain and range according to some configuration
 
-// scale for the second Chern number
-var c2 = d3.scale.linear()
+// scale for the x-axis
+var x = d3.scale.linear()
   .domain([-20, 80])
   .range([0, w]);
 
-// scale for the first Chern number
-var c12 = d3.scale.linear()
+// scale for the y-axis
+var y = d3.scale.linear()
   .domain([-30, 60])
   .range([h, 0]);
 
-// axis for the second Chern number
-var c2Axis = d3.svg.axis()
+// axis for the x-axis
+var xAxis = d3.svg.axis()
   .tickValues([-10, 0, 10, 20, 30, 40, 50, 60, 70])
-  .scale(c2);
+  .scale(x);
 
-// axis for the first Chern number
-var c12Axis = d3.svg.axis()
-  .scale(c12)
+// axis for the y-axis
+var yAxis = d3.svg.axis()
+  .scale(y)
   .tickValues([-20, -10, 0, 10, 20, 30, 40, 50])
   .orient("left");
 
@@ -31,62 +31,100 @@ var kodaira = d3.scale.ordinal()
   .domain([-1, 0, 1, 2])
   .range(["kodaira-infty", "kodaira-0", "kodaira-1", "kodaira-2"]);
 
-// all the pairs (c_2,c_1^2) corresponding to a minimal projective surface
+// all the points (pg, q, K2) corresponding to a minimal projective surface
 var points = [];
 
-function Point(c2, c12, kodaira, algebraic) {
-  this.c2 = c2;
-  this.c12 = c12;
-  this.kodaira = kodaira;
+function Point(invariants) {
+  if ("kodaira" in invariants) {
+    this.kodaira = invariants.kodaira;
+  }
+  else {
+    console.log("No Kodaira dimension specified for the Point invariants: " + JSON.stringify(invariants));
+  }
+  // the idea is to compute the Hodge numbers based on the input data, as all other invariants are expressed in terms of these
+  if ("pg" in invariants && "q" in invariants && "K2" in invariants) {
+    // this computation assumes that the surface is Kaehler
+    this.h02 = invariants.pg;
+    this.h01 = invariants.q;
+    this.chi = this.h02 - this.h01 + 1;
+    this.e = 12*this.chi - invariants.K2;
+    this.h11 = this.e - 2 + 4*this.h01 - 2*this.h02;
 
-  this.algebraic = typeof algebraic !== "undefined" ? algebraic : true;
+    // the surface is Kaehler so we have computed everything now
+    this.q = this.h10 = this.h21 = this.h12 = this.h01; 
+    this.pg = this.h20 = this.h02;
+  }
+  else {
+    console.log("Didn't recognise the input format for the Point invariants: " + JSON.stringify(invariants));
+  }
+
+  // Chern numbers
+  this.e = this.c2 = 2 - this.h10 - this.h01 - this.h21 - this.h12 + this.h02 + this.h11 + this.h20;
+  this.K2 = this.c12 = 12 * (this.h02 - this.h01 + 1) - this.c2;
+
+  // Betti numbers
+  this.b0 = 1;
+  this.b1 = this.h01 + this.h10;
+  this.b2 = this.h20 + this.h11 + this.h02;
+  this.b3 = this.h21 + this.h21;
+  this.b4 = 1;
+
+  // Euler number
+  this.e = this.b0 - this.b1 + this.b2 - this.b3 + this.b4;
+
+  // arithmetic genus
+  this.pa = this.h02 - this.h01;
+
+  // holomorphic Euler characteristic
+  this.chi = this.h02 - this.h01 + 1;
+
+  // signature
+  this.tau = 4 * this.chi - this.e;
 
   this.hasExamples = false;
 }
 
 // projective plane
-points.push(new Point(3, 9, -1));
+points.push(new Point({kodaira: -1, pg: 0, q: 0, K2: 9}));
 
 // minimal surfaces of Kodaira dimension 0
-points.push(new Point(0, 0, 0)); // abelian, hyperelliptic and Kodaira surfaces
-points.push(new Point(12, 0, 0)); // Enriques surfaces
-points.push(new Point(24, 0, 0)); // K3 surfaces
+points.push(new Point({kodaira: 0, pg: 1, q: 2, K2: 0})); // abelian, hyperelliptic and Kodaira surfaces
+// points.push(new Point(12, 0, 0)); // Enriques surfaces
+points.push(new Point({kodaira: 0, pg: 1, q: 0, K2: 0})); // K3 surfaces
 
-for (var i2 = c2.domain()[0]; i2 < c2.domain()[1]; i2++) {
-  for (var i12 = c12.domain()[0]; i12 < c12.domain()[1]; i12++) {
-    // ruled surfaces
-    var positivity = (i2 <= 4) && (i12 <= 8);
-    var congruence = (i2 % 4 === 0) && (i12 % 8 === 0) && (i12 == i2 * 2);
-    if (congruence && positivity)
-      points.push(new Point(i2, i12, -1));
-
-    // Kodaira surfaces
-    var positivity = (i2 >= 0) && (i12 <= 0);
-    var congruence = (i2 + i12) == 0;
-    if (congruence && positivity)
-      points.push(new Point(i2, i12, -1, false));
-
-    // minimal surface of Kodaira dimension 1
-    var congruence = ((i12 + i2) % 12 === 0);
-    var positivity = (i12 === 0) && (i2 >= 0);
-    if (congruence && positivity)
-      points.push(new Point(i2, i12, 1));
-
-    // minimal surface of general type
-    var congruence = ((i12 + i2) % 12 === 0);
-    var positivity = (i12 > 0) && (i2 > 0);
-    var BMY = (i12 <= (3 * i2));
-    var noether = ((5 * i12 - i2 + 36) >= 0);
-
-    if (congruence && positivity && BMY && noether)
-      points.push(new Point(i2, i12, 2));
+for (var g = 0; g < 20; g++) {
+  points.push(new Point({kodaira: -1, pg: 0, q: g, K2: 8*(1-g)})); // ruled surfaces
+  for (var k = 0; k < 10; k++) { // See Miranda `Elliptic surfaces' pages 33-35
+    if (g >= 2) {
+      points.push(new Point({kodaira: 1, K2: 0, pg: g + k, q: g + 1}));
+    }
+    if (g >= 2 || (g == 1 && k >= 1) || (g == 0 && k >= 3)) {
+      points.push(new Point({kodaira: 1, K2: 0, pg: g + k - 1, q: g}));
+    }
   }
 }
 
-// see which points have surfaces associated to them
+for (var pg = 0; pg <= 10; pg++) {
+  for (var q = 0; q <= pg; q++) {
+    var chi = pg - q + 1;
+    for (var K2 = 1; K2 <= 9*chi; K2++) {
+      // K2 <= 9*chi is the BMY inequality
+      var debarre = (q == 0 || K2 >= 2*pg);
+      var noether = (K2 >= 2*chi - 6);
+      if (debarre && noether) {
+        points.push(new Point({kodaira: 2, pg: pg, q: q, K2: K2}));
+      }
+    }
+  }
+}
+
+// see which points have surfaces associated with them
 for (var i = 0; i < points.length; i++) {
   for (var j = 0; j < surfaces.length; j++) {
-    if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12 && surfaces[j].kodaira == points[i].kodaira) {
+    if (surfaces[j].q == points[i].q &&
+        surfaces[j].pg == points[i].pg &&
+        surfaces[j].K2 == points[i].K2 &&
+        surfaces[j].kodaira == points[i].kodaira) {
       points[i].hasExamples = true;
     }
   }
@@ -97,35 +135,17 @@ var svg = d3.select("div#table")
   .attr("width", w)
   .attr("height", h);
 
-// all the minimal n.c12s
-svg.selectAll("circle")
-  .data(points)
-  .enter()
-  .append("circle")
-  .attr("cx", function(d) { return c2(d.c2); })
-  .attr("cy", function(d) { return c12(d.c12); })
-  .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
-  .attr("data-toggle", "tooltip")
-  .attr("data-c2", function(d) { return d.c2; })
-  .attr("data-c12", function(d) { return d.c12; })
-  .attr("class", function(d) {
-    if (d.algebraic)
-      return kodaira(d.kodaira);
-    else
-      return kodaira(d.kodaira) + " " + "nonalgebraic";
-  });
-
 // horizontal axis
 svg.append("g")
   .attr("class", "axis")
-  .attr("transform", "translate(0," + c12(0) + ")")
-  .call(c2Axis);
+  .attr("transform", "translate(0," + y(0) + ")")
+  .call(xAxis);
 
 // vertical axis
 svg.append("g")
   .attr("class", "axis")
-  .attr("transform", "translate(" + c2(0) + ",0)")
-  .call(c12Axis);
+  .attr("transform", "translate(" + x(0) + ",0)")
+  .call(yAxis);
 
 // improve origin: remove double 0
 svg.selectAll(".axis g text")
@@ -133,44 +153,57 @@ svg.selectAll(".axis g text")
   .style("opacity", function(d, i) { if (i !== 0) return 0; })
   .attr("dx", function(d, i) { if (i === 0) return "-10px"; });
 
-// draw Noether inequality (hardcoded constants...)
-svg.append("line")
-  .attr("x1", c2(36))
-  .attr("x2", c2(86))
-  .attr("y1", c12(0))
-  .attr("y2", c12(10))
-  .attr("class", "axis");
-svg.append("text")
-  .attr("x", c2(65))
-  .attr("y", c12(2))
-  .attr("class", "kodaira-2 inactive")
-  .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-7, " + c2(65) + ", " + c12(2) + ")") 
-  .text("Noether inequality");
+// all the minimal points
+svg.selectAll("circle")
+  .data(points)
+  .enter()
+  .append("circle")
+  .attr("cx", function(d) { return x(d.e); })
+  .attr("cy", function(d) { return y(d.K2); })
+  .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
+  .attr("data-toggle", "tooltip")
+  .attr("data-c2", function(d) { return d.c2; })
+  .attr("data-c12", function(d) { return d.c12; })
+  .attr("class", function(d) { return kodaira(d.kodaira); });
 
-// draw the BMY inequality (hardcoded constants...)
-svg.append("line")
-  .attr("x1", c2(0))
-  .attr("x2", c2(20))
-  .attr("y1", c12(0))
-  .attr("y2", c12(60))
-  .attr("class", "axis");
-svg.append("text")
-  .attr("x", c2(10))
-  .attr("y", c12(35))
-  .attr("class", "kodaira-2 inactive")
-  .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")") 
-  .text("Bogomolov–Miyaoka–Yau inequality");
+// // draw Noether inequality (hardcoded constants...)
+// svg.append("line")
+//   .attr("x1", c2(36))
+//   .attr("x2", c2(86))
+//   .attr("y1", c12(0))
+//   .attr("y2", c12(10))
+//   .attr("class", "axis");
+// svg.append("text")
+//   .attr("x", c2(65))
+//   .attr("y", c12(2))
+//   .attr("class", "kodaira-2 inactive")
+//   .attr("text-anchor", "middle")
+//   .attr("transform", "rotate(-7, " + c2(65) + ", " + c12(2) + ")") 
+//   .text("Noether inequality");
 
-// draw the positive / negative signature line (hardcoded constants...)
-svg.append("line")
-  .attr("x1", c2(0))
-  .attr("x2", c2(30))
-  .attr("y1", c12(0))
-  .attr("y2", c12(60))
-  .attr("class", "axis");
-$("div#table").prepend("<p id='signatureline' class='kodaira-2 inactive'>signature is zero</p>");
+// // draw the BMY inequality (hardcoded constants...)
+// svg.append("line")
+//   .attr("x1", c2(0))
+//   .attr("x2", c2(20))
+//   .attr("y1", c12(0))
+//   .attr("y2", c12(60))
+//   .attr("class", "axis");
+// svg.append("text")
+//   .attr("x", c2(10))
+//   .attr("y", c12(35))
+//   .attr("class", "kodaira-2 inactive")
+//   .attr("text-anchor", "middle")
+//   .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")") 
+//   .text("Bogomolov–Miyaoka–Yau inequality");
+
+// // draw the positive / negative signature line (hardcoded constants...)
+// svg.append("line")
+//   .attr("x1", c2(0))
+//   .attr("x2", c2(30))
+//   .attr("y1", c12(0))
+//   .attr("y2", c12(60))
+//   .attr("class", "axis");
+// $("div#table").prepend("<p id='signatureline' class='kodaira-2 inactive'>signature is zero</p>");
 
 
 // assign click event to points
@@ -201,13 +234,11 @@ function clickedPoint(point) {
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
       // invariants are correct
-      if (surfaces[i].c2 == point.c2 && surfaces[i].c12 == point.c12 && surfaces[i].kodaira == point.kodaira) {
-        // include non-algebraic surfaces, so we don't need to check anything
-        if ($("input#algebraic").is(":checked"))
-          addCandidateSurface(surfaces[i]);
-        // only do algebraic surfaces, hence we check whether it is one
-        else if (surfaces[i].algebraic)
-          addCandidateSurface(surfaces[i]);
+      if (surfaces[i].q == point.q &&
+          surfaces[i].pg == point.pg &&
+          surfaces[i].K2 == point.K2 &&
+          surfaces[i].kodaira == point.kodaira) {
+        addCandidateSurface(surfaces[i]);
       }
     }
 

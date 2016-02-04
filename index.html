@@ -26,7 +26,7 @@
 
 <script src="lib/codemirror/lib/codemirror.js"></script>
 <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
-<script src="lib/codemirror/mode/javascript/javascript.js"></script>
+<script src="lib/codemirror/addon/mode/simple.js"></script>
 
 <script type="text/javascript" src="js/form.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
@@ -183,7 +183,6 @@ $\definecolor{undefined-gray}{rgb}{0.86,0.86,0.86}$
 	<fieldset>
 		<legend>Projection</legend>
 		<textarea id="projection">
-/* Assign values to x and y */
 x = c12
 y = c2
 		</textarea>
@@ -191,9 +190,7 @@ y = c2
 	<fieldset>
 		<legend>Constraints</legend>
 		<textarea id="constraints">
-/* The last line of this input box should be a boolean expression.
- * It will be used as constraint. */
-kdim == -1
+constraint = (kodaira == -1)
 		</textarea>
 	</fieldset>
 </div>

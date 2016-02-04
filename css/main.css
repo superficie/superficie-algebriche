@@ -62,13 +62,22 @@ div#table {
 
 div#ui_steroids {
   position: fixed;
+  width: 600px;
   top: 580px;
   margin-left: 1em;
 }
 
+div#ui_steroids fieldset {
+  width: 600px;
+}
+
 div#ui_steroids .CodeMirror {
   width: 600px;
-  height: 8em;
+  height: auto;
+}
+
+.cm-superficie {
+	color: #0ca;
 }
 
 svg {
