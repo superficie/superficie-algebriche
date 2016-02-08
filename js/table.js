@@ -6,24 +6,24 @@ var r = 3;
 // TODO change domain and range according to some configuration
 
 // scale for the x-axis
-var x = d3.scale.linear()
+var xcoord = d3.scale.linear()
   .domain([-20, 80])
   .range([0, w]);
 
 // scale for the y-axis
-var y = d3.scale.linear()
+var ycoord = d3.scale.linear()
   .domain([-30, 60])
   .range([h, 0]);
 
 // axis for the x-axis
 var xAxis = d3.svg.axis()
-  .tickValues([-10, 0, 10, 20, 30, 40, 50, 60, 70])
-  .scale(x);
+  // .tickValues([-10, 0, 10, 20, 30, 40, 50, 60, 70])
+  .scale(xcoord);
 
 // axis for the y-axis
 var yAxis = d3.svg.axis()
-  .scale(y)
-  .tickValues([-20, -10, 0, 10, 20, 30, 40, 50])
+  .scale(ycoord)
+  // .tickValues([-20, -10, 0, 10, 20, 30, 40, 50])
   .orient("left");
 
 // scale for the Kodaira dimension
@@ -138,13 +138,15 @@ var svg = d3.select("div#table")
 // horizontal axis
 svg.append("g")
   .attr("class", "axis")
-  .attr("transform", "translate(0," + y(0) + ")")
+  .attr("id", "xaxis")
+  .attr("transform", "translate(0," + ycoord(0) + ")")
   .call(xAxis);
 
 // vertical axis
 svg.append("g")
   .attr("class", "axis")
-  .attr("transform", "translate(" + x(0) + ",0)")
+  .attr("id", "yaxis")
+  .attr("transform", "translate(" + xcoord(0) + ",0)")
   .call(yAxis);
 
 // improve origin: remove double 0
@@ -153,17 +155,20 @@ svg.selectAll(".axis g text")
   .style("opacity", function(d, i) { if (i !== 0) return 0; })
   .attr("dx", function(d, i) { if (i === 0) return "-10px"; });
 
+var surface2x = function(d) { return d.e; }
+var surface2y = function(d) { return d.K2; }
+
 // all the minimal points
 svg.selectAll("circle")
   .data(points)
   .enter()
   .append("circle")
-  .attr("cx", function(d) { return x(d.e); })
-  .attr("cy", function(d) { return y(d.K2); })
+  .attr("cx", function(d) {return xcoord(surface2x(d)); })
+  .attr("cy", function(d) {return ycoord(surface2y(d)); })
   .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
   .attr("data-toggle", "tooltip")
-  .attr("data-c2", function(d) { return d.c2; })
-  .attr("data-c12", function(d) { return d.c12; })
+  // .attr("data-c2", function(d) { return d.c2; })
+  // .attr("data-c12", function(d) { return d.c12; })
   .attr("class", function(d) { return kodaira(d.kodaira); });
 
 // // draw Noether inequality (hardcoded constants...)
@@ -227,17 +232,17 @@ function clickedPoint(point) {
     // reset the Hodge diamond
     setInactive();
 
+    xclicked = Math.round(xcoord.invert(this.cx.baseVal.value));
+    yclicked = Math.round(ycoord.invert(this.cy.baseVal.value));
     // add the coordinates to the legend in the fieldset
-    $("fieldset#candidates legend").html("Candidates<br>for $\\mathrm{c}_2=" + point.c2 + "$, $\\mathrm{c}_1^2=" + point.c12 + "$");
+    $("fieldset#candidates legend")
+      .html("Candidates<br>for $x=" + xclicked + "$, $y=" + yclicked + "$");
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
       // invariants are correct
-      if (surfaces[i].q == point.q &&
-          surfaces[i].pg == point.pg &&
-          surfaces[i].K2 == point.K2 &&
-          surfaces[i].kodaira == point.kodaira) {
+      if (surface2x(surfaces[i]) == xclicked && surface2y(surfaces[i]) == yclicked) {
         addCandidateSurface(surfaces[i]);
       }
     }

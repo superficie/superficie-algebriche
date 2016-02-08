@@ -23,6 +23,7 @@ function updateInvariant(element, value) {
 }
 
 function updateInvariants(surface) {
+  updateInvariant($("dd#kodaira"), surface.kodaira);
   updateInvariant($("dd#b1"), surface.b1);
   updateInvariant($("dd#b2"), surface.b2);
   updateInvariant($("dd#b3"), surface.b3);
@@ -51,10 +52,107 @@ d3.selection.prototype.moveToFront = function() {
   });
 };
 
+function updateProjection(projection_contents) {
+  eval(projection_contents)
+  // scale for the x-axis
+  xcoord = d3.scale.linear()
+    .domain(xrange)
+    .range([0, w]);
+
+  // scale for the y-axis
+  ycoord = d3.scale.linear()
+    .domain(yrange)
+    .range([h, 0]);
+
+  // axis for the x-axis
+  xAxis = d3.svg.axis()
+    // .tickValues([-10, 0, 10, 20, 30, 40, 50, 60, 70])
+    .scale(xcoord);
+
+  // axis for the y-axis
+  yAxis = d3.svg.axis()
+    .scale(ycoord)
+    // .tickValues([-20, -10, 0, 10, 20, 30, 40, 50])
+    .orient("left");
+
+  // place axes
+  svg.selectAll("#xaxis")
+    .attr("transform", "translate(0," + ycoord(0) + ")")
+    .call(xAxis);
+  svg.selectAll("#yaxis")
+    .attr("transform", "translate(" + xcoord(0) + ",0)")
+    .call(yAxis);
+
+  // improve origin: remove double 0
+  svg.selectAll(".axis g text")
+    .filter(function(d) { return d === 0; })
+    .style("opacity", function(d, i) { if (i !== 0) return 0; })
+    .attr("dx", function(d, i) { if (i === 0) return "-10px"; });
+
+  surface2x = function(d) {
+      var c12 = d.c12;
+      var c2 = d.c2;
+      var e = d.e;
+      var pa = d.pa;
+      var chi = d.chi;
+      var h01 = d.h01;
+      var h10 = d.h10;
+      var h02 = d.h02;
+      var h11 = d.h11;
+      var h20 = d.h20;
+      var h21 = d.h21;
+      var h12 = d.h12;
+      var b0 = d.b0;
+      var b1 = d.b1;
+      var b2 = d.b2;
+      var b3 = d.b3;
+      var b4 = d.b4;
+      var pg = d.pg;
+      var q = d.q;
+      var tau = d.tau;
+      var K2 = d.K2;
+      var kodaira = d.kodaira;
+      eval(projection_contents);
+    return x;
+  }
+  surface2y = function(d) {
+      var c12 = d.c12;
+      var c2 = d.c2;
+      var e = d.e;
+      var pa = d.pa;
+      var chi = d.chi;
+      var h01 = d.h01;
+      var h10 = d.h10;
+      var h02 = d.h02;
+      var h11 = d.h11;
+      var h20 = d.h20;
+      var h21 = d.h21;
+      var h12 = d.h12;
+      var b0 = d.b0;
+      var b1 = d.b1;
+      var b2 = d.b2;
+      var b3 = d.b3;
+      var b4 = d.b4;
+      var pg = d.pg;
+      var q = d.q;
+      var tau = d.tau;
+      var K2 = d.K2;
+      var kodaira = d.kodaira;
+      eval(projection_contents);
+    return y;
+  }
+  d3.selectAll("circle")
+  .attr("cx", function(d) {return xcoord(surface2x(d)); })
+  .attr("cy", function(d) {return ycoord(surface2y(d)); })
+}
+
 function updateConstraints(constraints_contents) {
   // make all nodes inactive
   d3.selectAll("circle")
     .classed("inactive", true);
+
+  // at some point use this to move interesting stuff to the front
+    // d3.select(this).moveToFront();
 
   // make the nodes satisfying the constraints active
   var activeNodes = d3.selectAll("circle")
@@ -129,7 +227,7 @@ function toggleInvariants(state) {
 
   // if the state is true it means we want to make the invariants inactive
   if (state) {
-    var invariants = ["b1", "b2", "b3", "e", "q", "pg", "pa", "chi", "tau", "c2", "c12"];
+    var invariants = ["kodaira", "b1", "b2", "b3", "e", "q", "pg", "pa", "chi", "tau", "c2", "c12"];
 
     for (var i = 0; i < invariants.length; i++)
       updateInvariant($("dd#" + invariants[i]), "{\\color{undefined-gray}{?}}");

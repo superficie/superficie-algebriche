@@ -1,25 +1,54 @@
-body {
-  max-width: 86em;
-  margin-left: auto;
-  margin-right: auto;
+html, body {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
 }
 
-div#header {
+body {
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+}
+
+header#header {
   top: 0;
   left: 0;
   width: 100%;
   margin: 0;
-  position: fixed;
   background-color: #eee;
-  z-index: 2;
   text-align: center;
+  height: 8em;
+  -webkit-flex: 0 0 auto;
 }
 
-div#header p {
+header#header p {
   font-style: italic;
   font-size: .9em;
   font-family: Georgia, serif;
 }
+
+main#content {
+  -webkit-flex: 1 1 auto;
+  overflow-y: scroll;
+  display: -webkit-flex;
+}
+
+div#left {
+  width: 600px;
+  margin-left: 1em;
+  -webkit-flex: 0 0 auto;
+}
+
+div#right {
+  -webkit-flex: 1 1 auto;
+}
+
+footer#meta {
+  -webkit-flex: 0 0 auto;
+  margin-left: 1em;
+}
+
 
 h1 {
   font-family: Georgia, serif;
@@ -55,24 +84,24 @@ ul#menu li a:focus {
 }
 
 div#table {
-  position: fixed;
-  top: 8em;
-  margin-left: 1em;
-}
-
-div#ui_steroids {
-  position: fixed;
-  width: 600px;
-  top: 580px;
-  margin-left: 1em;
+  height: 400px;
+  width: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -webkit-flex: 0 0 auto;
 }
 
 div#ui_steroids fieldset {
-  width: 600px;
+  width: auto;
+}
+
+div#ui_steroids fieldset .update_button {
+  float: right;
+  right: 1em;
 }
 
 div#ui_steroids .CodeMirror {
-  width: 600px;
+  width: auto;
   height: auto;
 }
 
@@ -103,27 +132,6 @@ p#signatureline {
   position: relative;
   left: 300px;
   top: 5px;
-}
-
-p#meta {
-  position: fixed;
-  top: 39em;
-  margin-left: 1em;
-}
-
-div#text {
-  position: relative;
-  top: 8em;
-  width: 19em;
-  margin: 2em;
-  float: right;
-  z-index: 1;
-}
-
-@media screen and (min-width: 1200px) {
-  div#text {
-    width: 37em;
-  }
 }
 
 /* copy of legend from bootstrap.css */

@@ -8,7 +8,8 @@ var tooltipConfig =
     },
     "delay" : { "show" : 200, "hide" : 0 },
     "title" : function() {
-      return "$\\mathrm{c}_2=" + $(this).attr("data-c2") + "$, $\\mathrm{c}_1^2=" + $(this).attr("data-c12") + "$";
+      return "$x=" + Math.round(xcoord.invert(this.cx.baseVal.value))
+        + "$, $y=" + Math.round(ycoord.invert(this.cy.baseVal.value)) + "$";
     }
   };
 
@@ -68,8 +69,15 @@ $(document).ready(function() {
       {lineWrapping: true,
        viewportMargin: Infinity,
        mode: "superficie"});
+  $("#update_projection").click(function () {
+    updateProjection(projectionArea.getValue());
+  });
+  $("#update_constraints").click(function () {
+    updateConstraints(constraintsArea.getValue());
+  });
 
-  // we parse the constraints
+  // we parse the projection and constraints
+  updateProjection(projectionArea.getValue());
   updateConstraints(constraintsArea.getValue());
 
   // smooth scrolling
