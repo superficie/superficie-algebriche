@@ -4,6 +4,7 @@ var h = 400;
 var r = 3;
 
 // TODO change domain and range according to some configuration
+var constraint_function = function(d) { return true; };
 
 // scale for the x-axis
 var xcoord = d3.scale.linear()
@@ -242,7 +243,9 @@ function clickedPoint(point) {
     // look for surfaces with the correct invariants
     for (var i = 0; i < surfaces.length; i++) {
       // invariants are correct
-      if (surface2x(surfaces[i]) == xclicked && surface2y(surfaces[i]) == yclicked) {
+      if (surface2x(surfaces[i]) == xclicked &&
+          surface2y(surfaces[i]) == yclicked &&
+          constraint_function(surfaces[i])) {
         addCandidateSurface(surfaces[i]);
       }
     }

@@ -90,54 +90,54 @@ function updateProjection(projection_contents) {
     .attr("dx", function(d, i) { if (i === 0) return "-10px"; });
 
   surface2x = function(d) {
-      var c12 = d.c12;
-      var c2 = d.c2;
-      var e = d.e;
-      var pa = d.pa;
-      var chi = d.chi;
-      var h01 = d.h01;
-      var h10 = d.h10;
-      var h02 = d.h02;
-      var h11 = d.h11;
-      var h20 = d.h20;
-      var h21 = d.h21;
-      var h12 = d.h12;
       var b0 = d.b0;
       var b1 = d.b1;
       var b2 = d.b2;
       var b3 = d.b3;
       var b4 = d.b4;
+      var c12 = d.c12;
+      var c2 = d.c2;
+      var chi = d.chi;
+      var e = d.e;
+      var h01 = d.h01;
+      var h02 = d.h02;
+      var h10 = d.h10;
+      var h11 = d.h11;
+      var h12 = d.h12;
+      var h20 = d.h20;
+      var h21 = d.h21;
+      var K2 = d.K2;
+      var kodaira = d.kodaira;
+      var pa = d.pa;
       var pg = d.pg;
       var q = d.q;
       var tau = d.tau;
-      var K2 = d.K2;
-      var kodaira = d.kodaira;
       eval(projection_contents);
     return x;
   }
   surface2y = function(d) {
-      var c12 = d.c12;
-      var c2 = d.c2;
-      var e = d.e;
-      var pa = d.pa;
-      var chi = d.chi;
-      var h01 = d.h01;
-      var h10 = d.h10;
-      var h02 = d.h02;
-      var h11 = d.h11;
-      var h20 = d.h20;
-      var h21 = d.h21;
-      var h12 = d.h12;
       var b0 = d.b0;
       var b1 = d.b1;
       var b2 = d.b2;
       var b3 = d.b3;
       var b4 = d.b4;
+      var c12 = d.c12;
+      var c2 = d.c2;
+      var chi = d.chi;
+      var e = d.e;
+      var h01 = d.h01;
+      var h02 = d.h02;
+      var h10 = d.h10;
+      var h11 = d.h11;
+      var h12 = d.h12;
+      var h20 = d.h20;
+      var h21 = d.h21;
+      var K2 = d.K2;
+      var kodaira = d.kodaira;
+      var pa = d.pa;
       var pg = d.pg;
       var q = d.q;
       var tau = d.tau;
-      var K2 = d.K2;
-      var kodaira = d.kodaira;
       eval(projection_contents);
     return y;
   }
@@ -155,36 +155,38 @@ function updateConstraints(constraints_contents) {
     // d3.select(this).moveToFront();
 
   // make the nodes satisfying the constraints active
+  constraint_function = function(d) {
+    var b0 = d.b0;
+    var b1 = d.b1;
+    var b2 = d.b2;
+    var b3 = d.b3;
+    var b4 = d.b4;
+    var c12 = d.c12;
+    var c2 = d.c2;
+    var chi = d.chi;
+    var e = d.e;
+    var h01 = d.h01;
+    var h02 = d.h02;
+    var h10 = d.h10;
+    var h11 = d.h11;
+    var h12 = d.h12;
+    var h20 = d.h20;
+    var h21 = d.h21;
+    var K2 = d.K2;
+    var kodaira = d.kodaira;
+    var pa = d.pa;
+    var pg = d.pg;
+    var q = d.q;
+    var tau = d.tau;
+    eval(constraints_contents);
+    return constraint;
+  };
   var activeNodes = d3.selectAll("circle")
-    .filter(function(d) {
-      var c12 = d.c12;
-      var c2 = d.c2;
-      var e = d.e;
-      var pa = d.pa;
-      var chi = d.chi;
-      var h01 = d.h01;
-      var h10 = d.h10;
-      var h02 = d.h02;
-      var h11 = d.h11;
-      var h20 = d.h20;
-      var h21 = d.h21;
-      var h12 = d.h12;
-      var b0 = d.b0;
-      var b1 = d.b1;
-      var b2 = d.b2;
-      var b3 = d.b3;
-      var b4 = d.b4;
-      var pg = d.pg;
-      var q = d.q;
-      var tau = d.tau;
-      var K2 = d.K2;
-      var kodaira = d.kodaira;
-      eval(constraints_contents);
-      return constraint;
-    });
+    .filter(constraint_function);
   activeNodes.classed("inactive", false);
   // SVG doesn't have a z-index so we change the order of elements
   activeNodes.moveToFront();
+  activeNodes.filter(function(d) {return d.hasExamples;}).moveToFront();
 
   // // make the inequalities active if Kodaira dimension 2
   // $("p.kodaira-2").toggleClass("inactive", value != 2);
