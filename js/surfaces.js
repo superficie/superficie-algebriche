@@ -86,7 +86,7 @@ for (var g = 1; g < 5; g++) {
   surfaces.push(ruled);
 }
 
-// Class VII surfaces
+// class VII surfaces
 
 var hopf = new Surface("Hopf surfaces", -1, {h10 : 0, h01 : 1, h20 : 0, h11: 0});
 hopf.description = "Compact complex surface obtained as a quotient of the complex vector space (with zero deleted) $\\mathbb{C}^2 \\setminus 0$ by a free action of a discrete group.";
@@ -131,18 +131,16 @@ surfaces.push(secondaryKodaira);
 
 // Kodaira dimension 1
 
-// this can increase whenever we increase the size of the viewport, currently not implemented
-//for (var x = 1; x < 9; x++) {
-//  surfaces.push(
-//    {
-//      "name" : "elliptic surfaces",
-//      "kodaira" : 1,
-//      "c2" : 12*x,
-//      "c12" : 0,
-//      "description" : "Algebraic surface with a proper morphism to a curve, such that almost all fibres are smooth curves of genus $1$.",
-//    }
-//  );
-//}
+for (var g = 2; g <= 5; g++) {
+  var ellipticSurfaceProduct = new Surface("product of elliptic curve with curve of genus " + g, 1, {h01: g + 1, h02: g, h11: 2 * (g + 1)});
+  surfaces.push(ellipticSurfaceProduct);
+}
+
+var dolgachev = new Surface("Dolgachev surface", 1, {h01: 0, h02: 0, h11: 10});
+surfaces.push(dolgachev);
+
+var shiodaschutt = new Surface("Shioda-Schütt surface", 1, {h01: 1, h02: 1, h11: 12});
+surfaces.push(shiodaschutt);
 
 // Kodaira dimension 2
 
@@ -262,7 +260,7 @@ function cih11(d) {
   var c2 = cic2(d);
 
   var pg = (c12 + c2) / 12 - 1;
-  
+
   return c2 - 2 - 2 * pg;
 }
 
