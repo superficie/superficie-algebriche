@@ -15,7 +15,7 @@ function Surface(name, kodaira, invariants) {
     this.h20 = (invariants.c2 + 4*this.h01 - this.h11 - 2 ) / 2;
 
     // the surface is Kaehler so we have computed everything now
-    this.h10 = this.h21 = this.h12 = this.h01; 
+    this.h10 = this.h21 = this.h12 = this.h01;
     this.h02 = this.h20;
   }
   else if (Object.keys(invariants).sort().equals(Array("h01", "h02", "h11"))) {
@@ -24,8 +24,8 @@ function Surface(name, kodaira, invariants) {
     this.h01 = invariants.h01;
 
     // the surface is Kaehler so we have computed everything now
-    this.h10 = this.h21 = this.h12 = this.h01; 
-    this.h02 = this.h20;
+    this.h10 = this.h21 = this.h12 = this.h01;
+    this.h20 = this.h02;
   }
   // for non-algebraic surfaces: four Hodge numbers are required
   else if (Object.keys(invariants).sort().equals(Array("h01", "h10", "h11", "h20"))) {
