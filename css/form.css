@@ -22,6 +22,10 @@ output#kodaira-output {
   float: right;
 }
 
+fieldset#candidates ol {
+  padding-left: 20px;
+}
+
 fieldset#candidates li.active {
   background-color: #dff0d8;
   border-color: #d6e9c6;
