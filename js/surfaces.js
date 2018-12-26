@@ -18,6 +18,13 @@ function Surface(name, kodaira, invariants) {
     this.h10 = this.h21 = this.h12 = this.h01;
     this.h02 = this.h20;
   }
+  else if (Object.keys(invariants).sort().equals(Array("c12", "pg", "q"))) {
+    this.h10 = this.h01 = this.h21 = this.h12 = invariants.q;
+    this.h20 = this.h02 = invariants.pg;
+
+    // compute Hodge number from the input
+    this.h11 = 12*invariants.pg - 8*invariants.q + 10 - invariants.c12;
+  }
   else if (Object.keys(invariants).sort().equals(Array("h01", "h02", "h11"))) {
     this.h11 = invariants.h11;
     this.h02 = invariants.h02;
@@ -184,6 +191,18 @@ var chenhacon = new Surface("Chen\&ndash;Hacon surfaces", 2, {c2 : 7, c12 : 5, h
 chenhacon.description = "First surface with these invariants constructed in 2006 by J.A.\&nbsp;Chen and C.D.\&nbsp;Hacon. Later, M.\&nbsp;Penegini constructed more examples, and gave a description of the component in the moduli space together with F.\&nbsp;Polizzi.";
 chenhacon.construction = "The general construction goes via Tschirnhausen bundles on $(1,2)$-polarized abelian surfaces. Penegini's construction is a product-quotient of two $S_3$-covers of two elliptic curves. For details, see <em>On surfaces with $p_g = q = 2$, $K^2 = 5$ and Albanese map of degree $3$</em>, M.\&nbsp;Penegini and F.\&nbsp;Polizzi (2013).";
 surfaces.push(chenhacon);
+
+var sicilian = new Surface("Sicilian surfaces", 2, {c12: 6, pg: 1, q: 1});
+sicilian.description = "There exists an unramified double cover with $q=3$ such that its Albanese morphism is birational onto its image $Z$, such that $Z^3=12$.";
+surfaces.push(sicilian);
+
+for (var c12 = 2; c12 <= 8; c12++) {
+  var todorov = new Surface("Todorov surfaces", 2, {c12: c12, pg: 1, q: 0});
+  surfaces.push(todorov);
+}
+
+var fatighenti = new Surface("Fatighenti surfaces", 2, {c12: 6, pg: 1, q: 0});
+surfaces.push(fatighenti);
 
 // symmetric squares of curves of genus >= 3
 for (var g = 3; g < 6; g++) {
