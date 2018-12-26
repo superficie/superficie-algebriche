@@ -23,7 +23,7 @@ function Surface(name, kodaira, invariants) {
     this.h20 = this.h02 = invariants.pg;
 
     // compute Hodge number from the input
-    this.h11 = 12*invariants.pg - 8*invariants.q + 10 - invariants.c12;
+    this.h11 = 10*invariants.pg - 8*invariants.q + 10 - invariants.c12;
   }
   else if (Object.keys(invariants).sort().equals(Array("h01", "h02", "h11"))) {
     this.h11 = invariants.h11;
