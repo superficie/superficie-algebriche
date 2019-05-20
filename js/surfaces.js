@@ -196,6 +196,10 @@ var sicilian = new Surface("Sicilian surfaces", 2, {c12: 6, pg: 1, q: 1});
 sicilian.description = "There exists an unramified double cover with $q=3$ such that its Albanese morphism is birational onto its image $Z$, such that $Z^3=12$.";
 surfaces.push(sicilian);
 
+var schoen = new Surface("Schoen surfaces", 2, {c12: 16, pg: 5, q: 4});
+schoen.description = "Algebraic surfaces introduced by Chad Schoen";
+surfaces.push(schoen);
+
 for (var c12 = 2; c12 <= 8; c12++) {
   var todorov = new Surface("Todorov surfaces", 2, {c12: c12, pg: 1, q: 0});
   surfaces.push(todorov);
