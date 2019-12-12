@@ -190,6 +190,7 @@ surfaces.push(fano);
 var chenhacon = new Surface("Chen\&ndash;Hacon surfaces", 2, {c2 : 7, c12 : 5, h11 : 9});
 chenhacon.description = "First surface with these invariants constructed in 2006 by J.A.\&nbsp;Chen and C.D.\&nbsp;Hacon. Later, M.\&nbsp;Penegini constructed more examples, and gave a description of the component in the moduli space together with F.\&nbsp;Polizzi.";
 chenhacon.construction = "The general construction goes via Tschirnhausen bundles on $(1,2)$-polarized abelian surfaces. Penegini's construction is a product-quotient of two $S_3$-covers of two elliptic curves. For details, see <em>On surfaces with $p_g = q = 2$, $K^2 = 5$ and Albanese map of degree $3$</em>, M.\&nbsp;Penegini and F.\&nbsp;Polizzi (2013).";
+chenhacon.references = ["MR2221025", "MR3128997"];
 surfaces.push(chenhacon);
 
 var sicilian = new Surface("Sicilian surfaces", 2, {c12: 6, pg: 1, q: 1});
@@ -222,6 +223,9 @@ for (var g = 3; g < 6; g++) {
   var c12 = 12 - 12*g + 6*g*(g-1) - c2;
 
   var square = new Surface("Symmetric square of a curve of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
+  if (g == 3)
+		square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
+			"these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
   surfaces.push(square);
 }
 
@@ -310,3 +314,34 @@ for (var i = 0; i < degrees.length; i++) {
   var ci = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, {c2 : c2, c12 : c12, h11 : h11});
     surfaces.push(ci);
 }
+
+var ccm = new Surface("Catanese–Ciliberto–Mendes Lopes surfaces", 2, {c12: 8, pg: 3, q: 3});
+ccm.description = "Together with symmetric squares of genus 3 curves ($\\mathrm c_1^2 = 6, \\mathrm c_2 = 6$), " +
+	"these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
+ccm.construction = "A quotient $(C_2 \\times C_3)/\\tau$ where $C_g$ is a curve of genus $g$ " +
+	"and $\\tau$ is an involution of product type acting on $C_2$ as an elliptic involution " +
+	"(i.e., with elliptic quotient), and on $C_3$ as a fixed point-free involution.";
+ccm.references = ["MR1422597"];
+surfaces.push(ccm);
+
+var cm02 = new Surface("Double covers of abelian surfaces ramified in twice the Theta divisor", 2, {c12: 4, pg: 2, q: 2});
+cm02.description = "Here the Theta divisor is required is required to be irreducible and the ramification divisor has at most double points.";
+cm02.references = ["MR1924760"];
+surfaces.push(cm02);
+
+var PePo = new Surface("Penegini–Polizzi surfaces", 2, {c12: 6, pg: 2, q: 2});
+PePo.description = "Several families of surfaces with $\\mathrm p_{\\mathrm g} = \\mathrm q = 2$ and $K^2 = 6$. The Albanese morphism is generically finite of degree 2 or 4.";
+PePo.references = ["MR3004463", "MR3291798"];
+surfaces.push(PePo);
+
+var PiPo = new Surface("Pignatelli–Polizzi surfaces", 2, {c12: 7, pg: 2, q: 2});
+PiPo.description = "A family of surfaces whose Albanese morphism is generically finite of degree 3.";
+PiPo.references = ["MR3722504"];
+surfaces.push(PiPo);
+
+var PPR17 = new Surface("A pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
+PPR17.references = ["1703.10646"];
+surfaces.push(PPR17);
+
+
+// vim: ts=2:sw=2
