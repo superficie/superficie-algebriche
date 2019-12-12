@@ -150,6 +150,7 @@ function setInactive() {
 
   $("fieldset#surface div").remove();
   $("fieldset#surface").append("<div><p class='message'>No surface selected.</div>");
+  $("fieldset#references").append("<div><p class='message'>No references provided.</div>");
 }
 
 // load the invariants of a surface
@@ -171,6 +172,25 @@ function loadSurface(element, surface) {
 
   if ("construction" in surface)
     $("fieldset#surface div").append("<h3>Construction</h3>" + surface.construction);
+
+  if ("references" in surface) {
+    var html = "<div><ul>";
+    for (var i = 0; i < surface.references.length; i++) {
+      var reference = surface.references[i];
+      // MathSciNet
+      console.log(reference.slice(0, 2))
+      if (reference.slice(0, 2) == "MR")
+        html += "<li><a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + reference.slice(2) + "'>" + reference + "</a>";
+      // otherwise default to arXiv
+      else
+        html += "<li><a href='https://arxiv.org/abs/" + reference + "'>" + reference + "</a>";
+    }
+    html += "</div></ul>";
+
+    $("fieldset#references").append(html)
+  }
+  else
+    $("fieldset#references").append("<div><p class='message'>No references provided.</div>");
 
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
