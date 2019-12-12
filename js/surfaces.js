@@ -139,7 +139,7 @@ surfaces.push(secondaryKodaira);
 // Kodaira dimension 1
 
 for (var g = 2; g <= 5; g++) {
-  var ellipticSurfaceProduct = new Surface("product of elliptic curve with curve of genus " + g, 1, {h01: g + 1, h02: g, h11: 2 * (g + 1)});
+  var ellipticSurfaceProduct = new Surface("products of elliptic curves with curves of genus " + g, 1, {h01: g + 1, h02: g, h11: 2 * (g + 1)});
   surfaces.push(ellipticSurfaceProduct);
 }
 
@@ -222,7 +222,7 @@ for (var g = 3; g < 6; g++) {
   var c2 = h11 + 2 + g*(g-1) - 4*g;
   var c12 = 12 - 12*g + 6*g*(g-1) - c2;
 
-  var square = new Surface("Symmetric square of a curve of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
+  var square = new Surface("symmetric squares of a curve of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
   if (g == 3)
 		square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
 			"these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
@@ -237,9 +237,9 @@ for (var g1 = 2; g1 < 5; g1++) {
     var c12 = 8*g1*g2 - 8*(g1+g2) + 8;
     var h11 = 2*g1*g2 + 2;
 
-    var title = "Product of curves of genus " + g1 + " and " + g2;
+    var title = "products of curves of genus " + g1 + " and " + g2;
     if (g1 == g2)
-      title = "Product of two curves of genus " + g1;
+      title = "products of two curves of genus " + g1;
 
     var product = new Surface(title, 2, {c2 : c2, c12 : c12, h11 : h11});
     product.construction = "Let $C_1$ and $C_2$ be curves of genus $g_1,g_2\\geq 2$. Then $C_1\\times C_2$ is always of general type.";
@@ -339,7 +339,7 @@ PiPo.description = "A family of surfaces whose Albanese morphism is generically 
 PiPo.references = ["MR3722504"];
 surfaces.push(PiPo);
 
-var PPR17 = new Surface("A pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
+var PPR17 = new Surface("a pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
 PPR17.references = ["1703.10646"];
 surfaces.push(PPR17);
 
