@@ -150,6 +150,8 @@ function setInactive() {
 
   $("fieldset#surface div").remove();
   $("fieldset#surface").append("<div><p class='message'>No surface selected.</div>");
+
+  $("fieldset#references div").remove();
   $("fieldset#references").append("<div><p class='message'>No references provided.</div>");
 }
 
@@ -173,6 +175,7 @@ function loadSurface(element, surface) {
   if ("construction" in surface)
     $("fieldset#surface div").append("<h3>Construction</h3>" + surface.construction);
 
+  $("fieldset#references div").remove();
   if ("references" in surface) {
     var html = "<div><ul>";
     for (var i = 0; i < surface.references.length; i++) {
@@ -183,7 +186,7 @@ function loadSurface(element, surface) {
         html += "<li><a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + reference.slice(2) + "'>" + reference + "</a>";
       // otherwise default to arXiv
       else
-        html += "<li><a href='https://arxiv.org/abs/" + reference + "'>" + reference + "</a>";
+        html += "<li><a href='https://arxiv.org/abs/" + reference + "'>arXiv:" + reference + "</a>";
     }
     html += "</div></ul>";
 
