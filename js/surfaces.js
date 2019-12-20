@@ -209,8 +209,35 @@ for (var c12 = 2; c12 <= 8; c12++) {
 var fatighenti = new Surface("Fatighenti surfaces", 2, {c12: 6, pg: 1, q: 0});
 surfaces.push(fatighenti);
 
+// remark: Horikawa has computed lots of number of moduli
+//
+// surfaces *on* the Noether line, classified by Horikawa
 for (var pg = 3; pg <= 10; pg++) {
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 4, pg: pg, q: 0});
+  horikawa.references = ["MR0424831"];
+  surfaces.push(horikawa);
+}
+
+// surfaces *close to* the Noether line, classified by Horikawa
+for (var pg = 2; pg <= 10; pg++) {
+  // these are "numerical quintic surfaces", and all deformations of the quintic surface, see MR1573789
+  if (pg == 4)
+    continue;
+
+  var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 3, pg: pg, q: 0});
+  horikawa.references = ["MR0460340"];
+  surfaces.push(horikawa);
+}
+
+// surfaces *close to* but a little further away from the Noether line, classified by Horikawa
+for (var pg = 2; pg <= 10; pg++) {
+  var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 2, pg: pg, q: 0});
+  horikawa.references = ["MR0517773"];
+
+  // these received a special treatment
+  if (pg == 4)
+    horikawa.references.push("MR0501370");
+
   surfaces.push(horikawa);
 }
 
