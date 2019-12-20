@@ -224,8 +224,8 @@ for (var g = 3; g < 6; g++) {
 
   var square = new Surface("symmetric squares of a curve of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
   if (g == 3)
-		square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
-			"these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
+    square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
+      "these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
   surfaces.push(square);
 }
 
@@ -317,10 +317,10 @@ for (var i = 0; i < degrees.length; i++) {
 
 var ccm = new Surface("Catanese–Ciliberto–Mendes Lopes surfaces", 2, {c12: 8, pg: 3, q: 3});
 ccm.description = "Together with symmetric squares of genus 3 curves ($\\mathrm c_1^2 = 6, \\mathrm c_2 = 6$), " +
-	"these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
+  "these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
 ccm.construction = "A quotient $(C_2 \\times C_3)/\\tau$ where $C_g$ is a curve of genus $g$ " +
-	"and $\\tau$ is an involution of product type acting on $C_2$ as an elliptic involution " +
-	"(i.e., with elliptic quotient), and on $C_3$ as a fixed point-free involution.";
+  "and $\\tau$ is an involution of product type acting on $C_2$ as an elliptic involution " +
+  "(i.e., with elliptic quotient), and on $C_3$ as a fixed point-free involution.";
 ccm.references = ["MR1422597"];
 surfaces.push(ccm);
 
@@ -342,6 +342,3 @@ surfaces.push(PiPo);
 var PPR17 = new Surface("a pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
 PPR17.references = ["1703.10646"];
 surfaces.push(PPR17);
-
-
-// vim: ts=2:sw=2
