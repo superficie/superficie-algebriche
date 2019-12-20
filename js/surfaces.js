@@ -210,9 +210,7 @@ var fatighenti = new Surface("Fatighenti surfaces", 2, {c12: 6, pg: 1, q: 0});
 surfaces.push(fatighenti);
 
 for (var pg = 3; pg <= 10; pg++) {
-  console.log({c12: 2*pg - 4, pg: pg, q: 0});
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 4, pg: pg, q: 0});
-  console.log(horikawa);
   surfaces.push(horikawa);
 }
 
