@@ -367,3 +367,29 @@ surfaces.push(PiPo);
 var PPR17 = new Surface("a pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
 PPR17.references = ["1703.10646"];
 surfaces.push(PPR17);
+
+var inoue = new Surface("Inoue surfaces", 2, {c12: 48, pg: 10, q: 3});
+inoue.references = ["MR1305801"]; // proposition 3.2 to be precise
+surfaces.push(inoue);
+
+var nc = [0, 4, 8, 12, 16];
+for (var i = 0; i < nc.length; i++) {
+  var inoue = new Surface("Inoue surfaces", 2, {c12: 6 - nc[i] / 4, pg: 0, q: 0});
+  inoue.references = ["MR1305801"]; // proposition 4.1 to be precise
+  surfaces.push(inoue);
+}
+
+var n = [0]; // the others are already added, they might be a different family but then they'd need a different name [16, 32];
+for (var i = 0; i < n.length; i++) {
+  var inoue = new Surface("Inoue surfaces", 2, {c12: 7 - n[i] / 16, pg: 0, q: 0});
+  inoue.references = ["MR1305801"]; // page 318 to be precise
+  surfaces.push(inoue);
+}
+
+var inoue = new Surface("Inoue surfaces", 2, {c12: 8, pg: 0, q: 0});
+inoue.references = ["MR1305801"]; // page 319 to be precise
+surfaces.push(inoue);
+
+var chenshin = new Surface("Chen-Shin surfaces", 2, {c12: 7, pg: 0, q: 0});
+chenshin.references = ["1912.10387"];
+surfaces.push(chenshin);
