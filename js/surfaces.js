@@ -393,3 +393,22 @@ surfaces.push(inoue);
 var chenshin = new Surface("Chen-Shin surfaces", 2, {c12: 7, pg: 0, q: 0});
 chenshin.references = ["1912.10387"];
 surfaces.push(chenshin);
+
+var cataneseciliberto = new Surface("Catanese-Ciliberto surfaces", 2, {c12: 3, pg: 1, q: 1});
+cataneseciliberto.references = ["MR2221791"];
+surfaces.push(cataneseciliberto);
+
+var oliverio = new Surface("Oliverio surfaces", 2, {c12: 8, pg: 4, q: 0});
+oliverio.references = ["MR2168978"];
+oliverio.description = "The canonical divisor is divisible by 2, the canonical base locus is empty.";
+surfaces.push(oliverio);
+
+for (var c12 = 5; c12 <= 10; c12++) {
+  var ciliberto = new Surface("Ciliberto surfaces", 2, {c12: c12, pg: 4, q: 0});
+  ciliberto.references = ["MR0610180"];
+  surfaces.push(ciliberto);
+}
+
+var cfm = new Surface("Ciliberto-Francia-Mendes Lopes surfaces", 2, {c12: 8, pg: 4, q: 0});
+cfm.references = ["MR1427708"];
+surfaces.push(cfm);
