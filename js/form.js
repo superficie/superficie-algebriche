@@ -181,7 +181,6 @@ function loadSurface(element, surface) {
     for (var i = 0; i < surface.references.length; i++) {
       var reference = surface.references[i];
       // MathSciNet
-      console.log(reference.slice(0, 2))
       if (reference.slice(0, 2) == "MR")
         html += "<li><a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + reference.slice(2) + "'>" + reference + "</a>";
       // otherwise default to arXiv
