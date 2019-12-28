@@ -412,3 +412,14 @@ for (var c12 = 5; c12 <= 10; c12++) {
 var cfm = new Surface("Ciliberto-Francia-Mendes Lopes surfaces", 2, {c12: 8, pg: 4, q: 0});
 cfm.references = ["MR1427708"];
 surfaces.push(cfm);
+
+var bartalesicatanese = new Surface("Bartalesi-Catanese surfaces", 2, {c12: 6, pg: 4, q: 0});
+bartalesicatanese.references = ["MR0908914"]
+surfaces.push(bartalesicatanese);
+
+for (var c12 = 1; c12 <= 4; c12++) {
+  var keumnaie = new Surface("Keum-Naie surfaces", 2, {c12: c12, pg: 0, q: 0});
+  keumnaie.description = "Double covers of nodal Enriques surfaces.";
+  keumnaie.references = ["MR1259462", "MR2782171"];
+  surfaces.push(keumnaie);
+}
