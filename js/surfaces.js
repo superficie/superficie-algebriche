@@ -423,3 +423,27 @@ for (var c12 = 1; c12 <= 4; c12++) {
   keumnaie.references = ["MR1259462", "MR2782171"];
   surfaces.push(keumnaie);
 }
+
+for (var a = 1; a <= 20; a++) {
+  var beauville = new Surface("Beauville's double covers of $C\\times\\mathrm{P}^1$ with $C$ of genus 2", 2, {c12: 8*a, pg: a + 1, q: 2});
+  beauville.references = ["MR0553705"]; // section 2.4
+  surfaces.push(beauville);
+}
+
+for (var a = 2; a <= 20; a++) {
+  var beauville = new Surface("Beauville's double covers of bielliptic surfaces of type $\\mathbb{Z}/2\\mathbb{Z}^{\\oplus2}$", 2, {c12: 4*a, pg: a, q: 1});
+  beauville.references = ["MR0553705"]; // section 2.6
+  surfaces.push(beauville);
+}
+
+for (var a = 2; a <= 20; a++) {
+  var beauville = new Surface("Beauville's double covers of $C\\times\\mathrm{P}^1$ with $C$ non-hyperelliptic of genus 3", 2, {c12: 16*a, pg: 2*a+2, q: 3});
+  beauville.references = ["MR0553705"]; // section 4.3
+  surfaces.push(beauville);
+}
+
+for (var a = 2; a <= 20; a++) {
+  var beauville = new Surface("Beauville's double covers of $C\\times\\mathrm{P}^1$ with $C$ of genus 2", 2, {c12: 12*a, pg: 2*a+2, q: 2});
+  beauville.references = ["MR0553705"]; // section 4.4
+  surfaces.push(beauville);
+}
