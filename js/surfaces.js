@@ -425,7 +425,7 @@ for (var c12 = 1; c12 <= 4; c12++) {
 }
 
 for (var a = 1; a <= 20; a++) {
-  var beauville = new Surface("Beauville's double covers of $C\\times\\mathrm{P}^1$ with $C$ of genus 2", 2, {c12: 8*a, pg: a + 1, q: 2});
+  var beauville = new Surface("Beauville's double covers of $C\\times\\mathbb{P}^1$ with $C$ of genus 2", 2, {c12: 8*a, pg: a + 1, q: 2});
   beauville.references = ["MR0553705"]; // section 2.4
   surfaces.push(beauville);
 }
@@ -437,13 +437,28 @@ for (var a = 2; a <= 20; a++) {
 }
 
 for (var a = 2; a <= 20; a++) {
-  var beauville = new Surface("Beauville's double covers of $C\\times\\mathrm{P}^1$ with $C$ non-hyperelliptic of genus 3", 2, {c12: 16*a, pg: 2*a+2, q: 3});
+  var beauville = new Surface("Beauville's double covers of $C\\times\\mathbb{P}^1$ with $C$ non-hyperelliptic of genus 3", 2, {c12: 16*a, pg: 2*a+2, q: 3});
   beauville.references = ["MR0553705"]; // section 4.3
   surfaces.push(beauville);
 }
 
 for (var a = 2; a <= 20; a++) {
-  var beauville = new Surface("Beauville's double covers of $C\\times\\mathrm{P}^1$ with $C$ of genus 2", 2, {c12: 12*a, pg: 2*a+2, q: 2});
+  var beauville = new Surface("Beauville's double covers of $C\\times\\mathbb{P}^1$ with $C$ of genus 2", 2, {c12: 12*a, pg: 2*a+2, q: 2});
   beauville.references = ["MR0553705"]; // section 4.4
   surfaces.push(beauville);
 }
+
+var rito = new Surface("Rito surfaces", 2, {c12: 24, pg: 3, q: 0});
+rito.construction = "Degree 24 cover of $\\mathbb{P}^2$";
+rito.description = "The maximal degree of the canonical morphism in case $q=0$ would be 36, here it is 24.";
+rito.references = ["MR3663791"];
+surfaces.push(rito);
+
+var rito = new Surface("Rito surfaces", 2, {c12: 16, pg: 3, q: 2});
+rito.description = "The maximal degree of the canonical morphism in case $q=2$ would be 18, here it is 16.";
+rito.references = ["MR3619737"];
+surfaces.push(rito);
+
+var bin = new Surface("Bin surfaces", 2, {c12: 32, pg: 4, q: 1});
+bin.references = ["MR4008073"];
+surfaces.push(bin);
