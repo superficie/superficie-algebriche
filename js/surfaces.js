@@ -462,3 +462,9 @@ surfaces.push(rito);
 var bin = new Surface("Bin surfaces", 2, {c12: 32, pg: 4, q: 1});
 bin.references = ["MR4008073"];
 surfaces.push(bin);
+
+for (var h = 1; h <= 10; h++) {
+  var ciliberto = new Surface("Ciliberto surfaces", 2, {c12: 8*h - 4, pg: 2*h, q: 0});
+  ciliberto.references = ["MR0778862"]; // esempio 4.3 to be precise
+  surfaces.push(ciliberto);
+}
