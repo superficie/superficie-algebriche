@@ -468,3 +468,7 @@ for (var h = 1; h <= 10; h++) {
   ciliberto.references = ["MR0778862"]; // esempio 4.3 to be precise
   surfaces.push(ciliberto);
 }
+
+var bf = new Surface("Borisov-Fatighenti surfaces", 2, {c12: 3, pg: 0, q: 0});
+bf.references = ["2004.02637"];
+surfaces.push(bf);
