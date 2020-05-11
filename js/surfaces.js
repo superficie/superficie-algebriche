@@ -472,3 +472,12 @@ for (var h = 1; h <= 10; h++) {
 var bf = new Surface("Borisov-Fatighenti surfaces", 2, {c12: 3, pg: 0, q: 0});
 bf.references = ["2004.02637"];
 surfaces.push(bf);
+
+for (var n = 8; n <= 20; n = n + 2) {
+  if (n % 3 == 0)
+    continue;
+
+  var bp = new Surface("Rigid Bauer&ndash;Pignatelli surfaces", 2, {c12: 2*Math.pow(n-3, 2), pg: (n/2 - 2) * (n/2 - 1), q: 0});
+  bp.references = ["1805.02559"];
+  surfaces.push(bp);
+}
