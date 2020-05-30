@@ -29,27 +29,37 @@ h1 {
   font-variant: small-caps;
 }
 
-ul#menu {
+div#menu {
   height: 3em;
   background-color: #222;
   list-style-type: none;
-  text-align: center;
+}
+
+div#menu a {
+  color: #81c3fc
+}
+
+div#menu ul {
   margin: 0 auto;
   padding: 0;
 }
 
-ul#menu li {
+ul#navigation {
+  text-align: center;
+}
+
+ul#navigation li {
   padding: .7em 1em;
   display: inline-block;
   text-align: center;
 }
 
-ul#menu li a:hover {
+div#menu li a:hover {
   text-decoration: none;
   color: #d9edf7;
 }
 
-ul#menu li a:focus {
+div#menu li a:focus {
   color: #337ab7;
   text-decoration: none;
 }
