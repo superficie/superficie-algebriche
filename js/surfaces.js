@@ -481,3 +481,17 @@ for (var n = 8; n <= 20; n = n + 2) {
   bp.references = ["1805.02559"];
   surfaces.push(bp);
 }
+
+// I'm not entirely sure about the relationship between Cartwright-Steger and Stover surfaces, the CRAS paper is a little low on details
+for (var n = 2; n <= 20; n++) {
+  if (n >= 2) {
+    var stover = new Surface("Stover surfaces", 2, {q: 1, pg: n, c12: 9*n});
+    stover.description = "étale abelian covers of degree $n$ of the first Cartwright-Steger surface";
+    stover.references = ["MR3936138"];
+    surfaces.push(stover);
+  }
+
+  var cs = new Surface("Cartwright&ndash;Steger surfaces", 2, {q: 1, pg: n, c12: 9*n});
+  cs.references = ["MR2586735"];
+  surfaces.push(cs);
+}
