@@ -434,8 +434,23 @@ surfaces.push(chenshin);
 
 var cataneseciliberto = new Surface("Catanese-Ciliberto surfaces", 2, {c12: 3, pg: 1, q: 1});
 cataneseciliberto.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=3$ whose Albanese fibration has genus-$3$ fibres.";
-cataneseciliberto.references = ["MR2221791"];
+cataneseciliberto.references = ["MR1211993", "MR2221791"];
 surfaces.push(cataneseciliberto);
+
+// pg=q=1 surfaces are the irregular surfaces of general type with the smallest chi (=1); they exist
+// for 2 <= K^2 <= 9. K^2=4 examples (Albanese fibre genus 3 or 4) constructed by Ling.
+var pgq1k4 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=4$", 2, {c12: 4, pg: 1, q: 1});
+pgq1k4.description = "Minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=4$, whose Albanese map is a fibration with fibres of genus $3$ or (non-hyperelliptic) genus $4$.";
+pgq1k4.references = ["1709.03056", "1711.10650"];
+surfaces.push(pgq1k4);
+
+// pg=q=1 isogenous to a product: free quotients (C x F)/G, hence K^2 = 8 chi = 8; classified by
+// Carnovale-Polizzi (arXiv:0704.0446).
+var pgq1iso = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ isogenous to a product", 2, {c12: 8, pg: 1, q: 1});
+pgq1iso.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ that are isogenous to a product, hence have $\\mathrm K^2=8$.";
+pgq1iso.construction = "A free quotient $(C\\times F)/G$ of a product of two smooth curves of genus $\\geq 2$ by a finite group $G$.";
+pgq1iso.references = ["0704.0446"];
+surfaces.push(pgq1iso);
 
 var oliverio = new Surface("Oliverio surfaces", 2, {c12: 8, pg: 4, q: 0});
 oliverio.references = ["MR2168978"];

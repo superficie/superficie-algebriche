@@ -1,4 +1,7 @@
 var references = {
+  "0704.0446": { author: "Carnovale, Giovanna and Polizzi, Francesco", title: "The classification of surfaces with p_g=q=1 isogenous to a product of curves", year: 2008 },
+  "1709.03056": { author: "Ling, Songbo", title: "Algebraic Surfaces with $p_g=q=1, K^2=4$ and Genus 3 Albanese Fibration", year: 2018 },
+  "1711.10650": { author: "Ling, Songbo", title: "Algebraic surfaces with $p_g=q=1, K^2=4$ and nonhyperelliptic Albanese fibrations of genus 4", year: 2017 },
   "2502.13087": { author: "Grossi, Paolo and Moretti, Federico", title: "An explicit class of Lagrangian surfaces", year: 2025 },
   "MR0424831": { author: "Horikawa, Eiji", title: "Algebraic surfaces of general type with small $C^2_1$, I", year: 1976, journal: "Ann. of Math. (2)", volume: "104", number: "2", pages: [357, 387] },
   "MR0460340": { author: "Horikawa, Eiji", title: "Algebraic surfaces of general type with small $c^2_1$, II", year: 1976, journal: "Invent. Math.", volume: "37", number: "2", pages: [121, 155] },
@@ -11,6 +14,7 @@ var references = {
   "MR0778862": { author: "Ciliberto, Ciro", title: "The degree of the generators of the canonical ring of a surface of general type", year: 1983, journal: "Rend. Sem. Mat. Univ. Politec. Torino", volume: "41", number: "3", pages: [83, 111] },
   "MR0892034": { author: "Donaldson, S. K.", title: "Irrationality and the $h$-cobordism conjecture", year: 1987, journal: "J. Differential Geom.", volume: "26", number: "1", pages: [141, 168] },
   "MR0908914": { author: "Bartalesi, A. and Catanese, F.", title: "Surfaces with $K^2=6,\\;\\chi=4$, and with torsion", year: 1986, journal: "Rend. Sem. Mat. Univ. Politec. Torino", pages: [91, 110] },
+  "MR1211993": { author: "Catanese, F. and Ciliberto, C.", title: "Symmetric products of elliptic curves and surfaces of general type with $p_g=q=1$", year: 1993, journal: "J. Algebraic Geom.", volume: "2", number: "3", pages: [389, 411] },
   "MR1259462": { author: "Naie, Daniel", title: "Surfaces d'Enriques et une construction de surfaces de type général avec $p_g=0$", year: 1994, journal: "Math. Z.", volume: "215", number: "2", pages: [269, 280] },
   "MR1305801": { author: "Inoue, Masahisa", title: "Some new surfaces of general type", year: 1994, journal: "Tokyo J. Math.", volume: "17", number: "2", pages: [295, 319] },
   "MR1422597": { author: "Catanese, Fabrizio and Ciliberto, Ciro and Mendes Lopes, Margarida", title: "On the classification of irregular surfaces of general type with nonbirational bicanonical map", year: 1998, journal: "Trans. Amer. Math. Soc.", volume: "350", number: "1", pages: [275, 308] },
