@@ -12,6 +12,8 @@ body {
   max-width: 86em;
   margin-left: auto;
   margin-right: auto;
+  /* clear the fixed header */
+  padding-top: 8em;
   /* the original (Bootstrap 3) look: Helvetica Neue, tighter line-height */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.42857143;
@@ -49,9 +51,22 @@ h1 {
 }
 
 div#table {
-  position: fixed;
-  top: 8em;
-  margin-left: 1em;
+  float: left;
+  margin: 0 1em 1em 1em;
+}
+
+div#surface-info {
+  clear: left;
+  float: left;
+  max-width: 42em;
+  margin: 0 1em 2em 1em;
+}
+
+div#prose {
+  clear: both;
+  max-width: 45em;
+  margin: 0 1em;
+  padding-top: 1em;
 }
 
 svg {
@@ -79,19 +94,10 @@ p#signatureline {
   top: 5px;
 }
 
-p#meta {
-  position: fixed;
-  top: 39em;
-  margin-left: 1em;
-}
-
 div#text {
-  position: relative;
-  top: 8em;
   width: 19em;
-  margin: 2em;
+  margin: 0 2em;
   float: right;
-  z-index: 1;
 }
 
 @media screen and (min-width: 1200px) {

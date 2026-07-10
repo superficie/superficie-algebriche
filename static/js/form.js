@@ -133,20 +133,29 @@ function addCandidateSurface(surface) {
   document.querySelector("#candidates ol").appendChild(li);
 }
 
-// replace the single <div> inside a fieldset with fresh HTML (keeping the legend)
-function setFieldsetBody(id, html) {
-  var fieldset = document.getElementById(id);
-  fieldset.querySelectorAll("div").forEach(function (d) { d.remove(); });
-  fieldset.insertAdjacentHTML("beforeend", html);
-}
-
 // we make the Hodge diamond and the invariants inactive and empty, and reset the description
 function setInactive() {
   toggleHodgeDiamond(true);
   toggleInvariants(true);
 
-  setFieldsetBody("surface", "<div><p class='message'>No surface selected.</div>");
-  setFieldsetBody("references", "<div><p class='message'>No references provided.</div>");
+  document.getElementById("surface-title").textContent = "About the surface";
+  document.getElementById("surface").innerHTML = "<p class='message'>No surface selected.</p>";
+  document.getElementById("references-heading").hidden = true;
+  document.getElementById("references").innerHTML = "";
+}
+
+// render a full citation for a reference key, using the bibliography in references.js when present
+function formatCitation(key) {
+  var r = (typeof references !== "undefined") ? references[key] : null;
+  var link = key.slice(0, 2) === "MR"
+    ? "<a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + key.slice(2) + "'>" + key + "</a>"
+    : "<a href='https://arxiv.org/abs/" + key + "'>arXiv:" + key + "</a>";
+  if (!r) return link;
+  var s = r.author + ", <em>" + r.title + "</em> (" + r.year + ")";
+  if (r.journal) s += ", " + r.journal;
+  if (r.volume) s += " <strong>" + r.volume + "</strong>";
+  if (r.pages) s += ", " + r.pages[0] + "–" + r.pages[1];
+  return s + " [" + link + "]";
 }
 
 // load the invariants of a surface
@@ -163,29 +172,30 @@ function loadSurface(element, surface) {
   updateHodgeDiamond(surface);
   updateInvariants(surface);
 
-  var description = "description" in surface
-    ? "<div>" + surface.description + "</div>"
-    : "<div><p class='message'>No description available.</div>";
-  setFieldsetBody("surface", description);
+  // title
+  var title = document.getElementById("surface-title");
+  title.innerHTML = surface.name;
+  window.renderMath(title);
 
-  if ("construction" in surface)
-    document.querySelector("#surface div").insertAdjacentHTML("beforeend", "<h3>Construction</h3>" + surface.construction);
-  window.renderMath(document.getElementById("surface"));
+  // description and construction
+  var body = "description" in surface ? surface.description : "<p class='message'>No description available.</p>";
+  if ("construction" in surface) body += "<h3>Construction</h3>" + surface.construction;
+  var surf = document.getElementById("surface");
+  surf.innerHTML = body;
+  window.renderMath(surf);
 
-  if ("references" in surface) {
-    var html = "<div><ul>";
-    for (var i = 0; i < surface.references.length; i++) {
-      var reference = surface.references[i];
-      // MathSciNet
-      if (reference.slice(0, 2) == "MR")
-        html += "<li><a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + reference.slice(2) + "'>" + reference + "</a>";
-      // otherwise default to arXiv
-      else
-        html += "<li><a href='https://arxiv.org/abs/" + reference + "'>arXiv:" + reference + "</a>";
-    }
-    html += "</ul></div>";
-    setFieldsetBody("references", html);
+  // references
+  var heading = document.getElementById("references-heading");
+  var refs = document.getElementById("references");
+  if ("references" in surface && surface.references.length) {
+    var html = "<ul>";
+    for (var i = 0; i < surface.references.length; i++)
+      html += "<li>" + formatCitation(surface.references[i]) + "</li>";
+    refs.innerHTML = html + "</ul>";
+    heading.hidden = false;
+    window.renderMath(refs);
   } else {
-    setFieldsetBody("references", "<div><p class='message'>No references provided.</div>");
+    refs.innerHTML = "";
+    heading.hidden = true;
   }
 }

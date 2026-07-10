@@ -1,3 +1,8 @@
+<div id="table">
+<p id='c2label'>$\mathrm{c}_2$</p>
+<p id='c12label'>$\mathrm{c}_1^2$</p>
+</div>
+
 <div id="text">
   <form id="input">
     <div id="left">
@@ -25,18 +30,6 @@
 
         <ol>
         </ol>
-      </fieldset>
-
-      <fieldset id="surface">
-        <legend>About the surface</legend>
-
-        <div></div>
-      </fieldset>
-
-      <fieldset id="references">
-        <legend>References</legend>
-
-        <div></div>
       </fieldset>
     </div>
 
@@ -106,11 +99,19 @@
       </fieldset>
     </div>
   </form>
-  <br style="clear: both">
+</div>
 
+<div id="surface-info">
+  <h2 id="surface-title">About the surface</h2>
+  <div id="surface"><p class="message">No surface selected.</p></div>
+  <h3 id="references-heading" hidden>References</h3>
+  <div id="references"></div>
+</div>
+
+<div id="prose">
   <h2 id="howto">How to use it</h2>
   <p>To use this application, please first select a Kodaira dimension using the slider at the top right. Then select a pair of Chern numbers $(\mathrm{c}_{1}^{2},\mathrm{c}_{2})$ in the graph.
-  <p>Finally you can select a surface from the list of known surfaces with these invariants (if there is a class of such surfaces). You can then see a description and the other numerical invariants of this class of surfaces.
+  <p>Finally you can select a surface from the list of known surfaces with these invariants (if there is a class of such surfaces). The description, references and the other numerical invariants of this class of surfaces then appear below the graph.
   <p>You can also browse every surface in the database in the <a href="/table/">table view</a>.
 
   <h2 id="contribute">Contribute</h2>
@@ -118,12 +119,6 @@
   <p>If you have data about a (class of) surface(s), you can contribute via <a href="https://github.com/superficie/superficie-algebriche">GitHub</a>.
 
   <h2 id="about">About</h2>
-  <p><span style="font-family: Georgia; font-variant: small-caps">le superficie algebriche</span> is a tool for studying numerical invariants of minimal algebraic surfaces over the complex numbers. The authors implemented it in order to better understand the <a href="https://en.wikipedia.org/wiki/Enriques%E2%80%93Kodaira_classification">Enriques&ndash;Kodaira classification</a>, and to showcase how mathematics can be visualised on the web.
+  <p><span style="font-family: Georgia; font-variant: small-caps">le superficie algebriche</span> is a tool for studying numerical invariants of minimal algebraic surfaces over the complex numbers. It was made by <a href="https://pbelmans.ncag.info">Pieter Belmans</a> and <a href="https://math.commelin.net">Johan Commelin</a> in order to better understand the <a href="https://en.wikipedia.org/wiki/Enriques%E2%80%93Kodaira_classification">Enriques&ndash;Kodaira classification</a>, and to showcase how mathematics can be visualised on the web.
+  <p>If you use it, please <a href="https://github.com/superficie/superficie-algebriche/blob/master/CITATION.cff">cite it</a>.
 </div>
-
-<div id="table">
-<p id='c2label'>$\mathrm{c}_2$</p>
-<p id='c12label'>$\mathrm{c}_1^2$</p>
-</div>
-
-<p id="meta">by <a href="https://pbelmans.ncag.info">Pieter Belmans</a> and <a href="https://math.commelin.net">Johan Commelin</a>
