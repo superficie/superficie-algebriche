@@ -372,7 +372,7 @@ PiPo.references = ["MR3722504"];
 surfaces.push(PiPo);
 
 var PPR17 = new Surface("a pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
-PPR17.references = ["1703.10646"];
+PPR17.references = ["MR4123110"];
 surfaces.push(PPR17);
 
 var inoue = new Surface("Inoue surfaces", 2, {c12: 48, pg: 10, q: 3});
@@ -398,7 +398,7 @@ inoue.references = ["MR1305801"]; // page 319 to be precise
 surfaces.push(inoue);
 
 var chenshin = new Surface("Chen-Shin surfaces", 2, {c12: 7, pg: 0, q: 0});
-chenshin.references = ["1912.10387"];
+chenshin.references = ["MR4199271"];
 surfaces.push(chenshin);
 
 var cataneseciliberto = new Surface("Catanese-Ciliberto surfaces", 2, {c12: 3, pg: 1, q: 1});
@@ -477,7 +477,7 @@ for (var h = 1; h <= 10; h++) {
 }
 
 var bf = new Surface("Borisov-Fatighenti surfaces", 2, {c12: 3, pg: 0, q: 0});
-bf.references = ["2004.02637"];
+bf.references = ["MR5022119"];
 surfaces.push(bf);
 
 for (var n = 8; n <= 20; n = n + 2) {
@@ -485,7 +485,7 @@ for (var n = 8; n <= 20; n = n + 2) {
     continue;
 
   var bp = new Surface("Rigid Bauer&ndash;Pignatelli surfaces", 2, {c12: 2*Math.pow(n-3, 2), pg: (n/2 - 2) * (n/2 - 1), q: 0});
-  bp.references = ["1805.02559"];
+  bp.references = ["MR4278662"];
   surfaces.push(bp);
 }
 
@@ -507,7 +507,7 @@ for (var n = 1; n <= 20; n++) {
 // on a cubic fourfold meeting a fixed generic line; invariants from Huybrechts, Theorem 0.1
 var huybrechts = new Surface("double covers of even 16-nodal quintic surfaces", 2, {c12: 10, pg: 5, q: 0});
 huybrechts.description = "The natural double cover $F$ of an even 16-nodal quintic surface, equivalently the smooth surface of lines on a cubic fourfold meeting a fixed generic line. A general-type analogue of the abelian surface behind a singular Kummer quartic; its canonical bundle is ample.";
-huybrechts.references = ["2108.10532"];
+huybrechts.references = ["MR4795727"];
 surfaces.push(huybrechts);
 
 // Lagrangian in their Albanese variety; canonical map 2:1 onto a degree-12 surface with 44 nodes
