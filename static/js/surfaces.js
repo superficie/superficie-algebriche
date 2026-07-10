@@ -503,6 +503,19 @@ for (var n = 1; n <= 20; n++) {
   surfaces.push(cs);
 }
 
+// double cover of an even 16-nodal quintic surface, equivalently the smooth surface of lines
+// on a cubic fourfold meeting a fixed generic line; invariants from Huybrechts, Theorem 0.1
+var huybrechts = new Surface("double covers of even 16-nodal quintic surfaces", 2, {c12: 10, pg: 5, q: 0});
+huybrechts.description = "The natural double cover $F$ of an even 16-nodal quintic surface, equivalently the smooth surface of lines on a cubic fourfold meeting a fixed generic line. A general-type analogue of the abelian surface behind a singular Kummer quartic; its canonical bundle is ample.";
+huybrechts.references = ["2108.10532"];
+surfaces.push(huybrechts);
+
+// Lagrangian in their Albanese variety; canonical map 2:1 onto a degree-12 surface with 44 nodes
+var grossimoretti = new Surface("Grossi&ndash;Moretti surfaces", 2, {c12: 24, pg: 6, q: 4});
+grossimoretti.description = "Surfaces that are Lagrangian in their Albanese variety. The canonical map is $2:1$ onto a degree-$12$ surface in $\\mathbb{P}^5$ with 44 even nodes.";
+grossimoretti.references = ["2502.13087"];
+surfaces.push(grossimoretti);
+
 // Give every surface a URL slug, unique among the surfaces sharing its (kodaira, c_2, c_1^2) point,
 // so a table row can link straight to it: /<kodaira>/<c2>-<c1^2>/<slug> (see main.js).
 (function () {
