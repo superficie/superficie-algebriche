@@ -4,8 +4,8 @@ html {
 }
 
 .katex {
-  /* KaTeX defaults to 1.21em; shrink towards the old MathJax 85% scale */
-  font-size: 0.95em;
+  /* KaTeX defaults to 1.21em; trim it down but keep the math a touch larger than the text */
+  font-size: 1.05em;
 }
 
 body {
