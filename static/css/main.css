@@ -12,6 +12,10 @@ body {
   max-width: 86em;
   margin-left: auto;
   margin-right: auto;
+  /* the original (Bootstrap 3) look: Helvetica Neue, tighter line-height */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.42857143;
+  color: #333;
 }
 
 div#header {
