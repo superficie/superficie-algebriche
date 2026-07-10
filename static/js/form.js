@@ -151,7 +151,8 @@ function formatCitation(key) {
     ? "<a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + key.slice(2) + "'>" + key + "</a>"
     : "<a href='https://arxiv.org/abs/" + key + "'>arXiv:" + key + "</a>";
   if (!r) return link;
-  var s = r.author + ", <em>" + r.title + "</em> (" + r.year + ")";
+  var s = r.author + ", <em>" + r.title + "</em>";
+  if (r.year) s += " (" + r.year + ")";
   if (r.journal) s += ", " + r.journal;
   if (r.volume) s += " <strong>" + r.volume + "</strong>";
   if (r.pages) s += ", " + r.pages[0] + "–" + r.pages[1];
