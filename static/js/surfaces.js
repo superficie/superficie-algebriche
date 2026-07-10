@@ -137,24 +137,45 @@ surfaces.push(complextorus);
 
 var primaryKodaira = new Surface("primary Kodaira surfaces", 0, {h10 : 1, h01 : 2, h20 : 1, h11 : 2});
 primaryKodaira.algebraic = false;
+primaryKodaira.description = "Non-Kähler compact complex surface with trivial canonical bundle and $\\mathrm b_1=3$, hence of Kodaira dimension $0$. It is a holomorphic principal bundle of elliptic curves over an elliptic curve.";
+primaryKodaira.construction = "A quotient of $\\mathbb{C}^2$ by a discrete group of affine transformations acting freely and properly discontinuously.";
+primaryKodaira.references = ["MR2030225"];
 surfaces.push(primaryKodaira);
 
 var secondaryKodaira = new Surface("secondary Kodaira surfaces", 0, {h10 : 0, h01 : 1, h20 : 0, h11 : 0});
 secondaryKodaira.algebraic = false;
+secondaryKodaira.description = "Non-Kähler compact complex surface with $\\mathrm b_1=1$ and Kodaira dimension $0$, obtained as a free quotient of a primary Kodaira surface by a finite cyclic group.";
+secondaryKodaira.references = ["MR2030225"];
 surfaces.push(secondaryKodaira);
 
 // Kodaira dimension 1
 
 for (var g = 2; g <= 5; g++) {
   var ellipticSurfaceProduct = new Surface("products of elliptic curves with curves of genus " + g, 1, {h01: g + 1, h02: g, h11: 2 * (g + 1)});
+  ellipticSurfaceProduct.construction = "The product $E\\times C$ of an elliptic curve $E$ and a curve $C$ of genus $" + g + "$.";
+  ellipticSurfaceProduct.description = "Isotrivially fibred surface of Kodaira dimension $1$, with $\\mathrm q=" + (g + 1) + "$, $\\mathrm p_{\\mathrm g}=" + g + "$ and $\\chi=0$.";
   surfaces.push(ellipticSurfaceProduct);
 }
 
 var dolgachev = new Surface("Dolgachev surface", 1, {h01: 0, h02: 0, h11: 10});
+dolgachev.description = "Simply connected minimal properly elliptic surface with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$. The surfaces $E(1)_{2,3}$ were the first examples of $4$-manifolds homeomorphic, but not diffeomorphic, to a rational surface.";
+dolgachev.construction = "Perform two logarithmic transformations, of coprime multiplicities (for instance $2$ and $3$), on a rational elliptic surface (a generic pencil of plane cubics, blown up at its nine base points).";
+dolgachev.references = ["MR2757651", "MR0892034"];
 surfaces.push(dolgachev);
 
 var shiodaschutt = new Surface("Shioda-Schütt surface", 1, {h01: 1, h02: 1, h11: 12});
 surfaces.push(shiodaschutt);
+
+// Simply connected minimal elliptic surfaces E(n) over P^1 with a section, with chi(O)=n and no
+// multiple fibres: e=12n, K^2=0, p_g=n-1, q=0. E(1) is rational, E(2) is a K3, E(n>=3) has
+// Kodaira dimension 1. Invariants (chi=n, e=12n) are standard; see Schütt-Shioda, "Elliptic surfaces".
+for (var n = 3; n <= 6; n++) {
+  var en = new Surface("elliptic surface $\\mathrm{E}(" + n + ")$", 1, {h01: 0, h02: n - 1, h11: 10 * n});
+  en.description = "Simply connected relatively minimal elliptic surface over $\\mathbb{P}^1$ with a section and $\\chi(\\mathcal{O})=" + n + "$; here $\\mathrm p_{\\mathrm g}=" + (n - 1) + "$, $\\mathrm q=0$ and $\\mathrm K^2=0$.";
+  en.construction = "The fibre-connected sum of $" + n + "$ copies of the rational elliptic surface $\\mathrm{E}(1)$; equivalently a generic elliptic surface over $\\mathbb{P}^1$ with $" + (12 * n) + "$ nodal fibres.";
+  en.references = ["MR2732092"];
+  surfaces.push(en);
+}
 
 // Kodaira dimension 2
 
@@ -210,11 +231,20 @@ surfaces.push(schoen);
 
 for (var c12 = 2; c12 <= 8; c12++) {
   var todorov = new Surface("Todorov surfaces", 2, {c12: c12, pg: 1, q: 0});
+  todorov.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=1$, $\\mathrm q=0$ and $2\\leq\\mathrm K^2\\leq 8$, giving counterexamples to the global Torelli theorem.";
+  todorov.references = ["MR0610540"];
   surfaces.push(todorov);
 }
 
 var fatighenti = new Surface("Fatighenti surfaces", 2, {c12: 6, pg: 1, q: 0});
 surfaces.push(fatighenti);
+
+// Special surface with p_g = K^2 = 1 (hence q = 0, chi = 2, c_2 = 23); invariants stated in
+// Catanese, Compositio Math. 41 (1980), 401-414 (surfaces with K^2 = p_g = 1).
+var kunev = new Surface("Kunev surface", 2, {c12: 1, pg: 1, q: 0});
+kunev.description = "A special surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm K^2=1$ (hence $\\mathrm q=0$) whose bicanonical map is a Galois $(\\mathbb{Z}/2)^2$-cover of $\\mathbb{P}^2$. It is a counterexample to the infinitesimal Torelli theorem, and its family gives a counterexample to the generic global Torelli theorem.";
+kunev.references = ["MR0589089"];
+surfaces.push(kunev);
 
 // remark: Horikawa has computed lots of number of moduli
 //
@@ -398,10 +428,12 @@ inoue.references = ["MR1305801"]; // page 319 to be precise
 surfaces.push(inoue);
 
 var chenshin = new Surface("Chen-Shin surfaces", 2, {c12: 7, pg: 0, q: 0});
+chenshin.description = "A two-dimensional family of surfaces of general type with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=7$.";
 chenshin.references = ["MR4199271"];
 surfaces.push(chenshin);
 
 var cataneseciliberto = new Surface("Catanese-Ciliberto surfaces", 2, {c12: 3, pg: 1, q: 1});
+cataneseciliberto.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=3$ whose Albanese fibration has genus-$3$ fibres.";
 cataneseciliberto.references = ["MR2221791"];
 surfaces.push(cataneseciliberto);
 
@@ -412,6 +444,7 @@ surfaces.push(oliverio);
 
 for (var c12 = 5; c12 <= 10; c12++) {
   var ciliberto = new Surface("Ciliberto surfaces", 2, {c12: c12, pg: 4, q: 0});
+  ciliberto.description = "Canonical surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm p_{\\mathrm a}=4$ and $5\\leq\\mathrm K^2\\leq 10$.";
   ciliberto.references = ["MR0610180"];
   surfaces.push(ciliberto);
 }
@@ -467,6 +500,7 @@ rito.references = ["MR3619737"];
 surfaces.push(rito);
 
 var bin = new Surface("Bin surfaces", 2, {c12: 32, pg: 4, q: 1});
+bin.description = "A surface of general type whose canonical map has degree $16$.";
 bin.references = ["MR4008073"];
 surfaces.push(bin);
 
@@ -485,6 +519,7 @@ for (var n = 8; n <= 20; n = n + 2) {
     continue;
 
   var bp = new Surface("Rigid Bauer&ndash;Pignatelli surfaces", 2, {c12: 2*Math.pow(n-3, 2), pg: (n/2 - 2) * (n/2 - 1), q: 0});
+  bp.description = "Surfaces of general type that are rigid, i.e. admit no nontrivial deformations, but are not infinitesimally rigid.";
   bp.references = ["MR4278662"];
   surfaces.push(bp);
 }
