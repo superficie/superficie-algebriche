@@ -63,9 +63,11 @@ div#surface-info {
 }
 
 div#prose {
-  clear: both;
-  max-width: 45em;
-  margin: 0 1em;
+  /* right-hand column: sits below the controls (#text), not full width below the graph */
+  float: right;
+  clear: right;
+  width: 19em;
+  margin: 0 2em;
   padding-top: 1em;
 }
 
@@ -101,7 +103,8 @@ div#text {
 }
 
 @media screen and (min-width: 1200px) {
-  div#text {
+  div#text,
+  div#prose {
     width: 37em;
   }
 }
@@ -111,7 +114,7 @@ h2 {
   font-weight: normal;
   width: 100%;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: 0.5em;
   font-size: 21px;
   line-height: inherit;
   color: #333;
@@ -121,4 +124,15 @@ h2 {
 
 h3 {
   font-size: 1.3em;
+}
+
+/* consistent gap before the References heading: bare-text descriptions carry no
+   trailing margin (too tight) while the "No description" message paragraph does
+   (too loose), so normalise both */
+div#surface > :last-child {
+  margin-bottom: 0;
+}
+
+h3#references-heading {
+  margin-top: 1em;
 }

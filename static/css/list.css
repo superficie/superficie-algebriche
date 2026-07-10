@@ -1,5 +1,6 @@
 #list-view {
-  margin: 8em auto 3em;
+  /* body already has padding-top:8em to clear the fixed header, so no top margin here */
+  margin: 0 auto 3em;
   max-width: 62em;
   padding: 0 1em;
 }
