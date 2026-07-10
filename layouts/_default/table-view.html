@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div id="list-view">
+  <h2>Table of surfaces</h2>
+  <p>Every (class of) surface in the database, with its Kodaira dimension and numerical invariants. Click a column header to sort; click a surface to open it in the <a href="/">geography graph</a>.</p>
+
+  <table id="surface-table" class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th data-sort-method="number">$\kappa$</th>
+        <th data-sort-method="number">$\mathrm{c}_1^2$</th>
+        <th data-sort-method="number">$\mathrm{c}_2$</th>
+        <th data-sort-method="number">$\mathrm{p}_{\mathrm{g}}$</th>
+        <th data-sort-method="number">$\mathrm{q}$</th>
+        <th data-sort-method="number">$\chi$</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.1.0/tablesort.min.js" integrity="sha256-p3wukcf2d2jxbVnlqPDO9t4AAjnl42D2aIzrK4S0X6w=" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.1.0/sorts/tablesort.number.min.js" integrity="sha256-ra1pWQ7MfuVIolZ/phcEXegs9m1ehXaCNI8cmc3gJEs=" crossorigin="anonymous"></script>
+<script defer src="/js/surfaces.js"></script>
+<script defer src="/js/list.js"></script>
+{{ end }}

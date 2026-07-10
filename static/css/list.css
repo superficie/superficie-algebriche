@@ -1,0 +1,36 @@
+#list-view {
+  margin: 8em auto 3em;
+  max-width: 62em;
+  padding: 0 1em;
+}
+
+#surface-table {
+  width: 100%;
+}
+
+#surface-table th {
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid #ddd;
+}
+
+#surface-table th,
+#surface-table td.num {
+  text-align: center;
+}
+
+#surface-table th:first-child,
+#surface-table td.name {
+  text-align: left;
+}
+
+#surface-table td.num {
+  white-space: nowrap;
+}
+
+/* colour the Kodaira-dimension cell like the geography graph */
+#surface-table td:nth-child(2) { font-weight: bold; }
+#surface-table tr.kodaira-infty td:nth-child(2) { color: #a94442; }
+#surface-table tr.kodaira-0     td:nth-child(2) { color: #3c763d; }
+#surface-table tr.kodaira-1     td:nth-child(2) { color: #31708f; }
+#surface-table tr.kodaira-2     td:nth-child(2) { color: #666; }
