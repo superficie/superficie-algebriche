@@ -1,0 +1,129 @@
+<div id="text">
+  <form id="input">
+    <div id="left">
+      <fieldset id="kodaira-fieldset">
+        <label for="kodaira">Kodaira dimension</label>
+        <input type="range" id="kodaira" value="-1" min="-1" max="2" step="1" list="kodaira-values" onchange="onKodairaChange(value)">
+        <datalist id="kodaira-values">
+          <option>-1</option>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+        </datalist>
+        <output for="kodaira" id="kodaira-output"></output>
+        <br style="clear: both">
+      </fieldset>
+
+      <fieldset>
+
+        <label for="algebraic">Include non-algebraic surfaces</label>
+        <input type="checkbox" id="algebraic">
+      </fieldset>
+
+      <fieldset id="candidates">
+        <legend>Candidates</legend>
+
+        <ol>
+        </ol>
+      </fieldset>
+
+      <fieldset id="surface">
+        <legend>About the surface</legend>
+
+        <div></div>
+      </fieldset>
+
+      <fieldset id="references">
+        <legend>References</legend>
+
+        <div></div>
+      </fieldset>
+    </div>
+
+    <div id="right">
+      <fieldset id="diamond">
+        <legend>Hodge diamond</legend>
+
+        <div>
+          <label for="h00">$\mathrm{h}^{0,0}$</label><br style="clear: both">
+          <label for="h10">$\mathrm{h}^{1,0}$</label>
+          <label for="h01">$\mathrm{h}^{0,1}$</label><br style="clear: both">
+          <label for="h20">$\mathrm{h}^{2,0}$</label>
+          <label for="h11">$\mathrm{h}^{1,1}$</label>
+          <label for="h02">$\mathrm{h}^{0,2}$</label><br style="clear: both">
+          <label for="h21">$\mathrm{h}^{2,1}$</label>
+          <label for="h12">$\mathrm{h}^{1,2}$</label><br style="clear: both">
+          <label for="h22">$\mathrm{h}^{2,2}$</label>
+        </div>
+
+        <div>
+          <output class="constant" id="h00">1</output><br style="clear: both">
+          <output for="irregularity" id="h10">0</output>
+          <output for="irregularity" id="h01">0</output><br style="clear: both">
+          <output for="genus" id="h20">0</output>
+          <output for="h11" id="h11">1</output>
+          <output for="genus" id="h02">0</output><br style="clear: both">
+          <output for="irregularity" id="h21">0</output>
+          <output for="irregularity" id="h12">0</output><br style="clear: both">
+          <output class="constant" id="h22">1</output>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Numerical invariants</legend>
+
+        <dl>
+          <dt>Betti numbers
+          <dd id="b0">$\mathrm{b}_0=1$
+          <dd id="b1">$\mathrm{b}_1={\color{#dbdbdb}{?}}=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
+          <dd id="b2">$\mathrm{b}_2={\color{#dbdbdb}{?}}=\mathrm{h}^{2,0}+\mathrm{h}^{1,1}+\mathrm{h}^{0,2}$
+          <dd id="b3">$\mathrm{b}_3={\color{#dbdbdb}{?}}=\mathrm{h}^{1,0}+\mathrm{h}^{0,1}=\mathrm{h}^{2,1}+\mathrm{h}^{1,2}$
+          <dd id="b4">$\mathrm{b}_4=1$
+
+          <dt>Euler characteristic
+          <dd id="e">$\mathrm{e}={\color{#dbdbdb}{?}}=\sum_{i=0}^4(-1)^i\mathrm{b}_i$
+
+          <dt>irregularity
+          <dd id="q">$\mathrm{q}={\color{#dbdbdb}{?}}=\mathrm{h}^{0,1}$
+
+          <dt>geometric genus
+          <dd id="pg">$\mathrm{p}_{\mathrm{g}}={\color{#dbdbdb}{?}}=\mathrm{h}^{0,2}$
+
+          <dt>arithmetic genus
+          <dd id="pa">$\mathrm{p}_{\mathrm{a}}={\color{#dbdbdb}{?}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}$
+
+          <dt>holomorphic Euler characteristic
+          <dt>Todd genus
+          <dd id="chi">$\chi={\color{#dbdbdb}{?}}=\mathrm{p}_{\mathrm{g}}-\mathrm{q}+1=(\mathrm{c}_1^2+\mathrm{c}_2)/12$
+
+          <dt>signature
+          <dd id="tau">$\tau={\color{#dbdbdb}{?}}=4\chi-\mathrm{e}=\sum_{i,j}(-1)^j\mathrm{h}^{i,j}$
+
+          <dt>Chern numbers
+          <dd id="c2">$\mathrm{c}_2={\color{#dbdbdb}{?}}=\mathrm{e}$
+          <dd id="c12">$\mathrm{c}_1^2={\color{#dbdbdb}{?}}=\mathrm{K}^2=12\chi-\mathrm{e}$
+        </dl>
+      </fieldset>
+    </div>
+  </form>
+  <br style="clear: both">
+
+  <h2 id="howto">How to use it</h2>
+  <p>To use this application, please first select a Kodaira dimension using the slider at the top right. Then select a pair of Chern numbers $(\mathrm{c}_{1}^{2},\mathrm{c}_{2})$ in the graph.
+  <p>Finally you can select a surface from the list of known surfaces with these invariants (if there is a class of such surfaces). You can then see a description and the other numerical invariants of this class of surfaces.
+  <p>You can also browse every surface in the database in the <a href="/table/">table view</a>.
+
+  <h2 id="contribute">Contribute</h2>
+  <p>The code is available on <a href="https://github.com/superficie/superficie-algebriche">GitHub</a>. Please <a href="https://github.com/superficie/superficie-algebriche/issues">report bugs and request features</a> there.
+  <p>If you have data about a (class of) surface(s), you can contribute via <a href="https://github.com/superficie/superficie-algebriche">GitHub</a>.
+
+  <h2 id="about">About</h2>
+  <p><span style="font-family: Georgia; font-variant: small-caps">le superficie algebriche</span> is a tool for studying numerical invariants of minimal algebraic surfaces over the complex numbers. The authors implemented it in order to better understand the <a href="https://en.wikipedia.org/wiki/Enriques%E2%80%93Kodaira_classification">Enriques&ndash;Kodaira classification</a>, and to showcase how mathematics can be visualised on the web.
+</div>
+
+<div id="table">
+<p id='c2label'>$\mathrm{c}_2$</p>
+<p id='c12label'>$\mathrm{c}_1^2$</p>
+</div>
+
+<p id="meta">by <a href="https://pbelmans.ncag.info">Pieter Belmans</a> and <a href="https://math.commelin.net">Johan Commelin</a>

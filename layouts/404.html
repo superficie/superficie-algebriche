@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{/* GitHub Pages serves this for any unknown path, so pretty state URLs like /2/3-12
+     (Kodaira dimension / c_2 - c_1^2) render the app; main.js reads the path for the initial state. */}}
+{{ partial "app-main.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+{{ partial "app-scripts.html" . }}
+{{ end }}

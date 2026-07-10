@@ -1,5 +1,12 @@
 var surfaces = [];
 
+// true iff the invariants object has exactly these keys (used to pick the input format)
+function invariantsAre(invariants, keys) {
+  var actual = Object.keys(invariants).sort();
+  keys = keys.slice().sort();
+  return actual.length === keys.length && actual.every(function (k, i) { return k === keys[i]; });
+}
+
 function Surface(name, kodaira, invariants) {
   this.name = name;
   this.kodaira = kodaira;
@@ -7,7 +14,7 @@ function Surface(name, kodaira, invariants) {
   this.algebraic = true;
 
   // the idea is to compute the Hodge numbers based on the input data, as all other invariants are expressed in terms of these
-  if (Object.keys(invariants).sort().equals(Array("c12", "c2", "h11"))) {
+  if (invariantsAre(invariants, ["c12", "c2", "h11"])) {
     this.h11 = invariants.h11;
 
     // compute Hodge numbers from the input
@@ -18,14 +25,14 @@ function Surface(name, kodaira, invariants) {
     this.h10 = this.h21 = this.h12 = this.h01;
     this.h02 = this.h20;
   }
-  else if (Object.keys(invariants).sort().equals(Array("c12", "pg", "q"))) {
+  else if (invariantsAre(invariants, ["c12", "pg", "q"])) {
     this.h10 = this.h01 = this.h21 = this.h12 = invariants.q;
     this.h20 = this.h02 = invariants.pg;
 
     // compute Hodge number from the input
     this.h11 = 10*invariants.pg - 8*invariants.q + 10 - invariants.c12;
   }
-  else if (Object.keys(invariants).sort().equals(Array("h01", "h02", "h11"))) {
+  else if (invariantsAre(invariants, ["h01", "h02", "h11"])) {
     this.h11 = invariants.h11;
     this.h02 = invariants.h02;
     this.h01 = invariants.h01;
@@ -35,7 +42,7 @@ function Surface(name, kodaira, invariants) {
     this.h20 = this.h02;
   }
   // for non-algebraic surfaces: four Hodge numbers are required
-  else if (Object.keys(invariants).sort().equals(Array("h01", "h10", "h11", "h20"))) {
+  else if (invariantsAre(invariants, ["h01", "h10", "h11", "h20"])) {
     this.h10 = invariants.h10;
     this.h01 = invariants.h01;
     this.h20 = invariants.h20;
@@ -495,3 +502,27 @@ for (var n = 1; n <= 20; n++) {
   cs.references = ["MR2586735"];
   surfaces.push(cs);
 }
+
+// Give every surface a URL slug, unique among the surfaces sharing its (kodaira, c_2, c_1^2) point,
+// so a table row can link straight to it: /<kodaira>/<c2>-<c1^2>/<slug> (see main.js).
+(function () {
+  function slugify(name) {
+    return name
+      .replace(/<[^>]*>/g, "")      // strip HTML tags
+      .replace(/&[a-z]+;/gi, "-")   // HTML entities (&ndash; etc.) -> separator
+      .replace(/[${}\\]/g, "")      // drop TeX punctuation
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  var used = {};
+  surfaces.forEach(function (s) {
+    var key = s.kodaira + "|" + s.c2 + "|" + s.c12;
+    var seen = used[key] || (used[key] = {});
+    var base = slugify(s.name) || "surface";
+    var slug = base, i = 2;
+    while (seen[slug]) slug = base + "-" + (i++);
+    seen[slug] = true;
+    s.slug = slug;
+  });
+})();

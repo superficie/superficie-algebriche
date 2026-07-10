@@ -105,7 +105,7 @@ svg.selectAll("circle")
   .attr("cx", function(d) { return c2(d.c2); })
   .attr("cy", function(d) { return c12(d.c12); })
   .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
-  .attr("data-toggle", "tooltip")
+  .attr("data-bs-toggle", "tooltip")
   .attr("data-c2", function(d) { return d.c2; })
   .attr("data-c12", function(d) { return d.c12; })
   .attr("class", function(d) {
@@ -145,7 +145,7 @@ svg.append("text")
   .attr("y", c12(2))
   .attr("class", "kodaira-2 inactive")
   .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-7, " + c2(65) + ", " + c12(2) + ")") 
+  .attr("transform", "rotate(-7, " + c2(65) + ", " + c12(2) + ")")
   .text("Noether inequality");
 
 // draw the BMY inequality (hardcoded constants...)
@@ -160,7 +160,7 @@ svg.append("text")
   .attr("y", c12(35))
   .attr("class", "kodaira-2 inactive")
   .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")") 
+  .attr("transform", "rotate(-66, " + c2(10) + ", " + c12(35) + ")")
   .text("Bogomolov–Miyaoka–Yau inequality");
 
 // draw the positive / negative signature line (hardcoded constants...)
@@ -170,7 +170,7 @@ svg.append("line")
   .attr("y1", c12(0))
   .attr("y2", c12(60))
   .attr("class", "axis");
-$("div#table").prepend("<p id='signatureline' class='kodaira-2 inactive'>signature is zero</p>");
+document.getElementById("table").insertAdjacentHTML("afterbegin", "<p id='signatureline' class='kodaira-2 inactive'>signature is zero</p>");
 
 
 // assign click event to points
@@ -178,48 +178,44 @@ d3.selectAll("circle").on("click", clickedPoint);
 
 function clickedPoint(point) {
   // only act when the clicked node is active (i.e. has the correct Kodaira dimension)
-  if (!d3.select(this).classed("inactive")) {
-    // make all nodes inactive
-    d3.selectAll("circle").classed("active", false);
+  if (d3.select(this).classed("inactive")) return;
 
-    // make this node active
-    d3.select(this).classed("active", true);
+  // make all nodes inactive, then make this one active
+  d3.selectAll("circle").classed("active", false);
+  d3.select(this).classed("active", true);
+  // SVG doesn't have a z-index...
+  d3.select(this).moveToFront();
 
-    // SVG doesn't have a z-index...
-    d3.select(this).moveToFront();
+  // remove candidates
+  clearCandidates();
+  // reset the Hodge diamond
+  setInactive();
 
-    // remove candidates
-    clearCandidates();
+  // add the coordinates to the legend in the fieldset
+  var legend = document.querySelector("#candidates legend");
+  legend.innerHTML = "Candidates<br>for $\\mathrm{c}_2=" + point.c2 + "$, $\\mathrm{c}_1^2=" + point.c12 + "$";
+  window.renderMath(legend);
 
-    // reset the Hodge diamond
-    setInactive();
+  // reflect the selected Chern numbers in the URL (issue #25)
+  updateURL(point.kodaira, point.c12, point.c2);
 
-    // add the coordinates to the legend in the fieldset
-    $("fieldset#candidates legend").html("Candidates<br>for $\\mathrm{c}_2=" + point.c2 + "$, $\\mathrm{c}_1^2=" + point.c12 + "$");
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-
-    // look for surfaces with the correct invariants
-    for (var i = 0; i < surfaces.length; i++) {
-      // invariants are correct
-      if (surfaces[i].c2 == point.c2 && surfaces[i].c12 == point.c12 && surfaces[i].kodaira == point.kodaira) {
-        // include non-algebraic surfaces, so we don't need to check anything
-        if ($("input#algebraic").is(":checked"))
-          addCandidateSurface(surfaces[i]);
-        // only do algebraic surfaces, hence we check whether it is one
-        else if (surfaces[i].algebraic)
-          addCandidateSurface(surfaces[i]);
-      }
+  // look for surfaces with the correct invariants
+  var includeNonAlgebraic = document.getElementById("algebraic").checked;
+  for (var i = 0; i < surfaces.length; i++) {
+    if (surfaces[i].c2 == point.c2 && surfaces[i].c12 == point.c12 && surfaces[i].kodaira == point.kodaira) {
+      if (includeNonAlgebraic || surfaces[i].algebraic)
+        addCandidateSurface(surfaces[i]);
     }
+  }
+  window.renderMath(document.querySelector("#candidates ol"));
 
-    // check whether we have found surfaces, otherwise display a message
-    if ($("fieldset#candidates ol li").length === 0) {
-      $("fieldset#candidates").prepend("<p class='message'>No surfaces in the database with these invariants, sorry.<br>This does not mean that they do not exist, just that we do not have them in our database. If you think you can add one, please get in touch via <a href='mailto:superficie.algebriche@gmail.com'><code>superficie.algebriche@gmail.com</code></a>.");
-    } else if ($("fieldset#candidates ol li").length === 1) {
-      $("fieldset#candidates ol li a").click();
-      $("fieldset#candidates ol li").addClass("active");
-    }
-
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+  // check whether we have found surfaces, otherwise display a message
+  var items = document.querySelectorAll("#candidates ol li");
+  if (items.length === 0) {
+    document.getElementById("candidates").insertAdjacentHTML("afterbegin",
+      "<p class='message'>No surfaces in the database with these invariants, sorry.<br>This does not mean that they do not exist, just that we do not have them in our database. If you think you can add one, please <a href='https://github.com/superficie/superficie-algebriche/issues'>open an issue on GitHub</a>.");
+  } else if (items.length === 1) {
+    items[0].querySelector("a").click();
+    items[0].classList.add("active");
   }
 }
-
