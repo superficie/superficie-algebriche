@@ -4,6 +4,11 @@
   padding: 0 1em;
 }
 
+#surface-search {
+  max-width: 24em;
+  margin-bottom: 1em;
+}
+
 #surface-table {
   width: 100%;
 }

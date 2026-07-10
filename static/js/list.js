@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function kodairaLabel(k) { return k == -1 ? "−∞" : String(k); } // "−∞" or 0/1/2
   function kodairaClass(k) { return k == -1 ? "kodaira-infty" : "kodaira-" + k; }
+  // plain-text form of a surface name for searching (drop HTML, entities and TeX punctuation)
+  function searchKey(name) {
+    return name.replace(/<[^>]*>/g, "").replace(/&[a-z]+;/gi, " ").replace(/[${}\\]/g, "").toLowerCase();
+  }
 
   // only surfaces that appear as a point in the geography graph, i.e. within its domain (see table.js)
   function inGraph(s) { return s.c2 >= -20 && s.c2 <= 80 && s.c12 >= -30 && s.c12 <= 60; }
@@ -31,6 +35,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   table.querySelector("tbody").innerHTML = html;
 
+  // attach a plain-text search key to each row (set via dataset to avoid attribute escaping)
+  var trs = table.querySelectorAll("tbody tr");
+  trs.forEach(function (tr, i) { tr.dataset.search = searchKey(rows[i].name); });
+
   window.renderMath(table);
   if (window.Tablesort) new Tablesort(table);
+
+  // live search (issue #20): hide rows whose name does not contain the query
+  var search = document.getElementById("surface-search");
+  if (search) {
+    search.addEventListener("input", function () {
+      var q = this.value.trim().toLowerCase();
+      trs.forEach(function (tr) {
+        tr.style.display = !q || tr.dataset.search.indexOf(q) !== -1 ? "" : "none";
+      });
+    });
+  }
 });
