@@ -1,0 +1,6 @@
+{{/* Render a real page for every linkable URL state listed in data/pages.json, so deep-links
+     return 200 (the app reads the path for its initial state). Regenerate that file with
+     `node scripts/generate-pages.mjs` whenever the surfaces change. */}}
+{{ range site.Data.pages }}
+{{ $.AddPage (dict "path" . "title" "le superficie algebriche" "content" (dict "mediaType" "text/html" "value" "")) }}
+{{ end }}
