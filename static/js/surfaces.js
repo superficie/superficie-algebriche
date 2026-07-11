@@ -87,7 +87,7 @@ function Surface(name, kodaira, invariants) {
 
 // Kodaira dimension -\infty
 
-var plane = new Surface("projective plane", -1, {c2 : 3, c12 : 9, h11 : 1});
+var plane = new Surface("projective planes", -1, {c2 : 3, c12 : 9, h11 : 1});
 surfaces.push(plane);
 
 var hirzebruch = new Surface("Hirzebruch surfaces", -1, {c2 : 4, c12 : 8, h11 : 2});
@@ -167,13 +167,13 @@ for (var g = 2; g <= 5; g++) {
   surfaces.push(ellipticSurfaceProduct);
 }
 
-var dolgachev = new Surface("Dolgachev surface", 1, {h01: 0, h02: 0, h11: 10});
+var dolgachev = new Surface("Dolgachev surfaces", 1, {h01: 0, h02: 0, h11: 10});
 dolgachev.description = "Simply connected minimal properly elliptic surface with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$. The surfaces $E(1)_{2,3}$ were the first examples of $4$-manifolds homeomorphic, but not diffeomorphic, to a rational surface.";
 dolgachev.construction = "Perform two logarithmic transformations, of coprime multiplicities (for instance $2$ and $3$), on a rational elliptic surface (a generic pencil of plane cubics, blown up at its nine base points).";
 dolgachev.references = ["MR2757651", "MR0892034"];
 surfaces.push(dolgachev);
 
-var shiodaschutt = new Surface("Shioda-Schütt surface", 1, {h01: 1, h02: 1, h11: 12});
+var shiodaschutt = new Surface("Shioda-Schütt surfaces", 1, {h01: 1, h02: 1, h11: 12});
 surfaces.push(shiodaschutt);
 
 // Simply connected minimal elliptic surfaces E(n) over P^1 with a section, with chi(O)=n and no
@@ -210,19 +210,19 @@ for (var n = 2; n <= 6; n++) {
   surfaces.push(burniat);
 }
 
-var campedelli = new Surface("Campedelli surface", 2, {c2 : 10, c12 : 2, h11 : 8});
+var campedelli = new Surface("Campedelli surfaces", 2, {c2 : 10, c12 : 2, h11 : 8});
 campedelli.description = "Algebraic surface introduced by Campedelli.";
 surfaces.push(campedelli);
 
-var catanese = new Surface("Catanese surface", 2, {c2 : 10, c12 : 2, h11 : 8});
+var catanese = new Surface("Catanese surfaces", 2, {c2 : 10, c12 : 2, h11 : 8});
 catanese.description = "Algebraic surface introduced by Catanese, in <em>Babbage's conjecture, contact of surfaces, symmetric determinantal varieties and applications</em> (1981).";
 surfaces.push(catanese);
 
-var godeaux = new Surface("Godeaux surface", 2, {c2 : 11, c12 : 1, h11 : 9});
+var godeaux = new Surface("Godeaux surfaces", 2, {c2 : 11, c12 : 1, h11 : 9});
 godeaux.description = "Algebraic surface introduced by Lucien Godeaux.";
 surfaces.push(godeaux);
 
-var barlow = new Surface("Barlow surface", 2, {c2 : 11, c12 : 1, h11 : 9});
+var barlow = new Surface("Barlow surfaces", 2, {c2 : 11, c12 : 1, h11 : 9});
 barlow.description = "Algebraic surface introduced by Rebecca Barlow. See </em>Some new surfaces with $p_{g} = 0$</em>, Rebecca Barlow (1984).";
 surfaces.push(barlow);
 
@@ -257,7 +257,7 @@ surfaces.push(fatighenti);
 
 // Special surface with p_g = K^2 = 1 (hence q = 0, chi = 2, c_2 = 23); invariants stated in
 // Catanese, Compositio Math. 41 (1980), 401-414 (surfaces with K^2 = p_g = 1).
-var kunev = new Surface("Kunev surface", 2, {c12: 1, pg: 1, q: 0});
+var kunev = new Surface("Kunev surfaces", 2, {c12: 1, pg: 1, q: 0});
 kunev.description = "A special surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm K^2=1$ (hence $\\mathrm q=0$) whose bicanonical map is a Galois $(\\mathbb{Z}/2)^2$-cover of $\\mathbb{P}^2$. It is a counterexample to the infinitesimal Torelli theorem, and its family gives a counterexample to the generic global Torelli theorem.";
 kunev.references = ["MR0589089"];
 surfaces.push(kunev);
@@ -585,7 +585,7 @@ surfaces.push(grossimoretti);
 // --- additions from a literature sweep of the geography of surfaces of general type ---
 
 // pg = q = 0
-var craigherogattazzo = new Surface("Craighero&ndash;Gattazzo surface", 2, {c12: 1, pg: 0, q: 0});
+var craigherogattazzo = new Surface("Craighero&ndash;Gattazzo surfaces", 2, {c12: 1, pg: 0, q: 0});
 craigherogattazzo.description = "A numerical Godeaux surface ($\\mathrm K^2=1$, $\\mathrm p_{\\mathrm g}=\\mathrm q=0$), the smooth minimal model of a special quintic surface in $\\mathbb{P}^3$; it is simply connected.";
 craigherogattazzo.references = ["1506.03529"];
 surfaces.push(craigherogattazzo);
