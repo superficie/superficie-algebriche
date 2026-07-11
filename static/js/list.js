@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
   trs.forEach(function (tr, i) {
     tr.dataset.search = searchKey(rows[i].name);
     tr.dataset.algebraic = rows[i].algebraic ? "1" : "0";
+    tr.dataset.persson = rows[i].name === "Persson surfaces" ? "1" : "0";
   });
 
   window.renderMath(table);
@@ -104,12 +105,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // any open detail row follows its parent's visibility
   var search = document.getElementById("surface-search");
   var nonAlgebraic = document.getElementById("include-nonalgebraic");
+  var excludePersson = document.getElementById("exclude-persson");
   function applyFilters() {
     var q = search ? search.value.trim().toLowerCase() : "";
     var showNonAlgebraic = nonAlgebraic ? nonAlgebraic.checked : false;
+    var hidePersson = excludePersson ? excludePersson.checked : false;
     trs.forEach(function (tr) {
       var matches = !q || tr.dataset.search.indexOf(q) !== -1;
-      var visible = matches && (tr.dataset.algebraic === "1" || showNonAlgebraic);
+      var visible = matches && (tr.dataset.algebraic === "1" || showNonAlgebraic) &&
+        !(hidePersson && tr.dataset.persson === "1");
       tr.style.display = visible ? "" : "none";
       var detail = tr.nextElementSibling;
       if (detail && detail.classList.contains("detail")) detail.style.display = visible ? "" : "none";
@@ -117,5 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (search) search.addEventListener("input", applyFilters);
   if (nonAlgebraic) nonAlgebraic.addEventListener("change", applyFilters);
-  applyFilters(); // default: hide non-algebraic surfaces
+  if (excludePersson) excludePersson.addEventListener("change", applyFilters);
+  applyFilters(); // default: hide non-algebraic and Persson surfaces
 });
