@@ -80,12 +80,31 @@ document.addEventListener("DOMContentLoaded", function () {
     master.addEventListener("click", function (e) {
       e.stopPropagation(); // don't let Tablesort sort this column
       var expand = master.textContent.trim() === "+";
-      tbody.querySelectorAll("td.expand[data-expandable]").forEach(function (cell) {
-        var tr = cell.parentElement;
-        var hasDetail = tr.nextElementSibling && tr.nextElementSibling.classList.contains("detail");
-        if (expand && !hasDetail && tr.style.display !== "none") cell.click();
-        else if (!expand && hasDetail) cell.click();
-      });
+      if (expand) {
+        // insert every detail row first, then render math in a single KaTeX pass (per-row
+        // rendering would reflow the whole table hundreds of times)
+        var added = false;
+        tbody.querySelectorAll("td.expand[data-expandable]").forEach(function (cell) {
+          var tr = cell.parentElement;
+          if (tr.style.display === "none") return;
+          if (tr.nextElementSibling && tr.nextElementSibling.classList.contains("detail")) return;
+          var detail = document.createElement("tr");
+          detail.className = "detail";
+          detail.innerHTML = "<td colspan='" + COLSPAN + "'>" + rows[tr.dataset.idx].description + "</td>";
+          tr.after(detail);
+          tr.classList.add("expanded");
+          cell.textContent = "−";
+          added = true;
+        });
+        if (added) window.renderMath(tbody); // ignoredClasses skips the already-rendered rows
+      } else {
+        tbody.querySelectorAll("tr.detail").forEach(function (d) { d.remove(); });
+        tbody.querySelectorAll("tr.expanded").forEach(function (r) {
+          r.classList.remove("expanded");
+          var c = r.querySelector("td.expand[data-expandable]");
+          if (c) c.textContent = "+";
+        });
+      }
       master.textContent = expand ? "−" : "+";
     });
   }

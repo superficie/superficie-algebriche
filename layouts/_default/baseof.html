@@ -38,6 +38,8 @@
         {left: "$", right: "$", display: false},
         {left: "\\(", right: "\\)", display: false}
       ],
+      // skip already-rendered subtrees so repeated passes (e.g. table expand-all) stay cheap
+      ignoredClasses: ["katex"],
       throwOnError: false
     };
     // Render KaTeX inside a subtree (whole body by default). Safe to call repeatedly.
