@@ -102,7 +102,7 @@ surfaces.push(hirzebruch);
 
 // this can increase whenever we increase the size of the viewport, currently not implemented
 for (var g = 1; g < 5; g++) {
-  var ruled = new Surface("ruled surfaces", -1, {c2 : 4 - 4*g, c12 : 8 - 8*g, h11 : 2});
+  var ruled = new Surface("ruled surfaces over a curve of genus " + g, -1, {c2 : 4 - 4*g, c12 : 8 - 8*g, h11 : 2});
   ruled.description = "A geometrically ruled surface $\\mathbb{P}(E)\\to C$ over a smooth curve $C$ of genus $" + g + "$, i.e. a $\\mathbb{P}^1$-bundle, with irregularity $\\mathrm q=" + g + "$.";
   surfaces.push(ruled);
 }
