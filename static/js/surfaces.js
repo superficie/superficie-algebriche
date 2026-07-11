@@ -674,7 +674,7 @@ surfaces.push(regiso);
 
 var fakequadric = new Surface("fake quadrics", 2, {c12: 8, pg: 0, q: 0});
 fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras.";
-fakequadric.references = ["10.2140/pjm.1978.76.221"];
+fakequadric.references = ["MR0572981"];
 surfaces.push(fakequadric);
 
 var mixedbeauville = new Surface("mixed Beauville surfaces", 2, {c12: 8, pg: 0, q: 0});
