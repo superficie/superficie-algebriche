@@ -10,9 +10,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 // --- TeX -> display helpers -------------------------------------------------
 
 // the few LaTeX accents that actually occur (French titles); extend if a new one shows up
-const ACCENTS = { "'": { e: "é", a: "á", o: "ó", i: "í", u: "ú" },
-                  "`": { e: "è", a: "à" },
-                  '"': { o: "ö", u: "ü", a: "ä" } };
+const ACCENTS = { "'": { e: "é", a: "á", o: "ó", i: "í", u: "ú", E: "É", A: "Á", O: "Ó", I: "Í", U: "Ú" },
+                  "`": { e: "è", a: "à", E: "È", A: "À" },
+                  '"': { o: "ö", u: "ü", a: "ä", O: "Ö", U: "Ü", A: "Ä" } };
 function accents(s) {
   return s.replace(/\\(['`"])\{?(\w)\}?/g, (m, acc, ch) => (ACCENTS[acc] && ACCENTS[acc][ch]) || m);
 }
