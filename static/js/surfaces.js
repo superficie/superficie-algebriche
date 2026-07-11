@@ -111,6 +111,16 @@ inoue.description = "Inoue introduced three families of surfaces, $S^0$, $S^+$ a
 inoue.construction = "See <a href='http://en.wikipedia.org/wiki/Inoue_surface'>wikipedia</a> for a description of the construction.";
 surfaces.push(inoue);
 
+// class VII surfaces with positive second Betti number (non-Kähler, Kodaira dimension -infty):
+// h^{1,1}=b_2=n, so (c_2, c_1^2) = (n, -n). Kato surfaces (those with a global spherical shell)
+// realise every n>=1; Enoki and Inoue-Hirzebruch surfaces are examples.
+for (var n = 1; n <= 30; n++) {
+  var kato = new Surface("Kato surfaces", -1, {h10: 0, h01: 1, h20: 0, h11: n});
+  kato.description = "Class VII surface with second Betti number $\\mathrm b_2=" + n + ">0$ that admits a global spherical shell. Examples include Enoki surfaces and Inoue&ndash;Hirzebruch surfaces; conjecturally these exhaust the class VII surfaces with $\\mathrm b_2>0$.";
+  kato.references = ["MR0768987", "MR2030225"];
+  surfaces.push(kato);
+}
+
 // Kodaira dimension 0
 
 var abelian = new Surface("abelian surfaces", 0, {c2 : 0, c12 : 0, h11 : 4});
@@ -176,6 +186,12 @@ for (var n = 3; n <= 6; n++) {
   en.references = ["MR2732092"];
   surfaces.push(en);
 }
+
+// logarithmic transform of the elliptic K3 surface E(2), a chi=2 analogue of the Dolgachev surface
+var e2pq = new Surface("elliptic surfaces $\\mathrm{E}(2)_{p,q}$", 1, {h01: 0, h02: 1, h11: 20});
+e2pq.description = "A logarithmic transform, of coprime multiplicities $p$ and $q$, of the elliptic K3 surface $\\mathrm{E}(2)$; a minimal properly elliptic surface with $\\chi=2$, simply connected when $\\gcd(p,q)=1$. Its Hodge numbers coincide with those of a K3, but its Kodaira dimension is $1$.";
+e2pq.references = ["MR2732092", "MR2030225"];
+surfaces.push(e2pq);
 
 // Kodaira dimension 2
 
@@ -565,6 +581,75 @@ var grossimoretti = new Surface("Grossi&ndash;Moretti surfaces", 2, {c12: 24, pg
 grossimoretti.description = "Surfaces that are Lagrangian in their Albanese variety. The canonical map is $2:1$ onto a degree-$12$ surface in $\\mathbb{P}^5$ with 44 even nodes.";
 grossimoretti.references = ["2502.13087"];
 surfaces.push(grossimoretti);
+
+// --- additions from a literature sweep of the geography of surfaces of general type ---
+
+// pg = q = 0
+var craigherogattazzo = new Surface("Craighero&ndash;Gattazzo surface", 2, {c12: 1, pg: 0, q: 0});
+craigherogattazzo.description = "A numerical Godeaux surface ($\\mathrm K^2=1$, $\\mathrm p_{\\mathrm g}=\\mathrm q=0$), the smooth minimal model of a special quintic surface in $\\mathbb{P}^3$; it is simply connected.";
+craigherogattazzo.references = ["1506.03529"];
+surfaces.push(craigherogattazzo);
+
+var leepark = new Surface("Lee&ndash;Park surfaces", 2, {c12: 2, pg: 0, q: 0});
+leepark.description = "The first simply connected minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=2$, obtained by a $\\mathbb{Q}$-Gorenstein smoothing of a singular rational surface.";
+leepark.references = ["math/0609072"];
+surfaces.push(leepark);
+
+var kulikov = new Surface("Kulikov surfaces", 2, {c12: 6, pg: 0, q: 0});
+kulikov.description = "Surfaces with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=6$ realised as $(\\mathbb{Z}/3)^2$-covers of the plane; they form a connected component of the moduli space and have torsion group $(\\mathbb{Z}/3)^3$.";
+kulikov.references = ["1011.5574"];
+surfaces.push(kulikov);
+
+var ychen = new Surface("Chen surfaces", 2, {c12: 7, pg: 0, q: 0});
+ychen.description = "A family with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=7$, obtained as $(\\mathbb{Z}/2)^2$-covers of a $6$-nodal degree-$1$ del Pezzo surface; distinct from the Inoue and Chen&ndash;Shin surfaces with the same invariants.";
+ychen.references = ["1210.4633"];
+surfaces.push(ychen);
+
+var bauercatanese = new Surface("Bauer&ndash;Catanese surfaces", 2, {c12: 3, pg: 0, q: 0});
+bauercatanese.description = "A family of Burniat-type surfaces with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=3$ realising a new fundamental group of order $16$.";
+bauercatanese.references = ["1209.1980"];
+surfaces.push(bauercatanese);
+
+var nevespapadakis = new Surface("Neves&ndash;Papadakis surfaces", 2, {c12: 2, pg: 0, q: 0});
+nevespapadakis.description = "Numerical Campedelli surfaces ($\\mathrm K^2=2$, $\\mathrm p_{\\mathrm g}=\\mathrm q=0$) with torsion group $\\mathbb{Z}/6$, built by unprojection.";
+nevespapadakis.references = ["0707.0244"];
+surfaces.push(nevespapadakis);
+
+// pg = q = 1 (filling the gaps at K^2 = 2, 5, 7)
+var pgq1k2 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=2$", 2, {c12: 2, pg: 1, q: 1});
+pgq1k2.description = "Irregular surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=2$, the smallest $\\mathrm K^2$ in this class; the Albanese fibres have genus $2$.";
+pgq1k2.references = ["1508.01863"];
+surfaces.push(pgq1k2);
+
+var pgq1k5 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=5$", 2, {c12: 5, pg: 1, q: 1});
+pgq1k5.description = "The first minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=5$, realised as standard isotrivial fibrations with genus-$3$ Albanese fibres.";
+pgq1k5.references = ["0805.1424"];
+surfaces.push(pgq1k5);
+
+var pgq1k7 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=7$", 2, {c12: 7, pg: 1, q: 1});
+pgq1k7.description = "Surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=7$, obtained as double covers of a Kummer quartic surface.";
+pgq1k7.references = ["1506.09117"];
+surfaces.push(pgq1k7);
+
+// isogenous to a product, and fake quadrics
+var pgq2iso = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=2$ isogenous to a product", 2, {c12: 8, pg: 2, q: 2});
+pgq2iso.description = "Free quotients $(C\\times F)/G$ with $\\mathrm p_{\\mathrm g}=\\mathrm q=2$; being isogenous to a product forces $\\mathrm K^2=8\\chi=8$.";
+pgq2iso.references = ["MR2825713"];
+surfaces.push(pgq2iso);
+
+var regiso = new Surface("regular surfaces isogenous to a product with $\\chi=2$", 2, {c12: 16, pg: 1, q: 0});
+regiso.description = "Regular ($\\mathrm q=0$) surfaces isogenous to a product of curves with $\\chi=2$, hence $\\mathrm p_{\\mathrm g}=1$ and $\\mathrm K^2=8\\chi=16$.";
+regiso.references = ["1310.3110"];
+surfaces.push(regiso);
+
+var fakequadric = new Surface("fake quadrics", 2, {c12: 8, pg: 0, q: 0});
+fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras (Pacific J. Math. 76 (1978), 221&ndash;245).";
+surfaces.push(fakequadric);
+
+var mixedbeauville = new Surface("mixed Beauville surfaces", 2, {c12: 8, pg: 0, q: 0});
+mixedbeauville.description = "Surfaces isogenous to a product of mixed type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, where the group also exchanges the two factors; the smallest example has a group of order $256$.";
+mixedbeauville.references = ["MR2400886"];
+surfaces.push(mixedbeauville);
 
 // Give every surface a URL slug, unique among the surfaces sharing its (kodaira, c_2, c_1^2) point,
 // so a table row can link straight to it: /<kodaira>/<c2>-<c1^2>/<slug> (see main.js).
