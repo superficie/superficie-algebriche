@@ -1,6 +1,7 @@
 var references = {
   "0704.0446": { author: "Carnovale, Giovanna and Polizzi, Francesco", title: "The classification of surfaces with p_g=q=1 isogenous to a product of curves", year: 2008 },
   "0707.0244": { author: "Neves, Jorge and Papadakis, Stavros Argyrios", title: "A construction of numerical Campedelli Surfaces with \\Z/6 torsion group", year: 2007 },
+  "0802.3435": { author: "Keum, JongHae", title: "Quotients of fake projective planes", year: 2008 },
   "0805.1424": { author: "Mistretta, Ernesto and Polizzi, Francesco", title: "Standard isotrivial fibrations with p_g=q=1. II", year: 2009 },
   "1011.5574": { author: "Chan, Tsz On Mario and Coughlan, Stephen", title: "Kulikov surfaces form a connected component of the moduli space", year: 2012 },
   "1209.1980": { author: "Bauer, Ingrid and Catanese, Fabrizio", title: "Burniat-type surfaces and a new family of surfaces with p_g = 0, K^2 = 3", year: 2012 },
@@ -11,6 +12,8 @@ var references = {
   "1508.01863": { author: "Lewis, Paul and Lyons, Christopher", title: "Some results on surfaces with p_g=q=1 and K^2=2", year: 2017 },
   "1709.03056": { author: "Ling, Songbo", title: "Algebraic Surfaces with $p_g=q=1, K^2=4$ and Genus 3 Albanese Fibration", year: 2018 },
   "1711.10650": { author: "Ling, Songbo", title: "Algebraic surfaces with $p_g=q=1, K^2=4$ and nonhyperelliptic Albanese fibrations of genus 4", year: 2017 },
+  "1807.11854": { author: "Gleissner, Christian and Pignatelli, Roberto and Rito, Carlos", title: "New surfaces with canonical map of high degree", year: 2020 },
+  "2207.02969": { author: "Fallucca, Federico and Gleissner, Christian", title: "Some surfaces with canonical maps of degree $10$, $11$ and $14$", year: 2022 },
   "2502.13087": { author: "Grossi, Paolo and Moretti, Federico", title: "An explicit class of Lagrangian surfaces", year: 2025 },
   "MR0424831": { author: "Horikawa, Eiji", title: "Algebraic surfaces of general type with small $C^2_1$, I", year: 1976, journal: "Ann. of Math. (2)", volume: "104", number: "2", pages: [357, 387] },
   "MR0460340": { author: "Horikawa, Eiji", title: "Algebraic surfaces of general type with small $c^2_1$, II", year: 1976, journal: "Invent. Math.", volume: "37", number: "2", pages: [121, 155] },

@@ -311,7 +311,7 @@ for (var g = 3; g < 6; g++) {
   var c2 = h11 + 2 + g*(g-1) - 4*g;
   var c12 = 12 - 12*g + 6*g*(g-1) - c2;
 
-  var square = new Surface("symmetric squares of a curve of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
+  var square = new Surface("symmetric squares of curves of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
   if (g == 3)
     square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
       "these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
@@ -402,7 +402,7 @@ for (var i = 0; i < degrees.length; i++) {
   var c2 = cic2(degrees[i]);
   var h11 = cih11(degrees[i]);
 
-  var ci = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, {c2 : c2, c12 : c12, h11 : h11});
+  var ci = new Surface("Complete intersections of degree $(" + degrees[i].join(",") + ")$", 2, {c2 : c2, c12 : c12, h11 : h11});
   ci.description = "A smooth complete intersection surface of multidegree $(" + degrees[i].join(",") + ")$ in $\\mathbb{P}^{" + (degrees[i].length + 2) + "}$; such surfaces are simply connected and regular ($\\mathrm q=0$).";
     surfaces.push(ci);
 }
@@ -678,6 +678,31 @@ var mixedbeauville = new Surface("mixed Beauville surfaces", 2, {c12: 8, pg: 0, 
 mixedbeauville.description = "Surfaces isogenous to a product of mixed type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, where the group also exchanges the two factors; the smallest example has a group of order $256$.";
 mixedbeauville.references = ["MR2400886"];
 surfaces.push(mixedbeauville);
+
+// --- record canonical-map-degree surfaces and a fake del Pezzo (second literature sweep) ---
+
+// canonical map of record degree 32 (pg=3, q=0); free quotients of a product of two curves
+var gpr32 = new Surface("Gleissner&ndash;Pignatelli&ndash;Rito surfaces", 2, {c12: 32, pg: 3, q: 0});
+gpr32.description = "Surfaces of general type whose canonical map has degree $32$ (a record for $\\mathrm p_{\\mathrm g}=3$), constructed as free quotients of a product of two curves.";
+gpr32.references = ["1807.11854"];
+surfaces.push(gpr32);
+
+var gpr24 = new Surface("Gleissner&ndash;Pignatelli&ndash;Rito surfaces", 2, {c12: 24, pg: 3, q: 1});
+gpr24.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=3$, $\\mathrm q=1$ whose canonical map has degree $24$.";
+gpr24.references = ["1807.11854"];
+surfaces.push(gpr24);
+
+// Fallucca: canonical map of degree 10, 11 or 14; free (Z/7)^2-quotients of a product of Fermat septics
+var fallucca = new Surface("Fallucca surfaces", 2, {c12: 32, pg: 3, q: 0});
+fallucca.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=3$, $\\mathrm q=0$ and canonical map of degree $10$, $11$ or $14$, realised as free $(\\mathbb{Z}/7)^2$-quotients of a product of two Fermat septic curves.";
+fallucca.references = ["2207.02969"];
+surfaces.push(fallucca);
+
+// fake del Pezzo surface of degree 3: a quotient of a fake projective plane
+var fakedelpezzo = new Surface("fake del Pezzo surfaces", 2, {c12: 3, pg: 0, q: 0});
+fakedelpezzo.description = "Minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=3$ (\"fake del Pezzo surfaces of degree $3$\"), obtained as quotients of a fake projective plane by a group of order $3$.";
+fakedelpezzo.references = ["0802.3435"];
+surfaces.push(fakedelpezzo);
 
 // Give every surface a URL slug, unique among the surfaces sharing its (kodaira, c_2, c_1^2) point,
 // so a table row can link straight to it: /<kodaira>/<c2>-<c1^2>/<slug> (see main.js).
