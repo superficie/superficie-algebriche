@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   var table = document.getElementById("surface-table");
   if (!table || typeof surfaces === "undefined") return;
+  var tbody = table.querySelector("tbody");
 
   function kodairaLabel(k) { return k == -1 ? "−∞" : String(k); } // "−∞" or 0/1/2
   function kodairaClass(k) { return k == -1 ? "kodaira-infty" : "kodaira-" + k; }
@@ -19,11 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return a.kodaira - b.kodaira || a.c12 - b.c12 || a.c2 - b.c2;
   });
 
+  var COLSPAN = 9; // expand + name + 7 numeric columns
+
   var html = "";
-  rows.forEach(function (s) {
+  rows.forEach(function (s, i) {
     // link back to the graph with this specific surface pre-selected (issue #25)
     var href = "/" + s.kodaira + "/" + s.c2 + "-" + s.c12 + "/" + s.slug;
-    html += "<tr class='" + kodairaClass(s.kodaira) + "'>" +
+    // an expandable "+" only for surfaces that carry a description
+    var expand = s.description ? "<td class='expand' data-expandable='1'>+</td>" : "<td class='expand'></td>";
+    html += "<tr class='" + kodairaClass(s.kodaira) + "' data-idx='" + i + "'>" +
+      expand +
       "<td class='name'><a href='" + href + "'>" + s.name + "</a></td>" +
       "<td class='num' data-sort='" + s.kodaira + "'>" + kodairaLabel(s.kodaira) + "</td>" +
       "<td class='num'>" + s.c12 + "</td>" +
@@ -31,12 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
       "<td class='num'>" + s.h02 + "</td>" +
       "<td class='num'>" + s.h01 + "</td>" +
       "<td class='num'>" + s.chi + "</td>" +
+      "<td class='num'>" + s.chiTS + "</td>" +
       "</tr>";
   });
-  table.querySelector("tbody").innerHTML = html;
+  tbody.innerHTML = html;
 
   // tag each row with a search key and whether it is algebraic (via dataset, to avoid escaping)
-  var trs = table.querySelectorAll("tbody tr");
+  var trs = tbody.querySelectorAll("tr");
   trs.forEach(function (tr, i) {
     tr.dataset.search = searchKey(rows[i].name);
     tr.dataset.algebraic = rows[i].algebraic ? "1" : "0";
@@ -45,7 +52,56 @@ document.addEventListener("DOMContentLoaded", function () {
   window.renderMath(table);
   if (window.Tablesort) new Tablesort(table);
 
-  // a row shows iff it matches the search (issue #20) AND is algebraic or the toggle is on
+  // --- expand a row to show the surface's description (a full-width detail row underneath) ---
+  tbody.addEventListener("click", function (e) {
+    var cell = e.target.closest("td.expand[data-expandable]");
+    if (!cell) return;
+    var tr = cell.parentElement;
+    var next = tr.nextElementSibling;
+    if (next && next.classList.contains("detail")) {
+      next.remove();
+      tr.classList.remove("expanded");
+      cell.textContent = "+";
+    } else {
+      var detail = document.createElement("tr");
+      detail.className = "detail";
+      detail.innerHTML = "<td colspan='" + COLSPAN + "'>" + rows[tr.dataset.idx].description + "</td>";
+      tr.after(detail);
+      window.renderMath(detail);
+      tr.classList.add("expanded");
+      cell.textContent = "−";
+    }
+  });
+
+  // master toggle in the header: expand all visible descriptions at once, or collapse them all
+  var master = table.querySelector("thead .expand-all");
+  if (master) {
+    master.addEventListener("click", function (e) {
+      e.stopPropagation(); // don't let Tablesort sort this column
+      var expand = master.textContent.trim() === "+";
+      tbody.querySelectorAll("td.expand[data-expandable]").forEach(function (cell) {
+        var tr = cell.parentElement;
+        var hasDetail = tr.nextElementSibling && tr.nextElementSibling.classList.contains("detail");
+        if (expand && !hasDetail && tr.style.display !== "none") cell.click();
+        else if (!expand && hasDetail) cell.click();
+      });
+      master.textContent = expand ? "−" : "+";
+    });
+  }
+
+  // sorting reorders the tbody rows, which would strand detail rows: collapse everything first
+  table.addEventListener("beforeSort", function () {
+    if (master) master.textContent = "+";
+    tbody.querySelectorAll("tr.detail").forEach(function (d) { d.remove(); });
+    tbody.querySelectorAll("tr.expanded").forEach(function (r) {
+      r.classList.remove("expanded");
+      var c = r.querySelector("td.expand[data-expandable]");
+      if (c) c.textContent = "+";
+    });
+  });
+
+  // a row shows iff it matches the search (issue #20) AND is algebraic or the toggle is on;
+  // any open detail row follows its parent's visibility
   var search = document.getElementById("surface-search");
   var nonAlgebraic = document.getElementById("include-nonalgebraic");
   function applyFilters() {
@@ -53,8 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var showNonAlgebraic = nonAlgebraic ? nonAlgebraic.checked : false;
     trs.forEach(function (tr) {
       var matches = !q || tr.dataset.search.indexOf(q) !== -1;
-      var allowed = tr.dataset.algebraic === "1" || showNonAlgebraic;
-      tr.style.display = matches && allowed ? "" : "none";
+      var visible = matches && (tr.dataset.algebraic === "1" || showNonAlgebraic);
+      tr.style.display = visible ? "" : "none";
+      var detail = tr.nextElementSibling;
+      if (detail && detail.classList.contains("detail")) detail.style.display = visible ? "" : "none";
     });
   }
   if (search) search.addEventListener("input", applyFilters);

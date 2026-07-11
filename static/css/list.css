@@ -7,7 +7,37 @@
 
 #surface-search {
   max-width: 24em;
-  margin-bottom: 1em;
+}
+
+/* expandable rows: a "+" that appears on hover, opening a full-width description row */
+#surface-table td.expand {
+  width: 1.5em;
+  text-align: center;
+  color: #888;
+  user-select: none;
+}
+#surface-table td.expand[data-expandable] {
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+#surface-table tr:hover td.expand[data-expandable],
+#surface-table tr.expanded td.expand[data-expandable] {
+  opacity: 1;
+}
+#surface-table thead th:first-child {
+  padding: 0;
+}
+#surface-table thead .expand-all {
+  display: block;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  color: #666;
+}
+#surface-table tr.detail td {
+  background: #f7f7f7;
+  padding: 0.5em 1.2em;
 }
 
 #surface-table {

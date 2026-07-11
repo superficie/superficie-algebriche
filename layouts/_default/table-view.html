@@ -3,16 +3,18 @@
   <h2>Table of surfaces</h2>
   <p>Every (class of) surface in the database, with its Kodaira dimension and numerical invariants. Click a column header to sort; click a surface to open it in the <a href="/">geography graph</a>.</p>
 
-  <input type="search" id="surface-search" class="form-control" placeholder="filter by name…" autocomplete="off" aria-label="filter surfaces by name">
-
-  <div class="form-check my-2">
-    <input type="checkbox" class="form-check-input" id="include-nonalgebraic">
-    <label class="form-check-label" for="include-nonalgebraic">Include non-algebraic surfaces</label>
+  <div class="d-flex align-items-center flex-wrap mb-2">
+    <input type="search" id="surface-search" class="form-control" placeholder="filter by name…" autocomplete="off" aria-label="filter surfaces by name">
+    <div class="form-check ms-auto mb-0">
+      <input type="checkbox" class="form-check-input" id="include-nonalgebraic">
+      <label class="form-check-label" for="include-nonalgebraic">Include non-algebraic surfaces</label>
+    </div>
   </div>
 
   <table id="surface-table" class="table table-sm table-hover">
     <thead>
       <tr>
+        <th data-sort-method="none"><span class="expand-all" role="button" title="expand/collapse all descriptions">+</span></th>
         <th>name</th>
         <th data-sort-method="number">$\kappa$</th>
         <th data-sort-method="number">$\mathrm{c}_1^2$</th>
@@ -20,6 +22,7 @@
         <th data-sort-method="number">$\mathrm{p}_{\mathrm{g}}$</th>
         <th data-sort-method="number">$\mathrm{q}$</th>
         <th data-sort-method="number">$\chi$</th>
+        <th data-sort-method="number">$\chi(\mathrm{T}_S)$</th>
       </tr>
     </thead>
     <tbody></tbody>
