@@ -98,6 +98,7 @@ surfaces.push(plane);
 var hirzebruch = new Surface("Hirzebruch surfaces", -1, {c2 : 4, c12 : 8, h11 : 2});
 hirzebruch.construction = "Ruled surface over $\\mathbb{P}^1$, i.e. it is defined as $\\operatorname{Proj}(\\mathcal{O}_{\\mathbb{P}^1}\\oplus\\mathcal{O}_{\\mathbb{P}^1}(n))$ for some $n\\geq 0$.";
 hirzebruch.description = "The rational ruled surfaces $\\mathbb{F}_n$ over $\\mathbb{P}^1$. Every minimal rational surface other than $\\mathbb{P}^2$ is some $\\mathbb{F}_n$ with $n\\neq 1$; here $\\mathbb{F}_0=\\mathbb{P}^1\\times\\mathbb{P}^1$, while $\\mathbb{F}_1$ is the blow-up of $\\mathbb{P}^2$ at a point.";
+hirzebruch.references = ["MR0045384"];
 surfaces.push(hirzebruch);
 
 // this can increase whenever we increase the size of the viewport, currently not implemented
@@ -249,7 +250,8 @@ sicilian.description = "There exists an unramified double cover with $q=3$ such 
 surfaces.push(sicilian);
 
 var schoen = new Surface("Schoen surfaces", 2, {c12: 16, pg: 5, q: 4});
-schoen.description = "Algebraic surfaces introduced by Chad Schoen";
+schoen.description = "Irregular surfaces of general type with $\\mathrm p_{\\mathrm g}=5$, $\\mathrm q=4$ and $\\mathrm K^2=16=2\\mathrm c_2$, so the signature vanishes, yet they are not uniformized by the polydisk and have infinite fundamental group. Introduced by Chad Schoen; Ciliberto, Mendes Lopes and Roulleau showed that the canonical map is a degree-$2$ morphism onto a $(2,4)$ complete intersection in $\\mathbb{P}^4$ with $40$ nodes.";
+schoen.references = ["1303.1750"];
 surfaces.push(schoen);
 
 for (var c12 = 2; c12 <= 8; c12++) {
