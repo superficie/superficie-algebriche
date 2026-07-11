@@ -81,6 +81,10 @@ function Surface(name, kodaira, invariants) {
   // holomorphic Euler characteristic
   this.chi = this.h02 - this.h01 + 1;
 
+  // holomorphic Euler characteristic of the tangent bundle, by Riemann-Roch:
+  // chi(T_S) = 2 c_1^2 - 10 chi(O_S) = (7 c_1^2 - 5 c_2) / 6
+  this.chiTS = 2 * this.c12 - 10 * this.chi;
+
   // signature
   this.tau = 4 * this.chi - this.e;
 }

@@ -41,6 +41,8 @@ function updateInvariants(surface) {
 
   updateInvariant(document.getElementById("c2"), surface.c2);
   updateInvariant(document.getElementById("c12"), surface.c12);
+
+  updateInvariant(document.getElementById("chiTS"), surface.chiTS);
 }
 
 d3.selection.prototype.moveToFront = function () {
@@ -95,7 +97,7 @@ function toggleHodgeDiamond(state) {
 function toggleInvariants(state) {
   // if the state is true it means we want to make the invariants inactive
   if (state) {
-    var invariants = ["b1", "b2", "b3", "e", "q", "pg", "pa", "chi", "tau", "c2", "c12"];
+    var invariants = ["b1", "b2", "b3", "e", "q", "pg", "pa", "chi", "tau", "c2", "c12", "chiTS"];
 
     for (var i = 0; i < invariants.length; i++)
       updateInvariant(document.getElementById(invariants[i]), "{\\color{#dbdbdb}{?}}");
