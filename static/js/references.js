@@ -3,6 +3,7 @@ var references = {
   "0707.0244": { author: "Neves, Jorge and Papadakis, Stavros Argyrios", title: "A construction of numerical Campedelli Surfaces with \\Z/6 torsion group", year: 2007 },
   "0802.3435": { author: "Keum, JongHae", title: "Quotients of fake projective planes", year: 2008 },
   "0805.1424": { author: "Mistretta, Ernesto and Polizzi, Francesco", title: "Standard isotrivial fibrations with p_g=q=1. II", year: 2009 },
+  "10.2140/pjm.1978.76.221": { author: "Shavel, Ira", title: "A class of algebraic surfaces of general type constructed from quaternion algebras", year: 1978, journal: "Pacific Journal of Mathematics", volume: "76", number: "1", pages: [221, 245] },
   "1011.5574": { author: "Chan, Tsz On Mario and Coughlan, Stephen", title: "Kulikov surfaces form a connected component of the moduli space", year: 2012 },
   "1209.1980": { author: "Bauer, Ingrid and Catanese, Fabrizio", title: "Burniat-type surfaces and a new family of surfaces with p_g = 0, K^2 = 3", year: 2012 },
   "1210.4633": { author: "Chen, Yifan", title: "A New Family of Surfaces with K^2=7 and p_g=0", year: 2012 },

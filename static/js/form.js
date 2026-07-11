@@ -149,9 +149,13 @@ function setInactive() {
 // render a full citation for a reference key, using the bibliography in references.js when present
 function formatCitation(key) {
   var r = (typeof references !== "undefined") ? references[key] : null;
-  var link = key.slice(0, 2) === "MR"
-    ? "<a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + key.slice(2) + "'>" + key + "</a>"
-    : "<a href='https://arxiv.org/abs/" + key + "'>arXiv:" + key + "</a>";
+  var link;
+  if (key.slice(0, 2) === "MR")
+    link = "<a href='https://mathscinet.ams.org/mathscinet-getitem?mr=" + key.slice(2) + "'>" + key + "</a>";
+  else if (key.indexOf("10.") === 0) // a DOI
+    link = "<a href='https://doi.org/" + key + "'>doi:" + key + "</a>";
+  else
+    link = "<a href='https://arxiv.org/abs/" + key + "'>arXiv:" + key + "</a>";
   if (!r) return link;
   var s = r.author + ", <em>" + r.title + "</em>";
   if (r.year) s += " (" + r.year + ")";

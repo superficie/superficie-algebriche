@@ -671,7 +671,8 @@ regiso.references = ["1310.3110"];
 surfaces.push(regiso);
 
 var fakequadric = new Surface("fake quadrics", 2, {c12: 8, pg: 0, q: 0});
-fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras (Pacific J. Math. 76 (1978), 221&ndash;245).";
+fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras.";
+fakequadric.references = ["10.2140/pjm.1978.76.221"];
 surfaces.push(fakequadric);
 
 var mixedbeauville = new Surface("mixed Beauville surfaces", 2, {c12: 8, pg: 0, q: 0});
@@ -717,7 +718,7 @@ surfaces.push(fakedelpezzo);
       if (c2 < -20 || c2 > 80 || K2 > 60) continue;
       if (occupied["2|" + c2 + "|" + K2]) continue; // only fill points no named class occupies
       var persson = new Surface("Persson surfaces", 2, {c12: K2, pg: chi - 1, q: 0});
-      persson.description = "A minimal surface of general type with $\\chi=" + chi + "$ and $\\mathrm K^2=" + K2 + "$. The Noether region $2\\chi-6\\le\\mathrm K^2\\le 8\\chi$ of the geography of surfaces of general type is completely realised; a regular ($\\mathrm q=0$) representative here is a Persson double cover of a rational surface.";
+      persson.description = "A minimal surface of general type with $\\chi=" + chi + "$ and $\\mathrm K^2=" + K2 + "$, here a regular ($\\mathrm q=0$, so $\\mathrm p_{\\mathrm g}=" + (chi - 1) + "$) representative, a Persson double cover of a rational surface. By varying the branch locus, this construction realises essentially every lattice point of the region $2\\chi-6\\le\\mathrm K^2\\le 8\\chi$: the whole wedge between the <em>Noether line</em> $\\mathrm K^2=2\\chi-6$ (the lower edge of the geography) and the <em>signature-zero line</em> $\\tau=0$, i.e. $\\mathrm K^2=2\\mathrm c_2$, equivalently $\\mathrm K^2=8\\chi$. It thus (almost) exhausts the interior of the general-type region, leaving only the thin strip $8\\chi<\\mathrm K^2<9\\chi$ just below the Bogomolov&ndash;Miyaoka&ndash;Yau line unpopulated.";
       persson.references = ["MR0631426"];
       surfaces.push(persson);
     }
