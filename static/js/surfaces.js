@@ -92,15 +92,18 @@ function Surface(name, kodaira, invariants) {
 // Kodaira dimension -\infty
 
 var plane = new Surface("projective planes", -1, {c2 : 3, c12 : 9, h11 : 1});
+plane.description = "The projective plane $\\mathbb{P}^2$.";
 surfaces.push(plane);
 
 var hirzebruch = new Surface("Hirzebruch surfaces", -1, {c2 : 4, c12 : 8, h11 : 2});
 hirzebruch.construction = "Ruled surface over $\\mathbb{P}^1$, i.e. it is defined as $\\operatorname{Proj}(\\mathcal{O}_{\\mathbb{P}^1}\\oplus\\mathcal{O}_{\\mathbb{P}^1}(n))$ for some $n\\geq 0$.";
+hirzebruch.description = "The rational ruled surfaces $\\mathbb{F}_n$ over $\\mathbb{P}^1$. Every minimal rational surface other than $\\mathbb{P}^2$ is some $\\mathbb{F}_n$ with $n\\neq 1$; here $\\mathbb{F}_0=\\mathbb{P}^1\\times\\mathbb{P}^1$, while $\\mathbb{F}_1$ is the blow-up of $\\mathbb{P}^2$ at a point.";
 surfaces.push(hirzebruch);
 
 // this can increase whenever we increase the size of the viewport, currently not implemented
 for (var g = 1; g < 5; g++) {
   var ruled = new Surface("ruled surfaces", -1, {c2 : 4 - 4*g, c12 : 8 - 8*g, h11 : 2});
+  ruled.description = "A geometrically ruled surface $\\mathbb{P}(E)\\to C$ over a smooth curve $C$ of genus $" + g + "$, i.e. a $\\mathbb{P}^1$-bundle, with irregularity $\\mathrm q=" + g + "$.";
   surfaces.push(ruled);
 }
 
@@ -257,6 +260,7 @@ for (var c12 = 2; c12 <= 8; c12++) {
 }
 
 var fatighenti = new Surface("Fatighenti surfaces", 2, {c12: 6, pg: 1, q: 0});
+fatighenti.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=1$, $\\mathrm q=0$ and $\\mathrm K^2=6$, constructed by Fatighenti as zero loci of homogeneous vector bundles on Grassmannians.";
 surfaces.push(fatighenti);
 
 // Special surface with p_g = K^2 = 1 (hence q = 0, chi = 2, c_2 = 23); invariants stated in
@@ -271,6 +275,7 @@ surfaces.push(kunev);
 // surfaces *on* the Noether line, classified by Horikawa
 for (var pg = 3; pg <= 10; pg++) {
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 4, pg: pg, q: 0});
+  horikawa.description = "Minimal surface of general type on the Noether line $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-4$ (equality in Noether's inequality), with $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 4) + "$; classified by Horikawa.";
   horikawa.references = ["MR0424831"];
   surfaces.push(horikawa);
 }
@@ -282,6 +287,7 @@ for (var pg = 2; pg <= 10; pg++) {
     continue;
 
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 3, pg: pg, q: 0});
+  horikawa.description = "Minimal surface of general type just above the Noether line, with $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-3$; here $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 3) + "$. Classified by Horikawa.";
   horikawa.references = ["MR0460340"];
   surfaces.push(horikawa);
 }
@@ -289,6 +295,7 @@ for (var pg = 2; pg <= 10; pg++) {
 // surfaces *close to* but a little further away from the Noether line, classified by Horikawa
 for (var pg = 2; pg <= 10; pg++) {
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 2, pg: pg, q: 0});
+  horikawa.description = "Minimal surface of general type close to the Noether line, with $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-2$; here $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 2) + "$. Classified by Horikawa.";
   horikawa.references = ["MR0517773"];
 
   // these received a special treatment
@@ -308,6 +315,8 @@ for (var g = 3; g < 6; g++) {
   if (g == 3)
     square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
       "these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
+  else
+    square.description = "The symmetric square $C^{(2)}=\\mathrm{Sym}^2 C$ of a smooth curve $C$ of genus $" + g + "$, the surface parametrising effective divisors of degree $2$ on $C$; a minimal surface of general type with $\\mathrm q=" + g + "$.";
   surfaces.push(square);
 }
 
@@ -394,6 +403,7 @@ for (var i = 0; i < degrees.length; i++) {
   var h11 = cih11(degrees[i]);
 
   var ci = new Surface("Complete intersection of degree $(" + degrees[i].join(",") + ")$", 2, {c2 : c2, c12 : c12, h11 : h11});
+  ci.description = "A smooth complete intersection surface of multidegree $(" + degrees[i].join(",") + ")$ in $\\mathbb{P}^{" + (degrees[i].length + 2) + "}$; such surfaces are simply connected and regular ($\\mathrm q=0$).";
     surfaces.push(ci);
 }
 
@@ -422,16 +432,19 @@ PiPo.references = ["MR3722504"];
 surfaces.push(PiPo);
 
 var PPR17 = new Surface("a pair of rigid surfaces whose universal cover is not the bidisk", 2, {c12: 8, pg: 2, q: 2});
+PPR17.description = "A pair of rigid surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=2$ and $\\mathrm K^2=8$ whose universal cover is not the bidisk, unlike the surfaces isogenous to a product with the same invariants.";
 PPR17.references = ["MR4123110"];
 surfaces.push(PPR17);
 
 var inoue = new Surface("Inoue surfaces", 2, {c12: 48, pg: 10, q: 3});
+inoue.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=10$, $\\mathrm q=3$ and $\\mathrm K^2=48$, from M.\&nbsp;Inoue's constructions of new surfaces of general type.";
 inoue.references = ["MR1305801"]; // proposition 3.2 to be precise
 surfaces.push(inoue);
 
 var nc = [0, 4, 8, 12, 16];
 for (var i = 0; i < nc.length; i++) {
   var inoue = new Surface("Inoue surfaces", 2, {c12: 6 - nc[i] / 4, pg: 0, q: 0});
+  inoue.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=" + (6 - nc[i] / 4) + "$, from M.\&nbsp;Inoue's constructions of new surfaces of general type.";
   inoue.references = ["MR1305801"]; // proposition 4.1 to be precise
   surfaces.push(inoue);
 }
@@ -439,11 +452,13 @@ for (var i = 0; i < nc.length; i++) {
 var n = [0]; // the others are already added, they might be a different family but then they'd need a different name [16, 32];
 for (var i = 0; i < n.length; i++) {
   var inoue = new Surface("Inoue surfaces", 2, {c12: 7 - n[i] / 16, pg: 0, q: 0});
+  inoue.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=" + (7 - n[i] / 16) + "$, from M.\&nbsp;Inoue's constructions of new surfaces of general type.";
   inoue.references = ["MR1305801"]; // page 318 to be precise
   surfaces.push(inoue);
 }
 
 var inoue = new Surface("Inoue surfaces", 2, {c12: 8, pg: 0, q: 0});
+inoue.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=8$, from M.\&nbsp;Inoue's constructions of new surfaces of general type.";
 inoue.references = ["MR1305801"]; // page 319 to be precise
 surfaces.push(inoue);
 
@@ -485,10 +500,12 @@ for (var c12 = 5; c12 <= 10; c12++) {
 }
 
 var cfm = new Surface("Ciliberto-Francia-Mendes Lopes surfaces", 2, {c12: 8, pg: 4, q: 0});
+cfm.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=4$, $\\mathrm q=0$ and $\\mathrm K^2=8$, appearing in Ciliberto, Francia and Mendes Lopes's study of when the bicanonical map fails to be birational.";
 cfm.references = ["MR1427708"];
 surfaces.push(cfm);
 
 var bartalesicatanese = new Surface("Bartalesi-Catanese surfaces", 2, {c12: 6, pg: 4, q: 0});
+bartalesicatanese.description = "Surfaces of general type with $\\mathrm K^2=6$ and nontrivial torsion, constructed by Bartalesi and Catanese.";
 bartalesicatanese.references = ["MR0908914"]
 surfaces.push(bartalesicatanese);
 
@@ -501,24 +518,28 @@ for (var c12 = 1; c12 <= 4; c12++) {
 
 for (var a = 1; a <= 20; a++) {
   var beauville = new Surface("Beauville's double covers of $C\\times\\mathbb{P}^1$ with $C$ of genus 2", 2, {c12: 8*a, pg: a + 1, q: 2});
+  beauville.description = "A family (indexed by $a=" + a + "$) of surfaces of general type with $\\mathrm q=2$, $\\mathrm p_{\\mathrm g}=" + (a + 1) + "$ and $\\mathrm K^2=" + (8*a) + "$, constructed by Beauville as double covers of $C\\times\\mathbb{P}^1$ (with $C$ of genus $2$) in his study of the canonical map.";
   beauville.references = ["MR0553705"]; // section 2.4
   surfaces.push(beauville);
 }
 
 for (var a = 2; a <= 20; a++) {
   var beauville = new Surface("Beauville's double covers of bielliptic surfaces of type $\\mathbb{Z}/2\\mathbb{Z}^{\\oplus2}$", 2, {c12: 4*a, pg: a, q: 1});
+  beauville.description = "A family (indexed by $a=" + a + "$) of surfaces of general type with $\\mathrm q=1$, $\\mathrm p_{\\mathrm g}=" + a + "$ and $\\mathrm K^2=" + (4*a) + "$, constructed by Beauville as double covers of bielliptic surfaces in his study of the canonical map.";
   beauville.references = ["MR0553705"]; // section 2.6
   surfaces.push(beauville);
 }
 
 for (var a = 2; a <= 20; a++) {
   var beauville = new Surface("Beauville's double covers of $C\\times\\mathbb{P}^1$ with $C$ non-hyperelliptic of genus 3", 2, {c12: 16*a, pg: 2*a+2, q: 3});
+  beauville.description = "A family (indexed by $a=" + a + "$) of surfaces of general type with $\\mathrm q=3$, $\\mathrm p_{\\mathrm g}=" + (2*a + 2) + "$ and $\\mathrm K^2=" + (16*a) + "$, constructed by Beauville as double covers of $C\\times\\mathbb{P}^1$ (with $C$ non-hyperelliptic of genus $3$) in his study of the canonical map.";
   beauville.references = ["MR0553705"]; // section 4.3
   surfaces.push(beauville);
 }
 
 for (var a = 2; a <= 20; a++) {
   var beauville = new Surface("Beauville's double covers of $C\\times\\mathbb{P}^1$ with $C$ of genus 2", 2, {c12: 12*a, pg: 2*a+2, q: 2});
+  beauville.description = "A family (indexed by $a=" + a + "$) of surfaces of general type with $\\mathrm q=2$, $\\mathrm p_{\\mathrm g}=" + (2*a + 2) + "$ and $\\mathrm K^2=" + (12*a) + "$, constructed by Beauville as double covers of $C\\times\\mathbb{P}^1$ (with $C$ of genus $2$) in his study of the canonical map.";
   beauville.references = ["MR0553705"]; // section 4.4
   surfaces.push(beauville);
 }
@@ -541,11 +562,13 @@ surfaces.push(bin);
 
 for (var h = 1; h <= 10; h++) {
   var ciliberto = new Surface("Ciliberto surfaces", 2, {c12: 8*h - 4, pg: 2*h, q: 0});
+  ciliberto.description = "A family (indexed by $h=" + h + "$) of surfaces of general type with $\\mathrm q=0$, $\\mathrm p_{\\mathrm g}=" + (2*h) + "$ and $\\mathrm K^2=" + (8*h - 4) + "$, arising as examples in Ciliberto's study of the generators of the canonical ring.";
   ciliberto.references = ["MR0778862"]; // esempio 4.3 to be precise
   surfaces.push(ciliberto);
 }
 
 var bf = new Surface("Borisov-Fatighenti surfaces", 2, {c12: 3, pg: 0, q: 0});
+bf.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=3$, obtained by Borisov and Fatighenti through new explicit constructions.";
 bf.references = ["MR5022119"];
 surfaces.push(bf);
 
@@ -569,6 +592,7 @@ for (var n = 1; n <= 20; n++) {
   }
 
   var cs = new Surface("Cartwright&ndash;Steger surfaces", 2, {q: 1, pg: n, c12: 9*n});
+  cs.description = "A smooth arithmetic ball quotient ($\\mathrm c_1^2 = 3\\mathrm c_2$) with $\\mathrm q=1$, $\\mathrm p_{\\mathrm g}=" + n + "$ and $\\mathrm K^2=" + (9*n) + "$; for $n=1$ it is the Cartwright&ndash;Steger surface, a close relative of the fake projective planes.";
   cs.references = ["MR2586735"];
   surfaces.push(cs);
 }
