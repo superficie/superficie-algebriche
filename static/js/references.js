@@ -23,6 +23,7 @@ var references = {
   "MR0589089": { author: "Catanese, F.", title: "The moduli and the global period mapping of surfaces with $K^2=p_g=1$: a counterexample to the global Torelli problem", year: 1980, journal: "Compositio Math.", volume: "41", number: "3", pages: [401, 414] },
   "MR0610180": { author: "Ciliberto, Ciro", title: "Canonical surfaces with $p_g=p_a=4$ and $K^2=5,\\cdots ,10$", year: 1981, journal: "Duke Math. J.", volume: "48", number: "1", pages: [121, 157] },
   "MR0610540": { author: "Todorov, Andrei N.", title: "A construction of surfaces with $p_g=1$, $q=0$ and $2\\leq (K^2)\\leq 8$. Counterexamples of the global Torelli theorem", year: 1981, journal: "Invent. Math.", volume: "63", number: "2", pages: [287, 304] },
+  "MR0631426": { author: "Persson, Ulf", title: "Chern invariants of surfaces of general type", year: 1981, journal: "Compositio Math.", volume: "43", number: "1", pages: [3, 58] },
   "MR0768987": { author: "Nakamura, Iku", title: "On surfaces of class $\\rm VII_0$ with curves", year: 1984, journal: "Invent. Math.", volume: "78", number: "3", pages: [393, 443] },
   "MR0778862": { author: "Ciliberto, Ciro", title: "The degree of the generators of the canonical ring of a surface of general type", year: 1983, journal: "Rend. Sem. Mat. Univ. Politec. Torino", volume: "41", number: "3", pages: [83, 111] },
   "MR0892034": { author: "Donaldson, S. K.", title: "Irrationality and the $h$-cobordism conjecture", year: 1987, journal: "J. Differential Geom.", volume: "26", number: "1", pages: [141, 168] },

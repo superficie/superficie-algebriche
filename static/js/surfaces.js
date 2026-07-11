@@ -704,6 +704,26 @@ fakedelpezzo.description = "Minimal surfaces of general type with $\\mathrm p_{\
 fakedelpezzo.references = ["0802.3435"];
 surfaces.push(fakedelpezzo);
 
+// --- Persson surfaces: fill the interior of the general-type geography ---
+// The Noether region 2*chi-6 <= K^2 <= 8*chi is completely realised (Persson's double covers of
+// rational surfaces, Compositio Math. 43 (1981), and refinements). We fill every point of it that
+// no named class already occupies, with a regular (q=0, so p_g=chi-1) representative.
+(function () {
+  var occupied = {};
+  surfaces.forEach(function (s) { occupied[s.kodaira + "|" + s.c2 + "|" + s.c12] = true; });
+  for (var chi = 2; chi <= 11; chi++) {
+    for (var K2 = Math.max(2 * chi - 6, 1); K2 <= 8 * chi; K2++) {
+      var c2 = 12 * chi - K2;
+      if (c2 < -20 || c2 > 80 || K2 > 60) continue;
+      if (occupied["2|" + c2 + "|" + K2]) continue; // only fill points no named class occupies
+      var persson = new Surface("Persson surfaces", 2, {c12: K2, pg: chi - 1, q: 0});
+      persson.description = "A minimal surface of general type with $\\chi=" + chi + "$ and $\\mathrm K^2=" + K2 + "$. The Noether region $2\\chi-6\\le\\mathrm K^2\\le 8\\chi$ of the geography of surfaces of general type is completely realised; a regular ($\\mathrm q=0$) representative here is a Persson double cover of a rational surface.";
+      persson.references = ["MR0631426"];
+      surfaces.push(persson);
+    }
+  }
+})();
+
 // Give every surface a URL slug, unique among the surfaces sharing its (kodaira, c_2, c_1^2) point,
 // so a table row can link straight to it: /<kodaira>/<c2>-<c1^2>/<slug> (see main.js).
 (function () {
