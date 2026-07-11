@@ -42,6 +42,7 @@ function Point(c2, c12, kodaira, algebraic) {
   this.algebraic = typeof algebraic !== "undefined" ? algebraic : true;
 
   this.hasExamples = false;
+  this.hasNamedExample = false; // a surface other than a generic Persson filler
 }
 
 // projective plane
@@ -88,6 +89,7 @@ for (var i = 0; i < points.length; i++) {
   for (var j = 0; j < surfaces.length; j++) {
     if (surfaces[j].c2 == points[i].c2 && surfaces[j].c12 == points[i].c12 && surfaces[j].kodaira == points[i].kodaira) {
       points[i].hasExamples = true;
+      if (surfaces[j].name !== "Persson surfaces") points[i].hasNamedExample = true;
     }
   }
 }
@@ -104,7 +106,8 @@ svg.selectAll("circle")
   .append("circle")
   .attr("cx", function(d) { return c2(d.c2); })
   .attr("cy", function(d) { return c12(d.c12); })
-  .attr("r", function(d) { return d.hasExamples ? r + 1 : r - 1; })
+  // three sizes: a named example (r+1), only a generic Persson filler (r), or nothing yet (r-1)
+  .attr("r", function(d) { return d.hasNamedExample ? r + 1 : (d.hasExamples ? r : r - 1); })
   .attr("data-bs-toggle", "tooltip")
   .attr("data-c2", function(d) { return d.c2; })
   .attr("data-c12", function(d) { return d.c12; })
