@@ -35,21 +35,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   table.querySelector("tbody").innerHTML = html;
 
-  // attach a plain-text search key to each row (set via dataset to avoid attribute escaping)
+  // tag each row with a search key and whether it is algebraic (via dataset, to avoid escaping)
   var trs = table.querySelectorAll("tbody tr");
-  trs.forEach(function (tr, i) { tr.dataset.search = searchKey(rows[i].name); });
+  trs.forEach(function (tr, i) {
+    tr.dataset.search = searchKey(rows[i].name);
+    tr.dataset.algebraic = rows[i].algebraic ? "1" : "0";
+  });
 
   window.renderMath(table);
   if (window.Tablesort) new Tablesort(table);
 
-  // live search (issue #20): hide rows whose name does not contain the query
+  // a row shows iff it matches the search (issue #20) AND is algebraic or the toggle is on
   var search = document.getElementById("surface-search");
-  if (search) {
-    search.addEventListener("input", function () {
-      var q = this.value.trim().toLowerCase();
-      trs.forEach(function (tr) {
-        tr.style.display = !q || tr.dataset.search.indexOf(q) !== -1 ? "" : "none";
-      });
+  var nonAlgebraic = document.getElementById("include-nonalgebraic");
+  function applyFilters() {
+    var q = search ? search.value.trim().toLowerCase() : "";
+    var showNonAlgebraic = nonAlgebraic ? nonAlgebraic.checked : false;
+    trs.forEach(function (tr) {
+      var matches = !q || tr.dataset.search.indexOf(q) !== -1;
+      var allowed = tr.dataset.algebraic === "1" || showNonAlgebraic;
+      tr.style.display = matches && allowed ? "" : "none";
     });
   }
+  if (search) search.addEventListener("input", applyFilters);
+  if (nonAlgebraic) nonAlgebraic.addEventListener("change", applyFilters);
+  applyFilters(); // default: hide non-algebraic surfaces
 });
