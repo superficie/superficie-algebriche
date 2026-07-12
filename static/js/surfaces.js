@@ -198,7 +198,7 @@ surfaces.push(dolgachev);
 
 var pgq1elliptic = new Surface("elliptic surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$", 1, {h01: 1, h02: 1, h11: 12});
 pgq1elliptic.description = "Minimal properly elliptic surfaces ($\\kappa=1$) with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=0$ (hence $\\mathrm c_2=12$), for example an elliptic fibration over an elliptic curve.";
-pgq1elliptic.references = ["0907.0298"];
+pgq1elliptic.references = ["MR2732092"];
 surfaces.push(pgq1elliptic);
 
 // Simply connected minimal elliptic surfaces E(n) over P^1 with a section, with chi(O)=n and no
@@ -269,7 +269,7 @@ surfaces.push(sicilian);
 
 var schoen = new Surface("Schoen surfaces", 2, {c12: 16, pg: 5, q: 4});
 schoen.description = "Irregular surfaces of general type with $\\mathrm p_{\\mathrm g}=5$, $\\mathrm q=4$ and $\\mathrm K^2=16=2\\mathrm c_2$, so the signature vanishes, yet they are not uniformized by the polydisk and have infinite fundamental group. Introduced by Schoen; Ciliberto, Mendes Lopes and Roulleau showed that the canonical map is a degree-$2$ morphism onto a $(2,4)$ complete intersection in $\\mathbb{P}^4$ with $40$ nodes.";
-schoen.references = ["1303.1750"];
+schoen.references = ["MR3317333"];
 surfaces.push(schoen);
 
 for (var c12 = 2; c12 <= 8; c12++) {
@@ -625,7 +625,7 @@ surfaces.push(ishida);
 
 var yeung = new Surface("Yeung's surface of maximal canonical degree", 2, {c12: 36, pg: 3, q: 0});
 yeung.description = "A smooth ball quotient ($\\mathrm c_1^2 = 3\\mathrm c_2$) with $\\mathrm p_{\\mathrm g}=3$, $\\mathrm q=0$ and $\\mathrm K^2=36$, constructed by Yeung as the first surface whose canonical map attains the maximal degree $36$ for a surface of general type.";
-yeung.references = ["1510.06622"];
+yeung.references = ["MR3673651"];
 surfaces.push(yeung);
 
 // double cover of an even 16-nodal quintic surface, equivalently the smooth surface of lines
@@ -703,7 +703,7 @@ surfaces.push(regiso);
 
 var fakequadric = new Surface("fake quadrics", 2, {c12: 8, pg: 0, q: 0});
 fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras; Džambić produced further ones as quotients by irreducible lattices acting on the bidisk.";
-fakequadric.references = ["MR0572981", "1305.5174"];
+fakequadric.references = ["MR0572981", "MR3263157"];
 surfaces.push(fakequadric);
 
 var mixedbeauville = new Surface("mixed Beauville surfaces", 2, {c12: 8, pg: 0, q: 0});
