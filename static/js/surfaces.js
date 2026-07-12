@@ -481,7 +481,7 @@ surfaces.push(cataneseciliberto);
 // for 2 <= K^2 <= 9. K^2=4 examples (Albanese fibre genus 3 or 4) constructed by Ling.
 var pgq1k4 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=4$", 2, {c12: 4, pg: 1, q: 1});
 pgq1k4.description = "Minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=4$, whose Albanese map is a fibration with fibres of genus $3$ or (non-hyperelliptic) genus $4$.";
-pgq1k4.references = ["1709.03056", "1711.10650"];
+pgq1k4.references = ["MR3914962", "MR4068894"];
 surfaces.push(pgq1k4);
 
 // pg=q=1 isogenous to a product: free quotients (C x F)/G, hence K^2 = 8 chi = 8; classified by
@@ -489,7 +489,7 @@ surfaces.push(pgq1k4);
 var pgq1iso = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ isogenous to a product", 2, {c12: 8, pg: 1, q: 1});
 pgq1iso.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ that are isogenous to a product, hence have $\\mathrm K^2=8$.";
 pgq1iso.construction = "A free quotient $(C\\times F)/G$ of a product of two smooth curves of genus $\\geq 2$ by a finite group $G$.";
-pgq1iso.references = ["0704.0446"];
+pgq1iso.references = ["MR2523842"];
 surfaces.push(pgq1iso);
 
 var oliverio = new Surface("Oliverio surfaces", 2, {c12: 8, pg: 4, q: 0});
@@ -631,48 +631,48 @@ surfaces.push(grossimoretti);
 // pg = q = 0
 var craigherogattazzo = new Surface("Craighero&ndash;Gattazzo surfaces", 2, {c12: 1, pg: 0, q: 0});
 craigherogattazzo.description = "A numerical Godeaux surface ($\\mathrm K^2=1$, $\\mathrm p_{\\mathrm g}=\\mathrm q=0$), the smooth minimal model of a special quintic surface in $\\mathbb{P}^3$; it is simply connected.";
-craigherogattazzo.references = ["1506.03529"];
+craigherogattazzo.references = ["MR3705235"];
 surfaces.push(craigherogattazzo);
 
 var leepark = new Surface("Lee&ndash;Park surfaces", 2, {c12: 2, pg: 0, q: 0});
 leepark.description = "The first simply connected minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=2$, obtained by a $\\mathbb{Q}$-Gorenstein smoothing of a singular rational surface.";
-leepark.references = ["math/0609072"];
+leepark.references = ["MR2357500"];
 surfaces.push(leepark);
 
 var kulikov = new Surface("Kulikov surfaces", 2, {c12: 6, pg: 0, q: 0});
 kulikov.description = "Surfaces with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=6$ realised as $(\\mathbb{Z}/3)^2$-covers of the plane; they form a connected component of the moduli space and have torsion group $(\\mathbb{Z}/3)^3$.";
-kulikov.references = ["1011.5574"];
+kulikov.references = ["MR3079273"];
 surfaces.push(kulikov);
 
 var ychen = new Surface("Chen surfaces", 2, {c12: 7, pg: 0, q: 0});
 ychen.description = "A family with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=7$, obtained as $(\\mathbb{Z}/2)^2$-covers of a $6$-nodal degree-$1$ del Pezzo surface; distinct from the Inoue and Chen&ndash;Shin surfaces with the same invariants.";
-ychen.references = ["1210.4633"];
+ychen.references = ["MR3127059"];
 surfaces.push(ychen);
 
 var bauercatanese = new Surface("Bauer&ndash;Catanese surfaces", 2, {c12: 3, pg: 0, q: 0});
 bauercatanese.description = "A family of Burniat-type surfaces with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=3$ realising a new fundamental group of order $16$.";
-bauercatanese.references = ["1209.1980"];
+bauercatanese.references = ["MR3031567"];
 surfaces.push(bauercatanese);
 
 var nevespapadakis = new Surface("Neves&ndash;Papadakis surfaces", 2, {c12: 2, pg: 0, q: 0});
 nevespapadakis.description = "Numerical Campedelli surfaces ($\\mathrm K^2=2$, $\\mathrm p_{\\mathrm g}=\\mathrm q=0$) with torsion group $\\mathbb{Z}/6$, built by unprojection.";
-nevespapadakis.references = ["0707.0244"];
+nevespapadakis.references = ["MR2506434"];
 surfaces.push(nevespapadakis);
 
 // pg = q = 1 (filling the gaps at K^2 = 2, 5, 7)
 var pgq1k2 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=2$", 2, {c12: 2, pg: 1, q: 1});
 pgq1k2.description = "Irregular surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=2$, the smallest $\\mathrm K^2$ in this class; the Albanese fibres have genus $2$.";
-pgq1k2.references = ["1508.01863"];
+pgq1k2.references = ["MR3801477"];
 surfaces.push(pgq1k2);
 
 var pgq1k5 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=5$", 2, {c12: 5, pg: 1, q: 1});
 pgq1k5.description = "The first minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=5$, realised as standard isotrivial fibrations with genus-$3$ Albanese fibres.";
-pgq1k5.references = ["0805.1424"];
+pgq1k5.references = ["MR2558743"];
 surfaces.push(pgq1k5);
 
 var pgq1k7 = new Surface("surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=7$", 2, {c12: 7, pg: 1, q: 1});
 pgq1k7.description = "Surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=7$, obtained as double covers of a Kummer quartic surface.";
-pgq1k7.references = ["1506.09117"];
+pgq1k7.references = ["MR3919554"];
 surfaces.push(pgq1k7);
 
 // isogenous to a product, and fake quadrics
@@ -683,7 +683,7 @@ surfaces.push(pgq2iso);
 
 var regiso = new Surface("regular surfaces isogenous to a product with $\\chi=2$", 2, {c12: 16, pg: 1, q: 0});
 regiso.description = "Regular ($\\mathrm q=0$) surfaces isogenous to a product of curves with $\\chi=2$, hence $\\mathrm p_{\\mathrm g}=1$ and $\\mathrm K^2=8\\chi=16$.";
-regiso.references = ["1310.3110"];
+regiso.references = ["MR3356380"];
 surfaces.push(regiso);
 
 var fakequadric = new Surface("fake quadrics", 2, {c12: 8, pg: 0, q: 0});
@@ -701,24 +701,24 @@ surfaces.push(mixedbeauville);
 // canonical map of record degree 32 (pg=3, q=0); free quotients of a product of two curves
 var gpr32 = new Surface("Gleissner&ndash;Pignatelli&ndash;Rito surfaces", 2, {c12: 32, pg: 3, q: 0});
 gpr32.description = "Surfaces of general type whose canonical map has degree $32$ (a record for $\\mathrm p_{\\mathrm g}=3$), constructed as free quotients of a product of two curves.";
-gpr32.references = ["1807.11854"];
+gpr32.references = ["MR4621715"];
 surfaces.push(gpr32);
 
 var gpr24 = new Surface("Gleissner&ndash;Pignatelli&ndash;Rito surfaces", 2, {c12: 24, pg: 3, q: 1});
 gpr24.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=3$, $\\mathrm q=1$ whose canonical map has degree $24$.";
-gpr24.references = ["1807.11854"];
+gpr24.references = ["MR4621715"];
 surfaces.push(gpr24);
 
 // Fallucca: canonical map of degree 10, 11 or 14; free (Z/7)^2-quotients of a product of Fermat septics
 var fallucca = new Surface("Fallucca surfaces", 2, {c12: 32, pg: 3, q: 0});
 fallucca.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=3$, $\\mathrm q=0$ and canonical map of degree $10$, $11$ or $14$, realised as free $(\\mathbb{Z}/7)^2$-quotients of a product of two Fermat septic curves.";
-fallucca.references = ["2207.02969"];
+fallucca.references = ["MR4674267"];
 surfaces.push(fallucca);
 
 // fake del Pezzo surface of degree 3: a quotient of a fake projective plane
 var fakedelpezzo = new Surface("fake del Pezzo surfaces", 2, {c12: 3, pg: 0, q: 0});
 fakedelpezzo.description = "Minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=3$ (\"fake del Pezzo surfaces of degree $3$\"), obtained as quotients of a fake projective plane by a group of order $3$.";
-fakedelpezzo.references = ["0802.3435"];
+fakedelpezzo.references = ["MR2443971"];
 surfaces.push(fakedelpezzo);
 
 // --- Persson surfaces: fill the interior of the general-type geography ---
