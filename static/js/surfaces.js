@@ -327,6 +327,15 @@ for (var pg = 2; pg <= 10; pg++) {
   surfaces.push(horikawa);
 }
 
+// surfaces on the Castelnuovo line c_1^2 = 3 p_g - 7 (least K^2 for a birational canonical map)
+for (var pg = 4; pg <= 6; pg++) {
+  var castelnuovo = new Surface("Castelnuovo surfaces", 2, {c12: 3*pg - 7, pg: pg, q: 0});
+  castelnuovo.description = "Minimal surfaces of general type whose canonical map is birational with the smallest possible $\\mathrm K^2$: they attain equality in Castelnuovo's inequality $\\mathrm K^2\\ge 3\\mathrm p_{\\mathrm g}-7$, which forces $\\mathrm q=0$. Here $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (3*pg - 7) + "$.";
+  castelnuovo.construction = "The canonical map embeds $X$ birationally as a surface of degree $3\\mathrm p_{\\mathrm g}-7$ in $\\mathbb{P}^{\\mathrm p_{\\mathrm g}-1}$ lying on a $3$-dimensional rational normal scroll. These extremal surfaces are the birational-canonical-map analogue of the Horikawa surfaces on the Noether line, and were classified by Ashikaga and Konno.";
+  castelnuovo.references = ["MR1076174"];
+  surfaces.push(castelnuovo);
+}
+
 // symmetric squares of curves of genus >= 3
 for (var g = 3; g < 6; g++) {
   var h11 = g*g + 1;

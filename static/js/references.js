@@ -18,6 +18,7 @@ var references = {
   "MR0778862": { author: "Ciliberto, Ciro", title: "The degree of the generators of the canonical ring of a surface of general type", year: 1983, journal: "Rend. Sem. Mat. Univ. Politec. Torino", volume: "41", number: "3", pages: [83, 111] },
   "MR0892034": { author: "Donaldson, S. K.", title: "Irrationality and the $h$-cobordism conjecture", year: 1987, journal: "J. Differential Geom.", volume: "26", number: "1", pages: [141, 168] },
   "MR0908914": { author: "Bartalesi, A. and Catanese, F.", title: "Surfaces with $K^2=6,\\;\\chi=4$, and with torsion", year: 1986, journal: "Rend. Sem. Mat. Univ. Politec. Torino", pages: [91, 110] },
+  "MR1076174": { author: "Ashikaga, Tadashi and Konno, Kazuhiro", title: "Algebraic surfaces of general type with $c^2_1=3p_g-7$", year: 1990, journal: "Tohoku Math. J. (2)", volume: "42", number: "4", pages: [517, 536] },
   "MR1211993": { author: "Catanese, F. and Ciliberto, C.", title: "Symmetric products of elliptic curves and surfaces of general type with $p_g=q=1$", year: 1993, journal: "J. Algebraic Geom.", volume: "2", number: "3", pages: [389, 411] },
   "MR1259462": { author: "Naie, Daniel", title: "Surfaces d'Enriques et une construction de surfaces de type général avec $p_g=0$", year: 1994, journal: "Math. Z.", volume: "215", number: "2", pages: [269, 280] },
   "MR1305801": { author: "Inoue, Masahisa", title: "Some new surfaces of general type", year: 1994, journal: "Tokyo J. Math.", volume: "17", number: "2", pages: [295, 319] },
