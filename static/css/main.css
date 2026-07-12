@@ -50,6 +50,21 @@ h1 {
   text-decoration: none;
 }
 
+/* constrain the navbar content to the body width (bar stays full width) so the links line up with the page */
+#menu .navbar-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 86em;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  /* left-align the "table" link with the left edge of the plot (div#table has margin-left: 1em) */
+  #menu .nav-table { margin-left: 1em; }
+  #menu .nav-table .nav-link { padding-left: 0; }
+}
+
 div#table {
   float: left;
   margin: 0 1em 1em 1em;
