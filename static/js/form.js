@@ -1,13 +1,14 @@
 function updateHodgeDiamond(surface) {
-  document.getElementById("h01").textContent = surface.h01;
-  document.getElementById("h10").textContent = surface.h10;
+  function h(v) { return v === null ? "?" : v; } // fillers leave the diamond unspecified
+  document.getElementById("h01").textContent = h(surface.h01);
+  document.getElementById("h10").textContent = h(surface.h10);
 
-  document.getElementById("h20").textContent = surface.h20;
-  document.getElementById("h11").textContent = surface.h11;
-  document.getElementById("h02").textContent = surface.h02;
+  document.getElementById("h20").textContent = h(surface.h20);
+  document.getElementById("h11").textContent = h(surface.h11);
+  document.getElementById("h02").textContent = h(surface.h02);
 
-  document.getElementById("h21").textContent = surface.h21;
-  document.getElementById("h12").textContent = surface.h12;
+  document.getElementById("h21").textContent = h(surface.h21);
+  document.getElementById("h12").textContent = h(surface.h12);
 }
 
 function updateInvariant(el, value) {
@@ -23,26 +24,28 @@ function updateInvariant(el, value) {
 }
 
 function updateInvariants(surface) {
-  updateInvariant(document.getElementById("b1"), surface.b1);
-  updateInvariant(document.getElementById("b2"), surface.b2);
-  updateInvariant(document.getElementById("b3"), surface.b3);
+  // fillers leave some invariants unknown; show a grey "?" for those
+  function v(x) { return x === null ? "{\\color{#dbdbdb}{?}}" : x; }
+  updateInvariant(document.getElementById("b1"), v(surface.b1));
+  updateInvariant(document.getElementById("b2"), v(surface.b2));
+  updateInvariant(document.getElementById("b3"), v(surface.b3));
 
-  updateInvariant(document.getElementById("e"), surface.e);
+  updateInvariant(document.getElementById("e"), v(surface.e));
 
-  updateInvariant(document.getElementById("q"), surface.h01);
+  updateInvariant(document.getElementById("q"), v(surface.h01));
 
-  updateInvariant(document.getElementById("pg"), surface.h02);
+  updateInvariant(document.getElementById("pg"), v(surface.h02));
 
-  updateInvariant(document.getElementById("pa"), surface.pa);
+  updateInvariant(document.getElementById("pa"), v(surface.pa));
 
-  updateInvariant(document.getElementById("chi"), surface.chi);
+  updateInvariant(document.getElementById("chi"), v(surface.chi));
 
-  updateInvariant(document.getElementById("tau"), surface.tau);
+  updateInvariant(document.getElementById("tau"), v(surface.tau));
 
-  updateInvariant(document.getElementById("c2"), surface.c2);
-  updateInvariant(document.getElementById("c12"), surface.c12);
+  updateInvariant(document.getElementById("c2"), v(surface.c2));
+  updateInvariant(document.getElementById("c12"), v(surface.c12));
 
-  updateInvariant(document.getElementById("chiTS"), surface.chiTS);
+  updateInvariant(document.getElementById("chiTS"), v(surface.chiTS));
 }
 
 d3.selection.prototype.moveToFront = function () {

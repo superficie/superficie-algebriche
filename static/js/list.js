@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function kodairaLabel(k) { return k == -1 ? "−∞" : String(k); } // "−∞" or 0/1/2
   function kodairaClass(k) { return k == -1 ? "kodaira-infty" : "kodaira-" + k; }
+  function num(x) { return x === null ? "?" : x; } // fillers leave some invariants unspecified
   // plain-text form of a surface name for searching (drop HTML, entities and TeX punctuation)
   function searchKey(name) {
     return name.replace(/<[^>]*>/g, "").replace(/&[a-z]+;/gi, " ").replace(/[${}\\]/g, "").toLowerCase();
@@ -32,12 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
       expand +
       "<td class='name'><a href='" + href + "'>" + s.name + "</a></td>" +
       "<td class='num' data-sort='" + s.kodaira + "'>" + kodairaLabel(s.kodaira) + "</td>" +
-      "<td class='num'>" + s.c12 + "</td>" +
-      "<td class='num'>" + s.c2 + "</td>" +
-      "<td class='num'>" + s.h02 + "</td>" +
-      "<td class='num'>" + s.h01 + "</td>" +
-      "<td class='num'>" + s.chi + "</td>" +
-      "<td class='num'>" + s.chiTS + "</td>" +
+      "<td class='num'>" + num(s.c12) + "</td>" +
+      "<td class='num'>" + num(s.c2) + "</td>" +
+      "<td class='num'>" + num(s.h02) + "</td>" +
+      "<td class='num'>" + num(s.h01) + "</td>" +
+      "<td class='num'>" + num(s.chi) + "</td>" +
+      "<td class='num'>" + num(s.chiTS) + "</td>" +
       "</tr>";
   });
   tbody.innerHTML = html;

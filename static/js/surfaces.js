@@ -57,6 +57,21 @@ function Surface(name, kodaira, invariants) {
       this.algebraic = false;
     }
   }
+  // a general-type "filler": existence is known at these Chern numbers, but the Hodge diamond is
+  // not pinned down (the realizer may be regular or irregular), so p_g, q, b_1, b_2 stay unknown
+  else if (invariantsAre(invariants, ["c2", "c12"])) {
+    this.c2 = invariants.c2;
+    this.c12 = invariants.c12;
+    this.chi = (this.c12 + this.c2) / 12;
+    this.e = this.c2;
+    this.pa = this.chi - 1;
+    this.tau = (this.c12 - 2 * this.c2) / 3;
+    this.chiTS = 2 * this.c12 - 10 * this.chi;
+    this.b0 = this.b4 = 1;
+    this.h01 = this.h10 = this.h02 = this.h20 = this.h11 = this.h12 = this.h21 = null;
+    this.b1 = this.b2 = this.b3 = null;
+    return; // determined invariants are set; skip the Hodge-based computation below
+  }
   else {
     console.log("Didn't recognise the input format for the invariants.");
   }
@@ -733,8 +748,8 @@ surfaces.push(fakedelpezzo);
       var c2 = 12 * chi - K2;
       if (c2 < -20 || c2 > 80 || K2 > 60) continue;
       if (occupied["2|" + c2 + "|" + K2]) continue; // only fill points no named class occupies
-      var persson = new Surface("Persson surfaces", 2, {c12: K2, pg: chi - 1, q: 0});
-      persson.description = "A minimal surface of general type with $\\chi=" + chi + "$ and $\\mathrm K^2=" + K2 + "$, here a regular ($\\mathrm q=0$, so $\\mathrm p_{\\mathrm g}=" + (chi - 1) + "$) representative, a Persson double cover of a rational surface. By varying the branch locus, this construction realises essentially every lattice point of the region $2\\chi-6\\le\\mathrm K^2\\le 8\\chi$: the whole wedge between the <em>Noether line</em> $\\mathrm K^2=2\\chi-6$ (the lower edge of the geography) and the <em>signature-zero line</em> $\\tau=0$, i.e. $\\mathrm K^2=2\\mathrm c_2$, equivalently $\\mathrm K^2=8\\chi$. It thus (almost) exhausts the interior of the general-type region, leaving only the thin strip $8\\chi<\\mathrm K^2<9\\chi$ just below the Bogomolov&ndash;Miyaoka&ndash;Yau line unpopulated.";
+      var persson = new Surface("Persson surfaces", 2, {c2: c2, c12: K2});
+      persson.description = "The region $2\\chi-6\\le\\mathrm K^2\\le 8\\chi$, between the <em>Noether line</em> $\\mathrm K^2=2\\chi-6$ (the lower edge of the geography) and the <em>signature-zero line</em> $\\tau=0$ ($\\mathrm K^2=2\\mathrm c_2$, equivalently $\\mathrm K^2=8\\chi$), is completely realised by minimal surfaces of general type: Persson's double covers of ruled surfaces (genus-two fibrations) fill almost all of it, and the few values left near the signature line were completed by later work of Xiao, Chen and Persson&ndash;Peters&ndash;Xiao. This point has $\\chi=" + chi + "$ and $\\mathrm K^2=" + K2 + "$. Its Hodge diamond is left unspecified because the representative need not be regular: near the Noether line it can be taken simply connected, but by Debarre's inequality an irregular surface has $\\mathrm K^2\\ge 2\\chi$, and on the signature line the realiser necessarily has $\\mathrm q\\ge 2$. This (almost) exhausts the interior of the general-type region, leaving only the thin strip $8\\chi<\\mathrm K^2<9\\chi$ below the Bogomolov&ndash;Miyaoka&ndash;Yau line unpopulated.";
       persson.references = ["MR0631426"];
       surfaces.push(persson);
     }
