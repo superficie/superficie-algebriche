@@ -10,11 +10,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 // --- TeX -> display helpers -------------------------------------------------
 
 // the few LaTeX accents that actually occur (French titles); extend if a new one shows up
-const ACCENTS = { "'": { e: "é", a: "á", o: "ó", i: "í", u: "ú", E: "É", A: "Á", O: "Ó", I: "Í", U: "Ú" },
+const ACCENTS = { "'": { e: "é", a: "á", o: "ó", i: "í", u: "ú", c: "ć", n: "ń", s: "ś", z: "ź",
+                         E: "É", A: "Á", O: "Ó", I: "Í", U: "Ú", C: "Ć", N: "Ń", S: "Ś" },
                   "`": { e: "è", a: "à", E: "È", A: "À" },
                   '"': { o: "ö", u: "ü", a: "ä", O: "Ö", U: "Ü", A: "Ä" } };
+// letter-command accents (caron \v, cedilla \c, breve \u, double-acute \H); braces required so \vec etc. are untouched
+const LETTER_ACCENTS = { v: { z: "ž", s: "š", c: "č", r: "ř", e: "ě", n: "ň", Z: "Ž", S: "Š", C: "Č" },
+                         c: { c: "ç", s: "ş", C: "Ç" }, u: { g: "ğ", a: "ă" }, H: { o: "ő", u: "ű" } };
 function accents(s) {
-  return s.replace(/\\(['`"])\{?(\w)\}?/g, (m, acc, ch) => (ACCENTS[acc] && ACCENTS[acc][ch]) || m);
+  s = s.replace(/\\(['`"])\{?(\w)\}?/g, (m, acc, ch) => (ACCENTS[acc] && ACCENTS[acc][ch]) || m);
+  s = s.replace(/\\([vcuH])\{(\w)\}/g, (m, acc, ch) => (LETTER_ACCENTS[acc] && LETTER_ACCENTS[acc][ch]) || m);
+  return s;
 }
 
 function stripBraces(s) { return s.replace(/[{}]/g, "").trim(); }
@@ -41,7 +47,7 @@ function cleanTitle(s) {
 
 function cleanAuthor(s) {
   // defensive: appendix credit belongs in the title, not the author list
-  return stripBraces(s.replace(/\s+and with an appendix by[^}]*/i, ""));
+  return stripBraces(accents(s.replace(/\s+and with an appendix by[^}]*/i, "")));
 }
 
 // --- parse bibliography.bib -------------------------------------------------
