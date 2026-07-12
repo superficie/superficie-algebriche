@@ -91,7 +91,7 @@ function Surface(name, kodaira, invariants) {
 
 // Kodaira dimension -\infty
 
-var plane = new Surface("projective planes", -1, {c2 : 3, c12 : 9, h11 : 1});
+var plane = new Surface("projective plane", -1, {c2 : 3, c12 : 9, h11 : 1});
 plane.description = "The projective plane $\\mathbb{P}^2$.";
 surfaces.push(plane);
 
@@ -210,7 +210,7 @@ fakeproj.description = "Algebraic surface with the same Betti numbers as the pro
 surfaces.push(fakeproj);
 
 var beauville = new Surface("Beauville surfaces", 2, {c2 : 4, c12 : 8, h11 : 2});
-beauville.description = "<p>Algebraic surface introduced by Beauville, with the same numerical characteristics as a quadric surface (or Hirzebruch surface). See <em>Complex algebraic surfaces</em>, Arnaud Beauville (1996).";
+beauville.description = "<p>Algebraic surface introduced by Beauville, with the same numerical characteristics as a quadric surface (or Hirzebruch surface). See <em>Complex algebraic surfaces</em>, Beauville (1996).";
 beauville.construction = "Take two smooth curves $C_1$ and $C_2$ of genus $g_1$ and $g_2$. Let $G$ be a finite group acting on $C_1$ and $C_2$ such that<ul><li>$\\#G=(g_1-1)(g_2-1)$<li>no $g\\in G\\setminus\\{1\\}$ has a fix point on both $C_1$ and $C_2$<li>$C_i/G$ is rational</ul> Then $(C_1\\times C_2)/G$ is a Beauville surface.";
 surfaces.push(beauville);
 
@@ -229,11 +229,11 @@ catanese.description = "Algebraic surface introduced by Catanese, in <em>Babbage
 surfaces.push(catanese);
 
 var godeaux = new Surface("Godeaux surfaces", 2, {c2 : 11, c12 : 1, h11 : 9});
-godeaux.description = "Algebraic surface introduced by Lucien Godeaux.";
+godeaux.description = "Algebraic surface introduced by Godeaux.";
 surfaces.push(godeaux);
 
 var barlow = new Surface("Barlow surfaces", 2, {c2 : 11, c12 : 1, h11 : 9});
-barlow.description = "Algebraic surface introduced by Rebecca Barlow. See </em>Some new surfaces with $p_{g} = 0$</em>, Rebecca Barlow (1984).";
+barlow.description = "Algebraic surface introduced by Barlow. See <em>Some new surfaces with $p_{g} = 0$</em>, Barlow (1984).";
 surfaces.push(barlow);
 
 var fano = new Surface("Fano surfaces", 2, {c2 : 27, c12 : 45, h11 : 25});
@@ -242,7 +242,7 @@ fano.construction = "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ 
 fano.references = ["10.2307/1970801"];
 surfaces.push(fano);
 
-var chenhacon = new Surface("Chen\&ndash;Hacon surfaces", 2, {c2 : 7, c12 : 5, h11 : 9});
+var chenhacon = new Surface("Chen&ndash;Hacon surfaces", 2, {c2 : 7, c12 : 5, h11 : 9});
 chenhacon.description = "First surface with these invariants constructed in 2006 by J.A.\&nbsp;Chen and C.D.\&nbsp;Hacon. Later, M.\&nbsp;Penegini constructed more examples, and gave a description of the component in the moduli space together with F.\&nbsp;Polizzi.";
 chenhacon.construction = "The general construction goes via Tschirnhausen bundles on $(1,2)$-polarized abelian surfaces. Penegini's construction is a product-quotient of two $S_3$-covers of two elliptic curves. For details, see <em>On surfaces with $p_g = q = 2$, $K^2 = 5$ and Albanese map of degree $3$</em>, M.\&nbsp;Penegini and F.\&nbsp;Polizzi (2013).";
 chenhacon.references = ["MR2221025", "MR3128997"];
@@ -253,7 +253,7 @@ sicilian.description = "There exists an unramified double cover with $q=3$ such 
 surfaces.push(sicilian);
 
 var schoen = new Surface("Schoen surfaces", 2, {c12: 16, pg: 5, q: 4});
-schoen.description = "Irregular surfaces of general type with $\\mathrm p_{\\mathrm g}=5$, $\\mathrm q=4$ and $\\mathrm K^2=16=2\\mathrm c_2$, so the signature vanishes, yet they are not uniformized by the polydisk and have infinite fundamental group. Introduced by Chad Schoen; Ciliberto, Mendes Lopes and Roulleau showed that the canonical map is a degree-$2$ morphism onto a $(2,4)$ complete intersection in $\\mathbb{P}^4$ with $40$ nodes.";
+schoen.description = "Irregular surfaces of general type with $\\mathrm p_{\\mathrm g}=5$, $\\mathrm q=4$ and $\\mathrm K^2=16=2\\mathrm c_2$, so the signature vanishes, yet they are not uniformized by the polydisk and have infinite fundamental group. Introduced by Schoen; Ciliberto, Mendes Lopes and Roulleau showed that the canonical map is a degree-$2$ morphism onto a $(2,4)$ complete intersection in $\\mathbb{P}^4$ with $40$ nodes.";
 schoen.references = ["1303.1750"];
 surfaces.push(schoen);
 
@@ -318,7 +318,7 @@ for (var g = 3; g < 6; g++) {
 
   var square = new Surface("symmetric squares of curves of genus " + g, 2, {c2 : c2, c12 : c12, h11 : h11});
   if (g == 3)
-    square.description = "Together with Catanese–Ciliberto–Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
+    square.description = "Together with Catanese&ndash;Ciliberto&ndash;Mendes Lopes surfaces ($\\mathrm c_1^2 = 8, \\mathrm c_2 = 4$), " +
       "these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
   else
     square.description = "The symmetric square $C^{(2)}=\\mathrm{Sym}^2 C$ of a smooth curve $C$ of genus $" + g + "$, the surface parametrising effective divisors of degree $2$ on $C$; a minimal surface of general type with $\\mathrm q=" + g + "$.";
@@ -412,7 +412,7 @@ for (var i = 0; i < degrees.length; i++) {
     surfaces.push(ci);
 }
 
-var ccm = new Surface("Catanese–Ciliberto–Mendes Lopes surfaces", 2, {c12: 8, pg: 3, q: 3});
+var ccm = new Surface("Catanese&ndash;Ciliberto&ndash;Mendes Lopes surfaces", 2, {c12: 8, pg: 3, q: 3});
 ccm.description = "Together with symmetric squares of genus 3 curves ($\\mathrm c_1^2 = 6, \\mathrm c_2 = 6$), " +
   "these are the only minimal surfaces of general type with $\\mathrm p_{\\mathrm g} = \\mathrm q = 3$.";
 ccm.construction = "A quotient $(C_2 \\times C_3)/\\tau$ where $C_g$ is a curve of genus $g$ " +
@@ -421,17 +421,17 @@ ccm.construction = "A quotient $(C_2 \\times C_3)/\\tau$ where $C_g$ is a curve 
 ccm.references = ["MR1422597"];
 surfaces.push(ccm);
 
-var cm02 = new Surface("Double covers of abelian surfaces ramified in twice the Theta divisor", 2, {c12: 4, pg: 2, q: 2});
+var cm02 = new Surface("double covers of abelian surfaces ramified in twice the theta divisor", 2, {c12: 4, pg: 2, q: 2});
 cm02.description = "Here the Theta divisor is required is required to be irreducible and the ramification divisor has at most double points.";
 cm02.references = ["MR1924760"];
 surfaces.push(cm02);
 
-var PePo = new Surface("Penegini–Polizzi surfaces", 2, {c12: 6, pg: 2, q: 2});
+var PePo = new Surface("Penegini&ndash;Polizzi surfaces", 2, {c12: 6, pg: 2, q: 2});
 PePo.description = "Several families of surfaces with $\\mathrm p_{\\mathrm g} = \\mathrm q = 2$ and $K^2 = 6$. The Albanese morphism is generically finite of degree 2 or 4.";
 PePo.references = ["MR3004463", "MR3291798"];
 surfaces.push(PePo);
 
-var PiPo = new Surface("Pignatelli–Polizzi surfaces", 2, {c12: 7, pg: 2, q: 2});
+var PiPo = new Surface("Pignatelli&ndash;Polizzi surfaces", 2, {c12: 7, pg: 2, q: 2});
 PiPo.description = "A family of surfaces whose Albanese morphism is generically finite of degree 3.";
 PiPo.references = ["MR3722504"];
 surfaces.push(PiPo);
@@ -467,12 +467,12 @@ inoue.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=\\m
 inoue.references = ["MR1305801"]; // page 319 to be precise
 surfaces.push(inoue);
 
-var chenshin = new Surface("Chen-Shin surfaces", 2, {c12: 7, pg: 0, q: 0});
+var chenshin = new Surface("Chen&ndash;Shin surfaces", 2, {c12: 7, pg: 0, q: 0});
 chenshin.description = "A two-dimensional family of surfaces of general type with $\\mathrm p_{\\mathrm g}=0$ and $\\mathrm K^2=7$.";
 chenshin.references = ["MR4199271"];
 surfaces.push(chenshin);
 
-var cataneseciliberto = new Surface("Catanese-Ciliberto surfaces", 2, {c12: 3, pg: 1, q: 1});
+var cataneseciliberto = new Surface("Catanese&ndash;Ciliberto surfaces", 2, {c12: 3, pg: 1, q: 1});
 cataneseciliberto.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=3$ whose Albanese fibration has genus-$3$ fibres.";
 cataneseciliberto.references = ["MR1211993", "MR2221791"];
 surfaces.push(cataneseciliberto);
@@ -504,7 +504,7 @@ for (var c12 = 5; c12 <= 10; c12++) {
   surfaces.push(ciliberto);
 }
 
-var cfm = new Surface("Ciliberto-Francia-Mendes Lopes surfaces", 2, {c12: 8, pg: 4, q: 0});
+var cfm = new Surface("Ciliberto&ndash;Francia&ndash;Mendes Lopes surfaces", 2, {c12: 8, pg: 4, q: 0});
 cfm.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=4$, $\\mathrm q=0$ and $\\mathrm K^2=8$, appearing in Ciliberto, Francia and Mendes Lopes's study of when the bicanonical map fails to be birational.";
 cfm.references = ["MR1427708"];
 surfaces.push(cfm);
@@ -515,7 +515,7 @@ bartalesicatanese.references = ["MR0908914"]
 surfaces.push(bartalesicatanese);
 
 for (var c12 = 1; c12 <= 4; c12++) {
-  var keumnaie = new Surface("Keum-Naie surfaces", 2, {c12: c12, pg: 0, q: 0});
+  var keumnaie = new Surface("Keum&ndash;Naie surfaces", 2, {c12: c12, pg: 0, q: 0});
   keumnaie.description = "Double covers of nodal Enriques surfaces.";
   keumnaie.references = ["MR1259462", "MR2782171"];
   surfaces.push(keumnaie);
@@ -572,7 +572,7 @@ for (var h = 1; h <= 10; h++) {
   surfaces.push(ciliberto);
 }
 
-var bf = new Surface("Borisov-Fatighenti surfaces", 2, {c12: 3, pg: 0, q: 0});
+var bf = new Surface("Borisov&ndash;Fatighenti surfaces", 2, {c12: 3, pg: 0, q: 0});
 bf.description = "A surface of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=0$ and $\\mathrm K^2=3$, obtained by Borisov and Fatighenti through new explicit constructions.";
 bf.references = ["MR5022119"];
 surfaces.push(bf);
@@ -748,7 +748,8 @@ surfaces.push(fakedelpezzo);
     return name
       .replace(/<[^>]*>/g, "")      // strip HTML tags
       .replace(/&[a-z]+;/gi, "-")   // HTML entities (&ndash; etc.) -> separator
-      .replace(/[${}\\]/g, "")      // drop TeX punctuation
+      .replace(/\\[a-zA-Z]+/g, "")  // drop TeX control words (\mathrm, \mathbb, \oplus, ...) but keep their arguments
+      .replace(/[${}\\]/g, "")      // drop remaining TeX punctuation
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");

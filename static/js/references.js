@@ -3,6 +3,7 @@ var references = {
   "0707.0244": { author: "Neves, Jorge and Papadakis, Stavros Argyrios", title: "A construction of numerical Campedelli Surfaces with \\Z/6 torsion group", year: 2007 },
   "0802.3435": { author: "Keum, JongHae", title: "Quotients of fake projective planes", year: 2008 },
   "0805.1424": { author: "Mistretta, Ernesto and Polizzi, Francesco", title: "Standard isotrivial fibrations with p_g=q=1. II", year: 2009 },
+  "0907.0298": { author: "Schuett, Matthias and Shioda, Tetsuji", title: "Elliptic Surfaces", year: 2010 },
   "10.1007/BF01456018": { author: "Ishida, Masa-Nori", title: "The irregularities of Hirzebruch's examples of surfaces of general type with $\\mathrm c_1^2 = 3\\mathrm c_2$", year: 1983, journal: "Mathematische Annalen", volume: "262", number: "3", pages: [407, 420] },
   "10.2307/1970801": { author: "Clemens, C. Herbert and Griffiths, Phillip A.", title: "The Intermediate Jacobian of the Cubic Threefold", year: 1972, journal: "The Annals of Mathematics", volume: "95", number: "2" },
   "1011.5574": { author: "Chan, Tsz On Mario and Coughlan, Stephen", title: "Kulikov surfaces form a connected component of the moduli space", year: 2012 },
