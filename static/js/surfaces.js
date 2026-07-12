@@ -237,6 +237,7 @@ surfaces.push(barlow);
 var fano = new Surface("Fano surfaces", 2, {c2 : 27, c12 : 45, h11 : 25});
 fano.description = "These surfaces parametrise lines on a non-singular cubic threefold.";
 fano.construction = "Subvariety in the Grassmannian of lines in $\\mathbb{P}^4$ lying on a non-singular cubic threefold.";
+fano.references = ["10.2307/1970801"];
 surfaces.push(fano);
 
 var chenhacon = new Surface("Chen\&ndash;Hacon surfaces", 2, {c2 : 7, c12 : 5, h11 : 9});
@@ -599,6 +600,17 @@ for (var n = 1; n <= 20; n++) {
   surfaces.push(cs);
 }
 
+// regular (q=0) ball quotients on the BMY line, at points the Cartwright-Steger covers reach only with q=1
+var ishida = new Surface("Ishida surface", 2, {c12: 45, pg: 4, q: 0});
+ishida.description = "A smooth ball quotient ($\\mathrm c_1^2 = 3\\mathrm c_2$) with $\\mathrm p_{\\mathrm g}=4$, $\\mathrm q=0$ and $\\mathrm K^2=45$, obtained by Hirzebruch as a $(\\mathbb{Z}/5)^2$-cover of $\\mathbb{P}^2$ branched over the complete quadrilateral (the six lines joining four points in general position). Ishida computed its irregularity, showing it is regular, in contrast with the $\\mathrm q=1$ Cartwright&ndash;Steger covers sharing these invariants.";
+ishida.references = ["10.1007/BF01456018"];
+surfaces.push(ishida);
+
+var yeung = new Surface("Yeung's surface of maximal canonical degree", 2, {c12: 36, pg: 3, q: 0});
+yeung.description = "A smooth ball quotient ($\\mathrm c_1^2 = 3\\mathrm c_2$) with $\\mathrm p_{\\mathrm g}=3$, $\\mathrm q=0$ and $\\mathrm K^2=36$, constructed by Yeung as the first surface whose canonical map attains the maximal degree $36$ for a surface of general type.";
+yeung.references = ["1510.06622"];
+surfaces.push(yeung);
+
 // double cover of an even 16-nodal quintic surface, equivalently the smooth surface of lines
 // on a cubic fourfold meeting a fixed generic line; invariants from Huybrechts, Theorem 0.1
 var huybrechts = new Surface("double covers of even 16-nodal quintic surfaces", 2, {c12: 10, pg: 5, q: 0});
@@ -673,8 +685,8 @@ regiso.references = ["1310.3110"];
 surfaces.push(regiso);
 
 var fakequadric = new Surface("fake quadrics", 2, {c12: 8, pg: 0, q: 0});
-fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras.";
-fakequadric.references = ["MR0572981"];
+fakequadric.description = "Minimal surfaces of general type with the Betti numbers of $\\mathbb{P}^1\\times\\mathbb{P}^1$ (so $\\mathrm p_{\\mathrm g}=\\mathrm q=0$, $\\mathrm K^2=8$, $\\mathrm b_2=2$). Shavel constructed examples uniformised by the bidisk from quaternion algebras; Džambić produced further ones as quotients by irreducible lattices acting on the bidisk.";
+fakequadric.references = ["MR0572981", "1305.5174"];
 surfaces.push(fakequadric);
 
 var mixedbeauville = new Surface("mixed Beauville surfaces", 2, {c12: 8, pg: 0, q: 0});
