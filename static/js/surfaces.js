@@ -295,7 +295,8 @@ surfaces.push(kunev);
 // surfaces *on* the Noether line, classified by Horikawa
 for (var pg = 3; pg <= 10; pg++) {
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 4, pg: pg, q: 0});
-  horikawa.description = "Minimal surface of general type on the Noether line $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-4$ (equality in Noether's inequality), with $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 4) + "$; classified by Horikawa.";
+  horikawa.description = "Minimal surface of general type on the Noether line $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-4$ (equality in Noether's inequality), with $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 4) + "$.";
+  horikawa.construction = "By Horikawa's structure theorem the canonical map $\\varphi_{\\mathrm K}$ is a degree-$2$ morphism onto its image $W$, a surface of minimal degree $\\mathrm p_{\\mathrm g}-2$ in $\\mathbb{P}^{\\mathrm p_{\\mathrm g}-1}$; so $X$ is a canonical double cover of $W$. Which $W$ occurs depends on $\\mathrm p_{\\mathrm g}$: the plane $\\mathbb{P}^2$ (when $\\mathrm p_{\\mathrm g}=3$, branched over an octic), the Veronese surface ($\\mathrm p_{\\mathrm g}=6$), a rational normal scroll (a Hirzebruch surface $\\mathbb{F}_m$), or a cone over a rational normal curve. On a scroll the branch curve lies in $|6\\sigma_\\infty+2a\\Gamma|$ and meets every ruling in $6$ points, so $X$ carries a genus-$2$ pencil. The scroll index $m$ is Horikawa's type invariant; when $8\\mid\\mathrm K^2$ the moduli space splits into two connected components (types&nbsp;I and&nbsp;II) that are homeomorphic but not deformation-equivalent.";
   horikawa.references = ["MR0424831"];
   surfaces.push(horikawa);
 }
@@ -307,7 +308,8 @@ for (var pg = 2; pg <= 10; pg++) {
     continue;
 
   var horikawa = new Surface("Horikawa surfaces", 2, {c12: 2*pg - 3, pg: pg, q: 0});
-  horikawa.description = "Minimal surface of general type just above the Noether line, with $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-3$; here $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 3) + "$. Classified by Horikawa.";
+  horikawa.description = "Minimal surface of general type just above the Noether line, with $\\mathrm K^2=2\\mathrm p_{\\mathrm g}-3$; here $\\mathrm p_{\\mathrm g}=" + pg + "$ and $\\mathrm K^2=" + (2*pg - 3) + "$.";
+  horikawa.construction = "One unit above the Noether line (Horikawa, part II). For $\\mathrm p_{\\mathrm g}\\ge5$ the canonical system $|\\mathrm K|$ acquires a single base point; after blowing it up the canonical map is again a degree-$2$ cover of a minimal-degree rational surface (a Hirzebruch surface, occasionally a cone), and $X$ still carries a genus-$2$ pencil.";
   horikawa.references = ["MR0460340"];
   surfaces.push(horikawa);
 }
