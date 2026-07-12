@@ -181,8 +181,10 @@ dolgachev.construction = "Perform two logarithmic transformations, of coprime mu
 dolgachev.references = ["MR2757651", "MR0892034"];
 surfaces.push(dolgachev);
 
-var shiodaschutt = new Surface("Shioda-Schütt surfaces", 1, {h01: 1, h02: 1, h11: 12});
-surfaces.push(shiodaschutt);
+var pgq1elliptic = new Surface("elliptic surfaces with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$", 1, {h01: 1, h02: 1, h11: 12});
+pgq1elliptic.description = "Minimal properly elliptic surfaces ($\\kappa=1$) with $\\mathrm p_{\\mathrm g}=\\mathrm q=1$ and $\\mathrm K^2=0$ (hence $\\mathrm c_2=12$), for example an elliptic fibration over an elliptic curve.";
+pgq1elliptic.references = ["0907.0298"];
+surfaces.push(pgq1elliptic);
 
 // Simply connected minimal elliptic surfaces E(n) over P^1 with a section, with chi(O)=n and no
 // multiple fibres: e=12n, K^2=0, p_g=n-1, q=0. E(1) is rational, E(2) is a K3, E(n>=3) has
@@ -507,7 +509,7 @@ cfm.description = "Surfaces of general type with $\\mathrm p_{\\mathrm g}=4$, $\
 cfm.references = ["MR1427708"];
 surfaces.push(cfm);
 
-var bartalesicatanese = new Surface("Bartalesi-Catanese surfaces", 2, {c12: 6, pg: 4, q: 0});
+var bartalesicatanese = new Surface("Bartalesi&ndash;Catanese surfaces", 2, {c12: 6, pg: 3, q: 0});
 bartalesicatanese.description = "Surfaces of general type with $\\mathrm K^2=6$ and nontrivial torsion, constructed by Bartalesi and Catanese.";
 bartalesicatanese.references = ["MR0908914"]
 surfaces.push(bartalesicatanese);
