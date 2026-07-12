@@ -18,6 +18,7 @@ const ACCENTS = { "'": { e: "é", a: "á", o: "ó", i: "í", u: "ú", c: "ć", n
 const LETTER_ACCENTS = { v: { z: "ž", s: "š", c: "č", r: "ř", e: "ě", n: "ň", Z: "Ž", S: "Š", C: "Č" },
                          c: { c: "ç", s: "ş", C: "Ç" }, u: { g: "ğ", a: "ă" }, H: { o: "ő", u: "ű" } };
 function accents(s) {
+  s = s.replace(/\\ss(\{\})?/g, "ß"); // eszett ligature (\ss or \ss{})
   s = s.replace(/\\(['`"])\{?(\w)\}?/g, (m, acc, ch) => (ACCENTS[acc] && ACCENTS[acc][ch]) || m);
   s = s.replace(/\\([vcuH])\{(\w)\}/g, (m, acc, ch) => (LETTER_ACCENTS[acc] && LETTER_ACCENTS[acc][ch]) || m);
   return s;
