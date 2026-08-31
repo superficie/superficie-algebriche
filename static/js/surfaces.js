@@ -367,8 +367,9 @@ for (var g1 = 2; g1 < 5; g1++) {
     product.construction = "Let $C_1$ and $C_2$ be curves of genus $g_1,g_2\\geq 2$. Then $C_1\\times C_2$ is always of general type.";
     product.description = "The numerical invariants are completely determined in terms of $g_1=" + g1 + "$ and $g_2=" + g2 + "$, with $\\mathrm{q}=g_1+g_2$, $\\mathrm{p}_{\\mathrm{g}}=g_1g_2$ and $\\mathrm{h}^{1,1}=2g_1g_2+2$.";
     if (g1 == 2) {
-      // a genus-2 factor gives p_g = 2g_2 = 2q - 4: equality in Beauville's inequality
-      product.description += " Having a factor of genus $2$, these attain equality in the inequality $\\mathrm p_{\\mathrm g}\\ge 2\\mathrm q-4$ for surfaces of general type, proved by Beauville in his appendix to Debarre's paper.";
+      product.description += " Beauville proved that equality in $\\mathrm p_{\\mathrm g}\\ge 2\\mathrm q-4$ holds exactly for products of a genus-$2$ curve and a curve of genus $\\mathrm q-2$.";
+      if (g2 == 2)
+        product.description += " In particular, these are exactly the minimal surfaces of general type with $\\mathrm p_{\\mathrm g}=\\mathrm q=4$.";
       product.references = ["MR0688038"];
     }
     surfaces.push(product);
