@@ -5,6 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!table || typeof surfaces === "undefined") return;
   var tbody = table.querySelector("tbody");
 
+  // Keep the sticky column headings below the fixed banner, including its mobile menu.
+  var header = document.getElementById("header");
+  if (header) {
+    function updateHeaderOffset() {
+      table.style.setProperty("--surface-table-header-offset", header.getBoundingClientRect().height + "px");
+    }
+    updateHeaderOffset();
+    new ResizeObserver(updateHeaderOffset).observe(header);
+  }
+
   function kodairaLabel(k) { return k == -1 ? "−∞" : String(k); } // "−∞" or 0/1/2
   function kodairaClass(k) { return k == -1 ? "kodaira-infty" : "kodaira-" + k; }
   function num(x) { return x === null ? "?" : x; } // fillers leave some invariants unspecified
